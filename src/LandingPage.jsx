@@ -15,7 +15,7 @@ const LandingPage = () => {
       {/* Header Section */}
       <header className="flex flex-col items-center text-center p-6">
         <img 
-          src="public/img\logo\logo-no-background.png" 
+          src="/img/logo/logo-no-background.png" 
           alt="SM Burger Logo" 
           className="w-80 mb-4" 
         />
