@@ -105,7 +105,7 @@ const Products = [
       category: "Getränke",
       price: 2.5,
       image:
-        "./public/img/cola.png",
+        "public\img\cola.png",
     },
     {
       id: 13,
