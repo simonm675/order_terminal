@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "./LandingPage";
-import products from "./components/products";
+import Products from "./components/Products";
 import Popup from "./components/Popup";
 import Category from "./components/Category";
 
@@ -49,7 +49,7 @@ function OrderPage() {
         <Category />
       </div>
       <div className="relative grid grid-cols-2 w-screen mt-3 mb-3 scrollbar-thin rounded-lg ">
-        {products.map((product) => (
+        {Products.map((product) => (
           <div
             key={product.id}
             className="bg-white shadow-md rounded-lg flex flex-col p-3 relative h-96 mr-3 mb-3 "
