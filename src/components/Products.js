@@ -6,7 +6,7 @@ const Products = [
       category: "Burger",
       price: 6.5,
       image:
-        "./img/burger.png",
+        "./public/img/burger.png",
     },
     {
       id: 2,
@@ -15,7 +15,7 @@ const Products = [
       category: "Burger",
       price: 7.0,
       image:
-        "./img/burger.png",
+        "./public/img/burger.png",
     },
     {
       id: 3,
@@ -24,7 +24,7 @@ const Products = [
       category: "Burger",
       price: 8.0,
       image:
-        "./img/burger.png",
+        "./public/img/burger.png",
     },
     {
       id: 4,
@@ -33,7 +33,7 @@ const Products = [
       category: "Burger",
       price: 8.0,
       image:
-        "./img/burger.png",
+        "./public/img/burger.png",
     },
     {
       id: 5,
@@ -42,7 +42,7 @@ const Products = [
       category: "Burger",
       price: 10.0,
       image:
-        "./img/burger.png",
+        "./public/img/burger.png",
     },
     {
       id: 6,
@@ -51,7 +51,7 @@ const Products = [
       category: "Burger",
       price: 7.0,
       image:
-        "./img/plant-based-burger.png",
+        "./public/img/plant-based-burger.png",
     },
     {
       id: 7,
@@ -60,7 +60,7 @@ const Products = [
       category: "Burger",
       price: 7.0,
       image:
-        "./img/burger.png",
+        "./public/img/burger.png",
     },
     {
       id: 8,
@@ -69,7 +69,7 @@ const Products = [
       category: "Beilagen",
       price: 3.0,
       image:
-        "./img/pommes.png",
+        "./public/img/pommes.png",
     },
     {
       id: 9,
@@ -78,7 +78,7 @@ const Products = [
       category: "Beilagen",
       price: 3.0,
       image:
-        "./img/pommes.png",
+        "./public/img/pommes.png",
     },
     {
       id: 10,
@@ -87,7 +87,7 @@ const Products = [
       category: "Beilagen",
       price: 3.0,
       image:
-        "./img/salad.png",
+        "./public/img/salad.png",
     },
     {
       id: 11,
@@ -96,7 +96,7 @@ const Products = [
       category: "Getränke",
       price: 2.5,
       image:
-        "./img/cola.png",
+        "./public/img/cola.png",
     },
     {
       id: 12,
@@ -105,7 +105,7 @@ const Products = [
       category: "Getränke",
       price: 2.5,
       image:
-        "./img/cola.png",
+        "./public/img/cola.png",
     },
     {
       id: 13,
@@ -114,7 +114,7 @@ const Products = [
       category: "Getränke",
       price: 2.5,
       image:
-        "./img/cola.png",
+        "./public/img/cola.png",
     },
     {
       id: 14,
@@ -123,7 +123,7 @@ const Products = [
       category: "Getränke",
       price: 2.5,
       image:
-        "./img/cola.png",
+        "./public/img/cola.png",
     },{
       id: 15,
       name: "Wasser",
@@ -131,7 +131,7 @@ const Products = [
       category: "Getränke",
       price: 2.5,
       image:
-        "./img/cola.png",
+        "./public/img/cola.png",
     },
     
   ];

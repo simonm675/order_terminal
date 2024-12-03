@@ -14,7 +14,7 @@ const Category = () => {
     <>
       <img
         className="h-24 mb-3 "
-        src="./img/logo-no-background-2.png"
+        src="./public/img/logo-no-background-2.png"
         alt="SM Burger"
       />
       <p className="text-3xl font-bold pt-10"></p>
