@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import LandingPage from "./LandingPage";
 import Products from "./components/Products";
 import Popup from "./components/Popup";
 import Category from "./components/Category";
@@ -44,7 +42,7 @@ function OrderPage() {
 
   return (
     
-    <div className="bg-gray-100 mx-auto flex flex-col lg:flex-row  w-screen h-screen">
+    <div className="bg-gray-100 mx-auto flex flex-col lg:flex-row  w-screen h-screen select-none">
       <div className=" bg-white shadow-md rounded-lg px-4 py-4 mb-3 mt-3 ml-3 lg:w-1/4 lg:mr-3 overflow-hidden relative">
         <Category />
       </div>

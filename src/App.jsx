@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import LandingPage from "./LandingPage";
@@ -6,6 +6,16 @@ import OrderPage from "./OrderPage";
 
 const App = () => {
   const location = useLocation();  // Standort von React Router
+
+  useEffect(() => {
+    const disableRightClick = (e) => e.preventDefault();
+    document.addEventListener("contextmenu", disableRightClick);
+
+    // Cleanup beim Entfernen der Komponente
+    return () => {
+      document.removeEventListener("contextmenu", disableRightClick);
+    };
+  }, []);
 
   return (
     <TransitionGroup component={null}>
