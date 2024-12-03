@@ -16,7 +16,7 @@ const LandingPage = () => {
       {/* Hintergrundvideo */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover"
-        src="public\videos\video_landingpage.webm"
+        src="/videos/video_landingpage.webm"
         autoPlay
         loop
         muted
