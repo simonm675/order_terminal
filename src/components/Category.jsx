@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
-//const [data,setData]=useState(Products)
-//const filterResult=(catItem)=>{
-//  const result=Products.filter((curData)=>{
-//    return curData.category===catItem;
-//  });
-//}
 
 const Category = () => {
+  const navigate = useNavigate();
+
+  const handleCancel = () => {
+    navigate("/"); // Navigiere zur Landingpage zurück
+  };
+
   return (
     <>
       <img
@@ -31,7 +32,9 @@ const Category = () => {
           <button className="btn-kategorien">Build-your-Burger</button>
         </li>
       </ul>
-      <button className=" bottom-btn2 absolute inset-x-0 bottom-0 mx-4 my-3">
+      <button
+      onClick={handleCancel}
+       className=" bottom-btn2 absolute inset-x-0 bottom-0 mx-4 my-3">
         Bestellvorgang abbrechen
       </button>
     </>

@@ -1,7 +1,15 @@
+/* Setze overflow auf hidden für die gesamte Seite */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;  /* Deaktiviert das Scrollen */
+  height: 100%;      /* Stellt sicher, dass die Seite die volle Höhe einnimmt */
+}
 
 
 #root {
   font-family: 'Poppins', sans-serif;
+  
 }
 
 
@@ -81,3 +89,29 @@
  .cssbuttons-io-button-kasse:active {
   box-shadow: 0 0.3em 1em -0.5em #14a73e98;
  }
+
+
+ /* Übergang beim Wechseln der Seite */
+.page-enter {
+  opacity: 0;
+  
+}
+
+.page-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+  }
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+  
+}
+
+.page-wrapper {
+  position: relative;
+}
