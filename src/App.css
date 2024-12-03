@@ -1,0 +1,83 @@
+
+
+#root {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.cssbuttons-io-button {
+  padding: 0.5em 0.5em 0.5em 0.8em;
+  color: white;
+  background: linear-gradient(0deg, rgba(20,167,62,1) 0%, rgba(102,247,113,1) 100%);
+  box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
+  border-radius: 10px;
+ }
+ 
+ .cssbuttons-io-button svg {
+  margin-right: 6px;
+ }
+ 
+ .cssbuttons-io-button:hover {
+  box-shadow: 0 0.5em 1.5em -0.5em #14a73e98;
+ }
+ 
+ .cssbuttons-io-button:active {
+  box-shadow: 0 0.3em 1em -0.5em #14a73e98;
+ }
+
+
+.bottom-btn2 {
+  padding: 0.4em 0.4em 0.4em 0.4em;
+  color: white;
+  background: linear-gradient(0deg, rgb(167, 20, 20) 0%, rgb(247, 102, 102) 100%);
+  box-shadow: 0 0.7em 1.5em -0.5em #a7141498;
+  letter-spacing: 0.05em;
+  border-radius: 10px;
+}
+
+.btn-kategorien {
+  width: 100%;
+  margin-top: 10px;
+  color: black;
+  padding: 0.7em 1.4em 0.7em 1.1em;
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(241, 241, 241) 100%);
+  box-shadow: 0 0.7em 1.5em -0.5em #cecece98;
+  letter-spacing: 0.05em;
+  border-radius: 10px;
+}
+
+.btn-kategorien-active {
+  width: 100%;
+  margin-top: 10px;
+  color: #14A73E;
+  padding: 0.7em 1.4em 0.7em 1.1em;
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(241, 241, 241) 100%);
+  box-shadow: 0 0.3em 1em -0.5em #14a73e98;
+  letter-spacing: 0.05em;
+  border-radius: 10px;
+}
+
+.img-shopping-card {
+  padding-top: 300px;
+}
+
+.cssbuttons-io-button-kasse {
+  text-align: center;
+  font-weight: 500;
+  padding: 0.7em 1.4em 0.7em 1.1em;
+  color: white;
+  background: linear-gradient(0deg, rgba(20,167,62,1) 0%, rgba(102,247,113,1) 100%);
+  box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
+  letter-spacing: 0.05em;
+  border-radius: 10px;
+ }
+ 
+
+ 
+ .cssbuttons-io-button-kasse:hover {
+  box-shadow: 0 0.5em 1.5em -0.5em #14a73e98;
+ }
+ 
+ .cssbuttons-io-button-kasse:active {
+  box-shadow: 0 0.3em 1em -0.5em #14a73e98;
+ }
