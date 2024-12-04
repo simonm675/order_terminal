@@ -13,10 +13,12 @@
   }
   
   .popup-inner {
+    justify-content: center;
     background: #ffffff;
     border-radius: 10px;
     padding: 20px 30px;
-    max-width: 450px;
+    max-width: 600px;
+  
     width: 90%;
     text-align: center;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
