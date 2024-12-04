@@ -45,7 +45,7 @@ const LandingPage = () => {
                 scale: [1, 1.1, 1], // Pulsierende Skalierung
               }}
               transition={{
-                duration: 1.5,  // Dauer der Animation
+                duration: 1.5, // Dauer der Animation
                 repeat: Infinity, // Unendlich wiederholen
                 repeatType: "loop", // Loop-Animation
               }}

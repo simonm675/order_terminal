@@ -1,43 +1,61 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
-
-
-const Category = () => {
-  const navigate = useNavigate();
+const Category = ({ filterProducts }) => {
 
   const handleCancel = () => {
-    navigate("/"); // Navigiere zur Landingpage zurück
+    // Hier könnte eine Navigation zur Startseite hinzugefügt werden
   };
 
+
   return (
-    <>
-      <img
-        className="h-24 mb-3 "
-        src="/img/logo-no-background-2.png"
-        alt="SM Burger"
-      />
-      <p className="text-3xl font-bold pt-10"></p>
-      <ul className="space-y-2 text-lg font-semibold">
-        <li>
-          <button className=" btn-kategorien-active" onClick={() => filterResult('Burger')}>Burger</button>
-        </li>
-        <li>
-          <button className="btn-kategorien" onClick={() => filterResult('Beilagen')}>Beilagen</button>
-        </li>
-        <li>
-          <button className="btn-kategorien" onClick={() => filterResult('Getränke')}>Getränke</button>
-        </li>
-        <li>
-          <button className="btn-kategorien">Build-your-Burger</button>
-        </li>
-      </ul>
+    <div className="relative h-full flex flex-col justify-between">
+      <div>
+        <img
+          className="h-24 mb-3"
+          src="/img/logo-no-background-2.png"
+          alt="SM Burger"
+        />
+        <ul className="space-y-2 text-lg font-semibold">
+          <li>
+            <button
+              className="btn-kategorien-active"
+              onClick={() => filterProducts("Burger")}
+            >
+              Burger
+            </button>
+          </li>
+          <li>
+            <button
+              className="btn-kategorien"
+              onClick={() => filterProducts("Beilagen")}
+            >
+              Beilagen
+            </button>
+          </li>
+          <li>
+            <button
+              className="btn-kategorien"
+              onClick={() => filterProducts("Getränke")}
+            >
+              Getränke
+            </button>
+          </li>
+          <li>
+            <button className="btn-kategorien" onClick={() => filterProducts("All")}>
+              Alle anzeigen
+            </button>
+          </li>
+        </ul>
+      </div>
+
       <button
-      onClick={handleCancel}
-       className=" bottom-btn2 absolute inset-x-0 bottom-0 mx-4 my-3">
+        onClick={handleCancel}
+        className="bottom-btn2 w-full bg-red-500 text-white py-2 px-4 rounded-lg font-semibold hover:bg-red-600"
+      >
         Bestellvorgang abbrechen
       </button>
-    </>
+    </div>
   );
 };
 
