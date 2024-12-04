@@ -59,6 +59,10 @@ const App = () => {
                 />
               }
             />
+            <Route
+              path="/order/summary"
+              element={<OrderSummary cart={cart} />} // Übergibt den Warenkorb an OrderSummary
+            />
           </Routes>
         </div>
       </CSSTransition>
