@@ -5,7 +5,7 @@ const OrderSummary = ({ cart }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg my-8">
+    <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg my-8 min-h-screen flex flex-col">
       <h2 className="text-4xl font-semibold text-center text-gray-800 mb-6">Bestellübersicht</h2>
 
       {cart.length === 0 ? (
@@ -18,9 +18,8 @@ const OrderSummary = ({ cart }) => {
           />
         </div>
       ) : (
-        <div>
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">Produkte in Ihrem Warenkorb</h3>
-          <div className="max-h-[500px] overflow-y-auto scrollbar-thin"> {/* Scrollbarer Bereich für Produkte, angepasste Höhe */}
+        <div className="flex-grow mb-6">
+          <div className="max-h-[650px] overflow-y-auto scrollbar-thin ">
             <ul className="space-y-4">
               {cart.map((item, index) => (
                 <li key={index} className="flex items-center justify-between border-b pb-4">
@@ -44,33 +43,37 @@ const OrderSummary = ({ cart }) => {
               ))}
             </ul>
           </div>
-
-          <hr/>
-
-          <div className="flex justify-between items-center text-lg font-semibold text-gray-800 mt-6">
-            <p>Gesamtsumme:</p>
-            <p className="text-green-500 mr-7">{cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0).toFixed(2)} €</p>
-          </div>
-
-          <div className="flex justify-between mt-6 space-x-4">
-            {/* Linker Button */}
-            <button
-              className="btn-popup rounded-lg shadow-md w-1/2 transition duration-300"
-              onClick={() => navigate("/order")} // Navigiert zurück zur OrderPage
-            >
-              Zurück zum Warenkorb
-            </button>
-
-            {/* Rechter Button */}
-            <button
-              className="cssbuttons-io-button-kasse rounded-lg shadow-md w-1/2 transition duration-300"
-              onClick={() => alert("coming soon")}
-            >
-              Jetzt bezahlen
-            </button>
-          </div>
         </div>
       )}
+
+      {/* Gesamtsumme und Buttons, die immer am unteren Rand sind */}
+      
+      <div className="flex flex-col mt-auto space-y-4 mb-8">
+        <div className="flex justify-between items-center text-lg font-semibold text-gray-800">
+          <p>Gesamtsumme:</p>
+          <p className="text-green-500">
+            {cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0).toFixed(2)} €
+          </p>
+        </div>
+
+        <div className="flex justify-between space-x-4">
+          {/* Linker Button */}
+          <button
+            className="btn-popup rounded-lg shadow-md w-1/2 transition duration-300"
+            onClick={() => navigate("/order")} // Navigiert zurück zur OrderPage
+          >
+            Zurück zum Warenkorb
+          </button>
+
+          {/* Rechter Button */}
+          <button
+            className="cssbuttons-io-button-kasse rounded-lg shadow-md w-1/2 transition duration-300"
+            onClick={() => alert("coming soon")}
+          >
+            Jetzt bezahlen
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
