@@ -37,7 +37,7 @@ const OrderSummary = ({ cart }) => {
                       <p className="text-gray-500">{item.quantity} x {item.price.toFixed(2)} €</p>
                     </div>
                   </div>
-                  <div className="text-lg text-gray-800 font-semibold">
+                  <div className="text-lg text-gray-800 font-semibold mr-4">
                     {(item.price * item.quantity).toFixed(2)} €
                   </div>
                 </li>
@@ -45,11 +45,11 @@ const OrderSummary = ({ cart }) => {
             </ul>
           </div>
 
-          
+          <hr/>
 
-          <div className="flex justify-between items-center text-lg font-semibold text-gray-800">
+          <div className="flex justify-between items-center text-lg font-semibold text-gray-800 mt-6">
             <p>Gesamtsumme:</p>
-            <p className="text-green-500">{cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0).toFixed(2)} €</p>
+            <p className="text-green-500 mr-7">{cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0).toFixed(2)} €</p>
           </div>
 
           <div className="flex justify-between mt-6 space-x-4">
@@ -64,7 +64,7 @@ const OrderSummary = ({ cart }) => {
             {/* Rechter Button */}
             <button
               className="cssbuttons-io-button-kasse rounded-lg shadow-md w-1/2 transition duration-300"
-              onClick={() => alert("Zur Kasse gehen")}
+              onClick={() => alert("coming soon")}
             >
               Jetzt bezahlen
             </button>
