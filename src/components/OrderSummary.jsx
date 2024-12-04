@@ -45,7 +45,7 @@ const OrderSummary = ({ cart }) => {
             </ul>
           </div>
 
-          <hr className="my-6" />
+          
 
           <div className="flex justify-between items-center text-lg font-semibold text-gray-800">
             <p>Gesamtsumme:</p>
