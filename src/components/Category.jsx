@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CategoryPopup from "./popups/PopupCategory";
+import { motion } from "framer-motion";
 
-const Category = ({ filterProducts }) => {
-  const [activeCategory, setActiveCategory] = useState("All"); // Zustand für die aktive Kategorie
-  const [showConfirmation, setShowConfirmation] = useState(false); // Zustand für das Bestätigungs-Popup
+const Category = ({ filterProducts, setCart }) => {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const navigate = useNavigate();
 
   const handleCategoryClick = (category) => {
@@ -18,6 +19,7 @@ const Category = ({ filterProducts }) => {
 
   const handleConfirmCancel = () => {
     setShowConfirmation(false); // Bestätigung abgeschlossen, Popup schließen
+    setCart([]); // Leert den Warenkorb
     navigate("/"); // Navigiere zur Landingpage zurück
   };
 
@@ -37,7 +39,9 @@ const Category = ({ filterProducts }) => {
           <li>
             <button
               className={`${
-                activeCategory === "All" ? "btn-kategorien-active" : "btn-kategorien"
+                activeCategory === "All"
+                  ? "btn-kategorien-active"
+                  : "btn-kategorien"
               }`}
               onClick={() => handleCategoryClick("All")}
             >
@@ -47,7 +51,9 @@ const Category = ({ filterProducts }) => {
           <li>
             <button
               className={`${
-                activeCategory === "Burger" ? "btn-kategorien-active" : "btn-kategorien"
+                activeCategory === "Burger"
+                  ? "btn-kategorien-active"
+                  : "btn-kategorien"
               }`}
               onClick={() => handleCategoryClick("Burger")}
             >
@@ -57,7 +63,9 @@ const Category = ({ filterProducts }) => {
           <li>
             <button
               className={`${
-                activeCategory === "Beilagen" ? "btn-kategorien-active" : "btn-kategorien"
+                activeCategory === "Beilagen"
+                  ? "btn-kategorien-active"
+                  : "btn-kategorien"
               }`}
               onClick={() => handleCategoryClick("Beilagen")}
             >
@@ -67,7 +75,9 @@ const Category = ({ filterProducts }) => {
           <li>
             <button
               className={`${
-                activeCategory === "Getränke" ? "btn-kategorien-active" : "btn-kategorien"
+                activeCategory === "Getränke"
+                  ? "btn-kategorien-active"
+                  : "btn-kategorien"
               }`}
               onClick={() => handleCategoryClick("Getränke")}
             >
@@ -77,18 +87,20 @@ const Category = ({ filterProducts }) => {
         </ul>
       </div>
 
-      <button
+      <motion.button
         onClick={handleCancel}
-        className="bottom-btn2 w-full   py-2 px-4 rounded-lg font-semibold "
+        className="bottom-btn2 w-full py-2 px-4 rounded-lg font-semibold"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
         Bestellvorgang abbrechen
-      </button>
+      </motion.button>
 
       {/* Bestätigungs-Popup anzeigen, wenn der Zustand `showConfirmation` true ist */}
       {showConfirmation && (
         <CategoryPopup
           onConfirm={handleConfirmCancel} // Bestätigt den Abbruch
-          onCancel={handleCancelAbort}   // Bricht den Vorgang ab
+          onCancel={handleCancelAbort} // Bricht den Vorgang ab
         />
       )}
     </div>

@@ -1,14 +1,15 @@
 import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const ShoppingCart = ({
   cart,
   handleRemoveClick,
-  removeFromCart,
-  buttonPopup,
-  setButtonPopup,
 }) => {
+  const navigate = useNavigate(); // React Router Hook für Navigation
+
   return (
-    <div className="relative flex flex-col justify-between bg-white shadow-md rounded-lg px-4 py-4 mb-3 mt-3 ml-3 lg:w-1/4 lg:mr-3 overflow-hidden">
+    <motion.div className="relative flex flex-col justify-between bg-white shadow-md rounded-lg px-4 py-4 mb-3 mt-3 ml-3 lg:w-1/4 lg:mr-3 overflow-hidden">
       <ul className="space-y-2">
         <h2 className="text-3xl font-semibold mb-4">Warenkorb</h2>
         {cart.length === 0 ? (
@@ -21,9 +22,16 @@ const ShoppingCart = ({
             />
           </p>
         ) : (
-          <>
+          <AnimatePresence>
             {cart.map((item) => (
-              <div key={item.id} className="flex justify-between items-center mb-2">
+              <motion.div
+                key={item.id}
+                className="flex justify-between items-center mb-2"
+                initial={{ opacity: 0, scale: 0.9 }} // Animation beim Hinzufügen
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8, x: -50 }} // Animation beim Entfernen
+                transition={{ duration: 0.2 }}
+              >
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full overflow-hidden mr-2">
                     <img
@@ -43,7 +51,11 @@ const ShoppingCart = ({
                   onClick={() => handleRemoveClick(item)}
                   className="text-gray-500 hover:text-gray-700"
                 >
-                  <svg className="w-7 h-7" viewBox="0 0 20 20" fill="currentColor">
+                  <svg
+                    className="w-7 h-7"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
                     <path
                       fillRule="evenodd"
                       d="M10 12.586L5.710 15 4.293 15.586 8.586 11.293 4.293 7 5.707 5.586 10 10.899 14.293 5.586 15.707 7 11.414 11.293 15.707 15.586 14.293 17 10 12.707 5.707 17 4.293 15.586z"
@@ -51,38 +63,43 @@ const ShoppingCart = ({
                     />
                   </svg>
                 </button>
-              </div>
+              </motion.div>
             ))}
-            
-            
-          </>
+          </AnimatePresence>
         )}
       </ul>
 
-      {/* Die Summe wird immer unten angezeigt, über dem Button */}
       {cart.length > 0 && (
         <div className="flex flex-col justify-between mt-auto mb-4">
-          {/* Der Trennstrich wird hier über der Summe angezeigt */}
           <hr className="my-4" />
           <div className="flex justify-between text-lg">
             <p className="font-semibold">Summe:</p>
-            <p className="text-green-400 font-semibold">
+            <motion.p
+              className="text-green-400 font-semibold"
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.2 }}
+            >
               {cart
                 .reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
                 .toFixed(2)}{" "}
               €
-            </p>
+            </motion.p>
           </div>
         </div>
       )}
 
-      {/* Button "Zur Kasse gehen" nur anzeigen, wenn der Warenkorb nicht leer ist */}
       {cart.length > 0 && (
-        <button className="cssbuttons-io-button-kasse py-4">
+        <motion.button
+          className="cssbuttons-io-button-kasse py-4"
+          onClick={() => navigate("/order/summary")} // Navigiert zur Bestellübersicht
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
           <span>Zur Kasse gehen</span>
-        </button>
+        </motion.button>
       )}
-    </div>
+    </motion.div>
   );
 };
 

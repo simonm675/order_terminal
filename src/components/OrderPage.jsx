@@ -1,28 +1,16 @@
-// OrderPage.jsx
 import React, { useState } from "react";
 import "./App.css";
-import Products from "./components/Products";
-import Popup from "./components/popups/PopupShoppingCart";
-import Category from "./components/Category";
-import ShoppingCart from "./components/ShoppingCart";
+import Products from "./Products";
+import Popup from "./popups/PopupShoppingCart";
+import Category from "./Category";
+import ShoppingCart from "./ShoppingCart";
 import { motion } from "framer-motion";
 
-function OrderPage() {
+function OrderPage({ addToCart, cart, setCart }) {
+  
   const [buttonPopup, setButtonPopup] = useState(false);
-  const [cart, setCart] = useState([]);
   const [currentProduct, setCurrentProduct] = useState(null); // Produkt für das Popup
   const [filteredProducts, setFilteredProducts] = useState(Products); // Für die Filterung von Produkten
-
-  const addToCart = (product) => {
-    const index = cart.findIndex((item) => item.id === product.id);
-    if (index === -1) {
-      setCart([...cart, { ...product, quantity: 1 }]);
-    } else {
-      const updatedCart = [...cart];
-      updatedCart[index].quantity++;
-      setCart(updatedCart);
-    }
-  };
 
   const handleRemoveClick = (product) => {
     setCurrentProduct(product); // Produkt speichern
@@ -60,8 +48,7 @@ function OrderPage() {
   return (
     <div className="bg-gray-100 flex flex-col lg:flex-row w-screen h-screen select-none">
       {/* Kategorie-Sektion */}
-        <Category filterProducts={filterProducts} />
-      
+      <Category filterProducts={filterProducts} setCart={setCart} />
 
       {/* Produkt-Sektion mit Animation */}
       <motion.div
@@ -90,7 +77,7 @@ function OrderPage() {
             </p>
             <button
               className="cssbuttons-io-button absolute bottom-3 right-3"
-              onClick={() => addToCart(product)}
+              onClick={() => addToCart(product)} // addToCart ist nun als Prop verfügbar
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
