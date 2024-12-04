@@ -1,9 +1,0 @@
-{
-  "name": "SM Burger",
-  "short_name": "SM Burger",
-  "theme_color": "#fff",
-  "background_color": "#fff",
-  "display": "fullScreen",
-  "scope": "/",
-  "start_url": "/"
-}

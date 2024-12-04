@@ -17,12 +17,9 @@ function Popup({ trigger, setTrigger, children }) {
         exit={{ scale: 0.8, opacity: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <h3 className="text-xl font-semibold mb-4">
+        <h3 className="text-xl  mb-4">
           Produkt wirklich entfernen?
         </h3>
-        
-        
-        
         {children}
       </motion.div>
     </div>

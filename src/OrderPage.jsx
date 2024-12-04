@@ -1,4 +1,4 @@
-import React, { useState } from "react"; 
+import React, { useState } from "react";
 import "./App.css";
 import Products from "./components/Products";
 import Popup from "./components/Popup";
@@ -62,8 +62,14 @@ function OrderPage() {
         <Category filterProducts={filterProducts} />
       </div>
 
-      {/* Produkt-Sektion */}
-      <div className="relative grid grid-cols-2 w-full mt-3 mb-3 scrollbar-thin rounded-lg">
+      {/* Produkt-Sektion mit Animation */}
+      <motion.div
+        className="relative grid grid-cols-2 w-full mt-3 mb-3 scrollbar-thin rounded-lg"
+        key={filteredProducts.length} // key sorgt dafür, dass beim Filtern die Animation erneut ausgelöst wird
+        initial={{ y: 100, opacity: 0 }} // Anfangszustand (unterhalb des Sichtbereichs und unsichtbar)
+        animate={{ y: 0, opacity: 1 }} // Endzustand (Produkte erscheinen)
+        transition={{ duration: 0.6, ease: "easeOut" }} // Übergangsdauer und Ease-Animation
+      >
         {filteredProducts.map((product) => (
           <div
             key={product.id}
@@ -72,12 +78,12 @@ function OrderPage() {
             <img
               src={product.image}
               alt={product.name}
-              className="w-40 drop-shadow-xl object-contain mx-auto"
+              className="w-40 h-40 object-contain mx-auto"
             />
-            <h3 className="text-lg font-semibold my-2 text-center">
+            <h3 className="text-lg font-semibold my-4 text-center">
               {product.name}
             </h3>
-            <p className="mb-4 text-center text-gray-600">{product.description}</p>
+            <p className="text-center text-gray-600">{product.description}</p>
             <p className="font-semibold text-xl absolute bottom-4 right-20">
               {product.price.toFixed(2)} €
             </p>
@@ -100,13 +106,13 @@ function OrderPage() {
             </button>
           </div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Warenkorb-Sektion */}
       <div className="bg-white shadow-md rounded-lg p-4 mb-3 lg:w-1/4 lg:ml-3 w-full mt-3 mr-3 overflow-hidden">
         <h2 className="text-3xl font-semibold mb-4">Warenkorb</h2>
         {cart.length === 0 ? (
-          <p className="text-gray-600 flex flex-col items-center">
+          <p className="text-gray-600 flex flex-col">
             Der Warenkorb ist leer.
             <img
               className="img-shopping-card drop-shadow-2xl mt-4"
@@ -173,21 +179,18 @@ function OrderPage() {
 
       {/* Popup-Sektion */}
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-        
         <button
           onClick={removeFromCart}
-          className="bg-red-600 text-white font-bold py-4 px-4 rounded-xl mt-4"
+          className="bottom-btn2 font-bold py-4 rounded-xl mt-4"
         >
           Produkt entfernen
         </button>
         <button
           onClick={() => setButtonPopup(false)} // Popup schließen
-          className="bg-gray-200 text-black font-bold py-4 px-4 rounded-xl ml-8"
+          className="btn-popup font-bold py-4  rounded-xl ml-8"
         >
           Abbrechen
         </button>
-        
-        
       </Popup>
     </div>
   );

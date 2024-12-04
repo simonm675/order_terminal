@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Category = ({ filterProducts }) => {
+  const [activeCategory, setActiveCategory] = useState("All"); // Zustand für die aktive Kategorie
+  const navigate = useNavigate();
 
-  const handleCancel = () => {
-    // Hier könnte eine Navigation zur Startseite hinzugefügt werden
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category); // Setzt die aktive Kategorie
+    filterProducts(category); // Filtert die Produkte nach der gewählten Kategorie
   };
 
+  const handleCancel = () => {
+    navigate("/"); // Navigiere zur Landingpage zurück
+  };
 
   return (
     <div className="relative h-full flex flex-col justify-between">
@@ -17,35 +23,47 @@ const Category = ({ filterProducts }) => {
           alt="SM Burger"
         />
         <ul className="space-y-2 text-lg font-semibold">
+        <li>
+            <button
+              className={`${
+                activeCategory === "All" ? "btn-kategorien-active" : "btn-kategorien"
+              }`}
+              onClick={() => handleCategoryClick("All")}
+            >
+              Alle Produkte
+            </button>
+          </li>
           <li>
             <button
-              className="btn-kategorien-active"
-              onClick={() => filterProducts("Burger")}
+              className={`${
+                activeCategory === "Burger" ? "btn-kategorien-active" : "btn-kategorien"
+              }`}
+              onClick={() => handleCategoryClick("Burger")}
             >
               Burger
             </button>
           </li>
           <li>
             <button
-              className="btn-kategorien"
-              onClick={() => filterProducts("Beilagen")}
+              className={`${
+                activeCategory === "Beilagen" ? "btn-kategorien-active" : "btn-kategorien"
+              }`}
+              onClick={() => handleCategoryClick("Beilagen")}
             >
               Beilagen
             </button>
           </li>
           <li>
             <button
-              className="btn-kategorien"
-              onClick={() => filterProducts("Getränke")}
+              className={`${
+                activeCategory === "Getränke" ? "btn-kategorien-active" : "btn-kategorien"
+              }`}
+              onClick={() => handleCategoryClick("Getränke")}
             >
               Getränke
             </button>
           </li>
-          <li>
-            <button className="btn-kategorien" onClick={() => filterProducts("All")}>
-              Alle anzeigen
-            </button>
-          </li>
+          
         </ul>
       </div>
 
