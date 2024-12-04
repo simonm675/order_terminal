@@ -18,14 +18,11 @@ function Popup({ trigger, setTrigger, children }) {
         transition={{ duration: 0.3 }}
       >
         <h3 className="text-xl font-semibold mb-4">
-          Möchtest du das Produkt wirklich aus dem Warenkorb entfernen?
+          Produkt wirklich entfernen?
         </h3>
-        <button
-          className="bg-gray-200 text-black font-bold py-2 px-4 rounded-xl mt-4 mr-4"
-          onClick={() => setTrigger(false)}
-        >
-          Abbrechen
-        </button>
+        
+        
+        
         {children}
       </motion.div>
     </div>

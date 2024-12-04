@@ -173,19 +173,21 @@ function OrderPage() {
 
       {/* Popup-Sektion */}
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-        <h3 className="text-xl font-semibold mb-4">Möchten Sie dieses Produkt entfernen?</h3>
+        
         <button
           onClick={removeFromCart}
-          className="bg-red-600 text-white font-bold py-2 px-4 rounded-xl mt-4"
+          className="bg-red-600 text-white font-bold py-4 px-4 rounded-xl mt-4"
         >
           Produkt entfernen
         </button>
         <button
           onClick={() => setButtonPopup(false)} // Popup schließen
-          className="bg-gray-500 text-white font-bold py-2 px-4 rounded-xl mt-4"
+          className="bg-gray-200 text-black font-bold py-4 px-4 rounded-xl ml-8"
         >
           Abbrechen
         </button>
+        
+        
       </Popup>
     </div>
   );
