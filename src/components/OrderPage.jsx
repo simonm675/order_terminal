@@ -51,7 +51,7 @@ function OrderPage({ addToCart, cart, setCart }) {
 
       {/* Produkt-Sektion mit Animation */}
       <motion.div
-        className="relative grid grid-cols-2 w-full mt-3 mb-3 scrollbar-thin rounded-lg"
+        className="relative grid grid-cols-2 w-full mt-3 mb-3 scrollbar-thin rounded-lg overflow-auto"
         key={filteredProducts.length}
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
