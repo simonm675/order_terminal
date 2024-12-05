@@ -31,13 +31,15 @@ const Category = ({ filterProducts, setCart }) => {
     <div className="relative flex flex-col justify-between bg-white shadow-md rounded-lg px-4 py-4 mb-3 mt-3 ml-3 lg:w-1/4 lg:mr-3 overflow-hidden">
       <div>
         <img
-          className="mb-3"
+          className="mb-10"
           src="/img/logo-no-background-2.png"
           alt="SM Burger"
         />
-        <ul className="space-y-2 text-lg font-semibold">
+        <ul className="space-y-3 text-lg font-semibold">
           <li>
-            <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.9 }}
               className={`${
                 activeCategory === "All"
                   ? "btn-kategorien-active"
@@ -45,11 +47,13 @@ const Category = ({ filterProducts, setCart }) => {
               }`}
               onClick={() => handleCategoryClick("All")}
             >
-              Alle Produkte
-            </button>
+              Alle Gerichte
+            </motion.button>
           </li>
           <li>
-            <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.9 }}
               className={`${
                 activeCategory === "Burger"
                   ? "btn-kategorien-active"
@@ -58,10 +62,12 @@ const Category = ({ filterProducts, setCart }) => {
               onClick={() => handleCategoryClick("Burger")}
             >
               Burger
-            </button>
+            </motion.button>
           </li>
           <li>
-            <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.9 }}
               className={`${
                 activeCategory === "Beilagen"
                   ? "btn-kategorien-active"
@@ -69,29 +75,74 @@ const Category = ({ filterProducts, setCart }) => {
               }`}
               onClick={() => handleCategoryClick("Beilagen")}
             >
-              Beilagen
-            </button>
+              Sides
+            </motion.button>
           </li>
           <li>
-            <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.9 }}
+              className={`${
+                activeCategory === "Subs"
+                  ? "btn-kategorien-active"
+                  : "btn-kategorien"
+              }`}
+              onClick={() => handleCategoryClick("Subs")}
+            >
+              Subs
+            </motion.button>
+          </li>
+          <li>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.9 }}
+              className={`${
+                activeCategory === "Bowls"
+                  ? "btn-kategorien-active"
+                  : "btn-kategorien"
+              }`}
+              onClick={() => handleCategoryClick("Bowls")}
+            >
+              Bowls
+            </motion.button>
+          </li>
+          <li>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.9 }}
+              className={`${
+                activeCategory === "Dips"
+                  ? "btn-kategorien-active"
+                  : "btn-kategorien"
+              }`}
+              onClick={() => handleCategoryClick("Dips")}
+            >
+              Dips
+            </motion.button>
+          </li>
+          <li>
+            <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.9 }}
               className={`${
                 activeCategory === "Getränke"
                   ? "btn-kategorien-active"
                   : "btn-kategorien"
+                  
               }`}
               onClick={() => handleCategoryClick("Getränke")}
             >
               Getränke
-            </button>
+            </motion.button>
           </li>
         </ul>
       </div>
 
       <motion.button
         onClick={handleCancel}
-        className="bottom-btn2 w-full py-2 px-4 rounded-lg font-semibold"
+        className="bottom-btn2 w-full py-2 rounded-lg font-semibold active:bg-transparent"
         whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        whileTap={{ scale: 0.9 }}
       >
         Bestellvorgang abbrechen
       </motion.button>

@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Salami Sub",
+    "description": "Belegt mit Salat, Gurken, Tomaten & Käse überbacken",
+    "category": "Subs",
+    "price": 9.0,
+    "image": "/img/salami-sub.jpg"
+  },
+  {
+    "name": "Schinken Sub",
+    "description": "Belegt mit Salat, Gurken, Tomaten & Käse überbacken",
+    "category": "Subs",
+    "price": 9.0,
+    "image": "/img/ham-sub.jpg"
+  },
+  {
+    "name": "Hawaii Sub",
+    "description": "Belegt mit Schinken, Ananas, Salat, Gurken, Tomaten & Käse überbacken",
+    "category": "Subs",
+    "price": 9.5,
+    "image": "/img/hawaii-sub.jpg"
+  },
+  {
+    "name": "Orient Sub",
+    "description": "Belegt mit Sucuk, Spiegelei, Salat, Gurken, Tomaten & Käse überbacken",
+    "category": "Subs",
+    "price": 10.0,
+    "image": "/img/orient-sub.jpg"
+  },
+  {
+    "name": "Thunfisch Sub",
+    "description": "Belegt mit Salat, Gurken, Tomaten, Zwiebeln & Käse überbacken",
+    "category": "Subs",
+    "price": 9.5,
+    "image": "/img/tuna-sub.jpg"
+  },
+  {
+    "name": "Chicken Sub",
+    "description": "Belegt mit angebratenen Hähnchenstreifen, Salat, Gurken, Tomaten, Zwiebeln & Käse überbacken",
+    "category": "Subs",
+    "price": 11.0,
+    "image": "/img/chicken-sub.jpg"
+  },
+  {
+    "name": "Hot Chili Sub",
+    "description": "Belegt mit Salami, Schinken, Jalapeños, Salat, Gurken, Tomaten, Paprika & Käse überbacken",
+    "category": "Subs",
+    "price": 10.0,
+    "image": "/img/hot-chili-sub.jpg"
+  },
+  {
+    "name": "Veggi Sub",
+    "description": "Belegt mit Brokkoli, Paprika, Hirtenkäse, Salat, Gurken, Tomaten & Käse überbacken",
+    "category": "Subs",
+    "price": 9.0,
+    "image": "/img/veggi-sub.jpg"
+  }
+]

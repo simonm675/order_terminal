@@ -2,21 +2,21 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-const ShoppingCart = ({
-  cart,
-  handleRemoveClick,
-}) => {
+const ShoppingCart = ({ cart, handleRemoveClick }) => {
   const navigate = useNavigate(); // React Router Hook für Navigation
 
   return (
     <motion.div className="relative flex flex-col justify-between bg-white shadow-md rounded-lg px-4 py-4 mb-3 mt-3 ml-3 lg:w-1/4 lg:mr-3 overflow-hidden">
-      <ul className="space-y-2">
+      <ul
+        className="space-y-2 overflow-y-auto scrollbar-thin" // Fügt Scrollen für die Liste hinzu
+        style={{ maxHeight: "900px" }} // Setzt eine maximale Höhe für die Liste
+      >
         <h2 className="text-3xl font-semibold mb-4">Warenkorb</h2>
         {cart.length === 0 ? (
           <p className="text-gray-600 flex flex-col">
             Der Warenkorb ist leer.
             <img
-              className="img-shopping-card drop-shadow-2xl mt-4"
+              className="drop-shadow-md pt-80"
               src="./img/shopping_cart.png"
               alt="Warenkorb"
             />

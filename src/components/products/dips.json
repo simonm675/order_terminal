@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Hot Spicy Dip",
+    "description": "Würziger, scharfer Dip",
+    "category": "Dips",
+    "price": 2.0,
+    "image": "/img/hot-spicy-dip.jpg"
+  },
+  {
+    "name": "Curry Dip",
+    "description": "Fruchtig-milder Curry-Dip",
+    "category": "Dips",
+    "price": 2.0,
+    "image": "/img/curry-dip.jpg"
+  },
+  {
+    "name": "Knoblauch Dip",
+    "description": "Cremiger Knoblauch-Dip",
+    "category": "Dips",
+    "price": 2.0,
+    "image": "/img/garlic-dip.jpg"
+  },
+  {
+    "name": "Cocktail Dip",
+    "description": "Fruchtig-würziger Cocktail-Dip",
+    "category": "Dips",
+    "price": 2.0,
+    "image": "/img/cocktail-dip.jpg"
+  },
+  {
+    "name": "Chilli Cheese Dip",
+    "description": "Cremiger Käse-Dip mit einem Hauch von Chili",
+    "category": "Dips",
+    "price": 2.0,
+    "image": "/img/chilli-cheese-dip.jpg"
+  },
+  {
+    "name": "BBQ Dip",
+    "description": "Rauchiger Barbecue-Dip",
+    "category": "Dips",
+    "price": 1.3,
+    "image": "/img/bbq-dip.jpg"
+  },
+  {
+    "name": "Sour Cream Dip",
+    "description": "Cremige Sour Cream",
+    "category": "Dips",
+    "price": 1.3,
+    "image": "/img/sour-cream-dip.jpg"
+  },
+  {
+    "name": "Süß Sauer Dip",
+    "description": "Fruchtig-süßer Dip",
+    "category": "Dips",
+    "price": 1.3,
+    "image": "/img/sweet-sour-dip.jpg"
+  },
+  {
+    "name": "Ketchup",
+    "description": "Klassischer Tomatenketchup",
+    "category": "Dips",
+    "price": 0.8,
+    "image": "/img/ketchup.jpg"
+  },
+  {
+    "name": "Mayonnaise",
+    "description": "Klassische Mayonnaise",
+    "category": "Dips",
+    "price": 0.8,
+    "image": "/img/mayo.jpg"
+  }
+]

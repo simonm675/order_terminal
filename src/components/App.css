@@ -45,25 +45,39 @@ html, body {
 
 .btn-kategorien {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 20px;
   color: black;
-  padding: 0.7em 1.4em 0.7em 1.1em;
+  padding: 0.7em 1.4em; /* Reduziert Padding oben und unten */
   background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(241, 241, 241) 100%);
   box-shadow: 0 0.7em 1.5em -0.5em #cecece98;
   letter-spacing: 0.05em;
   border-radius: 10px;
+  
+  display: flex; /* Flexbox aktivieren */
+  justify-content: center; /* Horizontale Zentrierung */
+  align-items: center; /* Vertikale Zentrierung */
+  
+  height: 3.5em; /* Optional: Höhe des Buttons definieren */
 }
+
 
 .btn-kategorien-active {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 20px;
   color: #14A73E;
-  padding: 0.7em 1.4em 0.7em 1.1em;
+  padding: 0.7em 1.4em; /* Reduziert Padding oben und unten */
   background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(241, 241, 241) 100%);
   box-shadow: 0 0.3em 1em -0.5em #14a73e98;
   letter-spacing: 0.05em;
   border-radius: 10px;
+  
+  display: flex; /* Flexbox aktivieren */
+  justify-content: center; /* Horizontale Zentrierung */
+  align-items: center; /* Vertikale Zentrierung */
+  
+  height: 3.5em; /* Optional: Höhe des Buttons definieren */
 }
+
 
 .btn-popup {
   color: black;
@@ -74,9 +88,7 @@ html, body {
   border-radius: 10px;
 }
 
-.img-shopping-card {
-  padding-top: 300px;
-}
+
 
 .cssbuttons-io-button-kasse {
  
@@ -125,3 +137,4 @@ html, body {
 .page-wrapper {
   position: relative;
 }
+

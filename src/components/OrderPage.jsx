@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import "./App.css";
-import Products from "./Products";
+import Products from "./products/Products";
 import Popup from "./popups/PopupShoppingCart";
 import Category from "./Category";
 import ShoppingCart from "./ShoppingCart";
@@ -66,9 +65,9 @@ function OrderPage({ addToCart, cart, setCart }) {
             <img
               src={product.image}
               alt={product.name}
-              className="w-40 h-40 object-contain mx-auto"
+              className=" h-56 object-contain mx-auto rounded-lg drop-shadow-lg"
             />
-            <h3 className="text-lg font-semibold my-4 text-center">
+            <h3 className="text-lg font-semibold text-center mt-2">
               {product.name}
             </h3>
             <p className="text-center text-gray-600">{product.description}</p>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import "./components/App.css";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import LandingPage from "./components/LandingPage";
 import OrderPage from "./components/OrderPage";
 import OrderSummary from "./components/OrderSummary";
+
 
 const App = () => {
   const location = useLocation();
