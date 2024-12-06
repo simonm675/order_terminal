@@ -6,8 +6,10 @@ import LandingPage from "./components/LandingPage";
 import OrderPage from "./components/OrderPage";
 import OrderSummary from "./components/OrderSummary";
 
-
 const App = () => {
+  
+  
+
   const location = useLocation();
 
   // Warenkorb im App-Komponenten-Status speichern

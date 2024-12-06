@@ -1,9 +1,10 @@
 /* Setze overflow auf hidden für die gesamte Seite */
 html, body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;  /* Deaktiviert das Scrollen */
-  height: 100%;      /* Stellt sicher, dass die Seite die volle Höhe einnimmt */
+  touch-action: none; /* Deaktiviert Pinch-to-Zoom */
+  overflow: hidden; /* Verhindert unerwünschtes Scrollen */
+  overscroll-behavior: auto; /* Ermöglicht den "Bounce"-Effekt */
+  -webkit-overflow-scrolling: touch; /* Aktiviert sanftes Scrollen auf mobilen Geräten */
+  
 }
 
 

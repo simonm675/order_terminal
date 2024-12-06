@@ -54,7 +54,7 @@ const LandingPage = () => {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              Jetzt starten
+              Jetzt Bestellen
             </motion.button>
           ) : (
             <motion.div
