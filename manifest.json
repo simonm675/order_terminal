@@ -1,0 +1,18 @@
+{
+  "name": "SM Burger",
+  "short_name": "App",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "lang": "en",
+  "scope": "/",
+  "description": "Beschreibung deiner PWA",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/icons/icon512_rounded.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
