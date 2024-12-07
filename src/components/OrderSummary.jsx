@@ -11,7 +11,7 @@ const OrderSummary = ({ cart }) => {
   };
 
   return (
-    <motion.div className="relative flex flex-col min-h-screen justify-between bg-white shadow-lg rounded-lg max-w-3xl mx-auto p-6 my-8">
+    <motion.div className="relative flex flex-col min-h-screen bg-white justify-between rounded-lg max-w-3xl mx-auto p-6 shadow-xl m-2">
       <h2 className="text-4xl font-semibold text-center text-gray-800 mb-6">
         Bestellübersicht
       </h2>
