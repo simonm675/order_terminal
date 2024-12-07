@@ -140,7 +140,7 @@ const Category = ({ filterProducts, setCart }) => {
 
       <motion.button
         onClick={handleCancel}
-        className="bottom-btn2 w-full py-2 rounded-lg font-semibold active:bg-transparent"
+        className="bottom-btn2 w-full py-4 rounded-lg font-semibold active:bg-transparent"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
       >

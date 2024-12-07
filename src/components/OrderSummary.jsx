@@ -1,9 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Zum Navigieren zur Zahlungsmethoden-Seite
 
 const OrderSummary = ({ cart }) => {
   const navigate = useNavigate();
+
+  // Berechnung der Gesamtsumme der Bestellung
+  const calculateTotal = () => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
 
   return (
     <motion.div className="relative flex flex-col min-h-screen justify-between bg-white shadow-lg rounded-lg max-w-3xl mx-auto p-6 my-8">
@@ -23,8 +28,8 @@ const OrderSummary = ({ cart }) => {
       ) : (
         <div className="flex-grow mb-6">
           <ul
-            className="space-y-2 overflow-y-auto scrollbar-thin" // Fügt Scrollen für die Liste hinzu
-            style={{ maxHeight: "710px" }} // Setzt eine maximale Höhe für die Liste
+            className="space-y-2 overflow-y-auto scrollbar-thin"
+            style={{ maxHeight: "710px" }}
           >
             {cart.map((item, index) => (
               <li
@@ -62,12 +67,7 @@ const OrderSummary = ({ cart }) => {
         <hr />
         <div className="flex justify-between items-center text-lg font-semibold text-gray-800">
           <p>Gesamtsumme:</p>
-          <p className="text-green-500">
-            {cart
-              .reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
-              .toFixed(2)}{" "}
-            €
-          </p>
+          <p className="text-green-500">{calculateTotal().toFixed(2)} €</p>
         </div>
 
         <div className="flex justify-between space-x-4 pb-12">
@@ -82,7 +82,11 @@ const OrderSummary = ({ cart }) => {
           {/* Rechter Button */}
           <button
             className="cssbuttons-io-button-kasse rounded-lg shadow-md w-1/2 transition duration-300"
-            onClick={() => alert("coming soon")}
+            onClick={() =>
+              navigate("/payment-methods", {
+                state: { totalAmount: calculateTotal() },
+              })
+            }
           >
             Jetzt bezahlen
           </button>

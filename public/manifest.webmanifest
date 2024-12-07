@@ -4,7 +4,7 @@
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "lang": "en",
+  "lang": "de",
   "scope": "/",
   "description": "Beschreibung deiner PWA",
   "theme_color": "#ffffff",
@@ -14,5 +14,9 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "orientation": "landscape",
+  "display_override": [
+    "window-controls-overlay"
   ]
 }

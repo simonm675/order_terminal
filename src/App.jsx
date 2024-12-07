@@ -5,11 +5,10 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import LandingPage from "./components/LandingPage";
 import OrderPage from "./components/OrderPage";
 import OrderSummary from "./components/OrderSummary";
+import PaymentMethods from "./components/PaymentMethods";
+import OrderConfirmation from "./components/OrderConfirmation";
 
 const App = () => {
-  
-  
-
   const location = useLocation();
 
   // Warenkorb im App-Komponenten-Status speichern
@@ -67,6 +66,8 @@ const App = () => {
               path="/order/summary"
               element={<OrderSummary cart={cart} />} // Übergibt den Warenkorb an OrderSummary
             />
+            <Route path="/payment-methods" element={<PaymentMethods />} />
+            <Route path="/order-confirmation" element={<OrderConfirmation />} />
           </Routes>
         </div>
       </CSSTransition>
