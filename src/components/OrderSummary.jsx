@@ -34,14 +34,14 @@ const OrderSummary = ({ cart }) => {
             {cart.map((item, index) => (
               <li
                 key={index}
-                className="flex items-center justify-between border-b pb-4"
+                className="flex items-center justify-between border-b pb-4 last:border-b-0"
               >
                 <div className="flex items-center">
                   <div className="w-20 h-20 rounded-lg overflow-hidden mr-4">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-full object-cover"
+                      className="shadow-lg w-full h-full object-cover"
                     />
                   </div>
                   <div>

@@ -2,7 +2,7 @@ html,
 body {
   touch-action: none; /* Deaktiviert Pinch-to-Zoom */
   overflow: hidden; /* Verhindert unerwünschtes Scrollen */
-  overscroll-behavior: auto; /* Ermöglicht den "Bounce"-Effekt */
+  overscroll-behavior: none; /* Deaktiviert das Standardverhalten (z. B. Swipe für Zurück-Navigation) */
   -webkit-overflow-scrolling: touch; /* Aktiviert sanftes Scrollen auf mobilen Geräten */
   user-select: none; /* Verhindert Markieren von Text */
 }

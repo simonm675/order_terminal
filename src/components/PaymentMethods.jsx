@@ -43,11 +43,11 @@ const PaymentMethods = () => {
       </h2>
 
       {/* Zahlungsmethoden-Auswahl */}
-      <div className="flex-grow mb-6 space-y-6">
+      <div className="flex-grow my-6 space-y-6">
         {paymentMethods.map((method) => (
           <div
             key={method.id}
-            className={`p-4 border rounded-lg cursor-pointer hover:shadow-md transition duration-300 ${
+            className={`px-4 py-32 border rounded-lg cursor-pointer hover:shadow-md transition duration-300 ${
               selectedPaymentMethod === method.id
                 ? "bg-blue-500 text-white border-blue-500"
                 : "bg-gray-100 text-gray-800 border-gray-300"
@@ -55,10 +55,10 @@ const PaymentMethods = () => {
             onClick={() => setSelectedPaymentMethod(method.id)}
           >
             <div className="flex items-center space-x-4">
-              <div className="text-4xl">{method.icon}</div>
+              <div className="text-7xl">{method.icon}</div>
               <div>
-                <h3 className="text-xl font-semibold">{method.name}</h3>
-                <p className="text-sm">{method.description}</p>
+                <h3 className="text-4xl font-semibold">{method.name}</h3>
+                <p className="text-md">{method.description}</p>
               </div>
             </div>
           </div>

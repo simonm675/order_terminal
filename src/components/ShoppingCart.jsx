@@ -26,18 +26,18 @@ const ShoppingCart = ({ cart, handleRemoveClick }) => {
             {cart.map((item) => (
               <motion.div
                 key={item.id}
-                className="flex justify-between items-center mb-2"
+                className="flex justify-between items-center border-b last:border-b-0"
                 initial={{ opacity: 0, scale: 0.9 }} // Animation beim Hinzufügen
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8, x: -50 }} // Animation beim Entfernen
                 transition={{ duration: 0.2 }}
               >
-                <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full overflow-hidden mr-2">
+                <div className="flex items-center mb-2">
+                  <div className="w-10 h-10 rounded-lg overflow-hidden mr-2 ">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="shadow-lg object-contain"
+                      className="shadow-lg w-full h-full object-cover"
                     />
                   </div>
                   <div>
