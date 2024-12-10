@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CategoryPopup from "./popups/PopupCategory";
 import { motion } from "framer-motion";
 
 const Category = ({ filterProducts, setCart }) => {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory] = useState("Menu");
   const [showConfirmation, setShowConfirmation] = useState(false);
   const navigate = useNavigate();
 
+  // Filtere Produkte nach der aktiven Kategorie nur beim ersten Laden
+  useEffect(() => {
+    filterProducts(activeCategory);
+  }, [activeCategory, filterProducts]);
+
   const handleCategoryClick = (category) => {
     setActiveCategory(category); // Setzt die aktive Kategorie
-    filterProducts(category); // Filtert die Produkte nach der gewählten Kategorie
   };
 
   const handleCancel = () => {
@@ -36,24 +40,24 @@ const Category = ({ filterProducts, setCart }) => {
           alt="SM Burger"
         />
         <ul className="space-y-3 text-lg font-semibold">
-          <li>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.9 }}
+        <li>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
               className={`${
-                activeCategory === "All"
+                activeCategory === "Menu"
                   ? "btn-kategorien-active"
                   : "btn-kategorien"
               }`}
-              onClick={() => handleCategoryClick("All")}
+              onClick={() => handleCategoryClick("Menu")}
             >
-              Alle Gerichte
+              Menüs
             </motion.button>
           </li>
           <li>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.9 }}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
               className={`${
                 activeCategory === "Burger"
                   ? "btn-kategorien-active"
@@ -65,9 +69,9 @@ const Category = ({ filterProducts, setCart }) => {
             </motion.button>
           </li>
           <li>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.9 }}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
               className={`${
                 activeCategory === "Beilagen"
                   ? "btn-kategorien-active"
@@ -79,9 +83,9 @@ const Category = ({ filterProducts, setCart }) => {
             </motion.button>
           </li>
           <li>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.9 }}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
               className={`${
                 activeCategory === "Subs"
                   ? "btn-kategorien-active"
@@ -93,9 +97,9 @@ const Category = ({ filterProducts, setCart }) => {
             </motion.button>
           </li>
           <li>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.9 }}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
               className={`${
                 activeCategory === "Bowls"
                   ? "btn-kategorien-active"
@@ -107,9 +111,9 @@ const Category = ({ filterProducts, setCart }) => {
             </motion.button>
           </li>
           <li>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.9 }}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
               className={`${
                 activeCategory === "Dips"
                   ? "btn-kategorien-active"
@@ -122,13 +126,12 @@ const Category = ({ filterProducts, setCart }) => {
           </li>
           <li>
             <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
               className={`${
                 activeCategory === "Getränke"
                   ? "btn-kategorien-active"
                   : "btn-kategorien"
-                  
               }`}
               onClick={() => handleCategoryClick("Getränke")}
             >

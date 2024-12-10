@@ -4,69 +4,69 @@
     "description": "Würziger, scharfer Dip",
     "category": "Dips",
     "price": 2.0,
-    "image": "/img/hot-spicy-dip.jpg"
+    "image": "/img/hot-spicy-dip.jpeg"
   },
   {
     "name": "Curry Dip",
     "description": "Fruchtig-milder Curry-Dip",
     "category": "Dips",
     "price": 2.0,
-    "image": "/img/curry-dip.jpg"
+    "image": "/img/curry-dip.jpeg"
   },
   {
     "name": "Knoblauch Dip",
     "description": "Cremiger Knoblauch-Dip",
     "category": "Dips",
     "price": 2.0,
-    "image": "/img/garlic-dip.jpg"
+    "image": "/img/garlic-dip.jpeg"
   },
   {
     "name": "Cocktail Dip",
     "description": "Fruchtig-würziger Cocktail-Dip",
     "category": "Dips",
     "price": 2.0,
-    "image": "/img/cocktail-dip.jpg"
+    "image": "/img/cocktail-dip.jpeg"
   },
   {
     "name": "Chilli Cheese Dip",
     "description": "Cremiger Käse-Dip mit einem Hauch von Chili",
     "category": "Dips",
     "price": 2.0,
-    "image": "/img/chilli-cheese-dip.jpg"
+    "image": "/img/chilli-cheese-dip.jpeg"
   },
   {
     "name": "BBQ Dip",
     "description": "Rauchiger Barbecue-Dip",
     "category": "Dips",
     "price": 1.3,
-    "image": "/img/bbq-dip.jpg"
+    "image": "/img/bbq-dip.jpeg"
   },
   {
     "name": "Sour Cream Dip",
     "description": "Cremige Sour Cream",
     "category": "Dips",
     "price": 1.3,
-    "image": "/img/sour-cream-dip.jpg"
+    "image": "/img/sour-cream-dip.jpeg"
   },
   {
     "name": "Süß Sauer Dip",
     "description": "Fruchtig-süßer Dip",
     "category": "Dips",
     "price": 1.3,
-    "image": "/img/sweet-sour-dip.jpg"
+    "image": "/img/sweet-sour-dip.jpeg"
   },
   {
     "name": "Ketchup",
     "description": "Klassischer Tomatenketchup",
     "category": "Dips",
     "price": 0.8,
-    "image": "/img/ketchup.jpg"
+    "image": "/img/ketchup.jpeg"
   },
   {
     "name": "Mayonnaise",
     "description": "Klassische Mayonnaise",
     "category": "Dips",
     "price": 0.8,
-    "image": "/img/mayo.jpg"
+    "image": "/img/mayo.jpeg"
   }
 ]

@@ -4,97 +4,97 @@
     "description": "0,33L",
     "category": "Getränke",
     "price": 3.0,
-    "image": "/img/cola.png"
+    "image": "/img/cola.jpeg"
   },
   {
     "name": "Fanta",
     "description": "0,33L",
     "category": "Getränke",
     "price": 3.0,
-    "image": "/img/fanta.jpg"
+    "image": "/img/fanta.jpeg"
   },
   {
     "name": "Sprite",
     "description": "0,33L",
     "category": "Getränke",
     "price": 3.0,
-    "image": "/img/sprite.jpg"
+    "image": "/img/sprite.jpeg"
   },
   {
     "name": "Eistee",
     "description": "0,33L",
     "category": "Getränke",
     "price": 3.0,
-    "image": "/img/eistee.jpg"
+    "image": "/img/eistee.jpeg"
   },
   {
     "name": "Wasser",
     "description": "0,33L",
     "category": "Getränke",
     "price": 2.5,
-    "image": "/img/wasser.jpg"
+    "image": "/img/wasser.jpeg"
   },
   {
     "name": "Coke Zero",
     "description": "0,33L",
     "category": "Getränke",
     "price": 3.0,
-    "image": "/img/cola-zero.png"
+    "image": "/img/cola-zero.jpeg"
   },
   {
     "name": "Milkshake (Vanille)",
     "description": "Frisch zubereitet mit Vanilleeis und Milch",
     "category": "Getränke",
     "price": 5.5,
-    "image": "/img/milkshake.png"
+    "image": "/img/milkshake_vanille.jpeg"
   },
   {
     "name": "Milkshake (Schokolade)",
     "description": "Frisch zubereitet mit Schokoladeneis und Milch",
     "category": "Getränke",
     "price": 5.5,
-    "image": "/img/milkshake.png"
+    "image": "/img/milkshake_schoko.jpeg"
   },
   {
     "name": "Red Bull",
     "description": "Energydrink, 0,25L",
     "category": "Getränke",
     "price": 3.5,
-    "image": "/img/redbull.jpg"
+    "image": "/img/redbull.jpeg"
   },
   {
     "name": "Frisch gepresster Orangensaft",
     "description": "100% frisch gepresst",
     "category": "Getränke",
     "price": 4.0,
-    "image": "/img/orange-juice.jpg"
+    "image": "/img/orange-juice.jpeg"
   },
   {
     "name": "Apfelschorle",
     "description": "Spritziger Mix aus Apfelsaft und Mineralwasser, 0,3L",
     "category": "Getränke",
     "price": 3.0,
-    "image": "/img/apfelschorle.jpg"
+    "image": "/img/apfelschorle.jpeg"
   },
   {
     "name": "Kaffee",
     "description": "Heiße, frisch gebrühte Tasse Kaffee",
     "category": "Getränke",
     "price": 2.5,
-    "image": "/img/kaffee.jpg"
+    "image": "/img/kaffee.jpeg"
   },
   {
     "name": "Latte Macchiato",
     "description": "Cremiger Espresso mit viel Milch",
     "category": "Getränke",
     "price": 4.0,
-    "image": "/img/latte-macchiato.jpg"
+    "image": "/img/latte-macchiato.jpeg"
   },
   {
     "name": "Tee",
-    "description": "Wahlweise Minze, Schwarztee oder Kräutertee",
+    "description": "Minze",
     "category": "Getränke",
     "price": 2.5,
-    "image": "/img/tee.jpg"
+    "image": "/img/tee.jpeg"
   }
 ]

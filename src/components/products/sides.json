@@ -4,62 +4,62 @@
     "description": "inkl. Ketchup oder Mayonaise",
     "category": "Beilagen",
     "price": 3.5,
-    "image": "/img/pommes.png"
+    "image": "/img/pommes.jpeg"
   },
   {
     "name": "Wedges",
     "description": "inkl. Ketchup oder Mayonaise",
     "category": "Beilagen",
     "price": 3.5,
-    "image": "/img/pommes.png"
+    "image": "/img/wedges.jpeg"
   },
   {
-    "name": "Salat",
+    "name": "Salat Kunterbunt",
     "description": "Frischer Salat mit Tomaten, Gurken, Eisberg usw.",
     "category": "Beilagen",
     "price": 4.0,
-    "image": "/img/salad.png"
+    "image": "/img/salat_kunterbunt.jpeg"
   },
   {
     "name": "Coleslaw",
-    "description": "Frisch zubereitet",
+    "description": "Weißkohl | Möhren | Mayo",
     "category": "Beilagen",
     "price": 5.5,
-    "image": "/img/coleslaw.jpg"
+    "image": "/img/coleslaw.jpeg"
   },
   {
     "name": "Süßkartoffel Pommes",
     "description": "Pommes auf Basis von Süßkartoffeln",
     "category": "Beilagen",
     "price": 4.5,
-    "image": "/img/sweet-potato-fries.jpg"
+    "image": "/img/sweet-potato-fries.jpeg"
   },
   {
     "name": "Caesar Salad",
     "description": "Frischer Salat mit Caesar-Dressing und Parmesan",
     "category": "Beilagen",
     "price": 5.0,
-    "image": "/img/caesar-salad.jpg"
+    "image": "/img/caesar-salad.jpeg"
   },
   {
     "name": "Chicken Nuggets",
     "description": "8 knusprige Chicken Nuggets, inkl. Sauce nach Wahl",
     "category": "Beilagen",
     "price": 6.0,
-    "image": "/img/nuggets.png"
+    "image": "/img/nuggets.jpeg"
   },
   {
     "name": "Mozzarella Sticks",
     "description": "5 goldbraune Mozzarella Sticks mit Marinara-Dip",
     "category": "Beilagen",
     "price": 5.5,
-    "image": "/img/mozzarella-sticks.jpg"
+    "image": "/img/mozzarella-sticks.jpeg"
   },
   {
     "name": "Onion Rings",
     "description": "10 knusprige Onion Rings, inkl. Sauce nach Wahl",
     "category": "Beilagen",
     "price": 5.0,
-    "image": "/img/onion-rings.jpg"
+    "image": "/img/onion-rings.jpeg"
   }
 ]

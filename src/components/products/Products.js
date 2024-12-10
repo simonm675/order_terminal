@@ -1,3 +1,4 @@
+import menus from "./menus.json"
 import burgers from "./burger.json";
 import sides from "./sides.json";
 import subs from "./subs.json";
@@ -19,6 +20,7 @@ const addIdsToProducts = (products) => {
 
 // Kombiniere alle Produkte und füge IDs hinzu
 const Products = [
+  ...addIdsToProducts(menus),
   ...addIdsToProducts(burgers),
   ...addIdsToProducts(sides),
   ...addIdsToProducts(subs),
