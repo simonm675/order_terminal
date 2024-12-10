@@ -6,10 +6,10 @@ import ShoppingCart from "./ShoppingCart";
 import { motion } from "framer-motion";
 
 function OrderPage({ addToCart, cart, setCart }) {
-  
   const [buttonPopup, setButtonPopup] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null); // Produkt für das Popup
   const [filteredProducts, setFilteredProducts] = useState(Products); // Für die Filterung von Produkten
+  const [imagePopup, setImagePopup] = useState(null); // Zustand für das Bild-Popup
 
   const handleRemoveClick = (product) => {
     setCurrentProduct(product); // Produkt speichern
@@ -44,6 +44,14 @@ function OrderPage({ addToCart, cart, setCart }) {
     }
   };
 
+  const openImagePopup = (image) => {
+    setImagePopup(image); // Bild für die Vorschau setzen
+  };
+
+  const closeImagePopup = () => {
+    setImagePopup(null); // Popup schließen
+  };
+
   return (
     <div className="bg-gray-100 flex flex-col lg:flex-row w-screen h-screen select-none">
       {/* Kategorie-Sektion */}
@@ -65,7 +73,8 @@ function OrderPage({ addToCart, cart, setCart }) {
             <img
               src={product.image}
               alt={product.name}
-              className=" h-56 object-contain mx-auto rounded-lg drop-shadow-lg"
+              className=" h-56 object-contain mx-auto rounded-lg drop-shadow-lg cursor-pointer"
+              onClick={() => openImagePopup(product.image)} // Bild anklickbar machen
             />
             <h3 className="text-lg font-semibold text-center mt-2">
               {product.name}
@@ -119,6 +128,32 @@ function OrderPage({ addToCart, cart, setCart }) {
           Abbrechen
         </button>
       </Popup>
+
+      {/* Bild-Popup für Vorschau mit Animation und Unschärfe */}
+      {imagePopup && (
+        <motion.div
+          className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-md flex justify-center items-center z-50"
+          onClick={closeImagePopup} // Popup schließen, wenn außerhalb des Bildes geklickt wird
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
+        >
+          <motion.div
+            className="relative bg-white rounded-xl max-w-3xl"
+            onClick={(e) => e.stopPropagation()} // Verhindern, dass das Klicken im Bild das Popup schließt
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.2 }}
+          >
+            <img
+              src={imagePopup}
+              alt="Popup Image"
+              className="max-h-[80vh] max-w-full rounded-xl object-contain"
+            />
+            
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   );
 }

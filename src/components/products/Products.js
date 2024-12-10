@@ -8,7 +8,7 @@ import getraenke from "./drinks.json";
 
 // Hilfsfunktion zur Generierung von IDs
 let idCounter = 1;
-const generateId = () => idCounter++;
+const generateId = () => idCounter++;  
 
 // Funktion, um IDs zu den Produkten hinzuzufügen
 const addIdsToProducts = (products) => {
