@@ -34,7 +34,7 @@ const Category = ({ filterProducts, setCart }) => {
   return (
     <div className="relative flex flex-col justify-between bg-white shadow-md rounded-lg px-4 py-4 mb-3 mt-3 ml-3 lg:w-1/4 lg:mr-3 overflow-hidden w-full max-w-md mx-auto">
       {/* Oberer Bereich mit Bild und Button nebeneinander */}
-      <div className="flex items-center justify-between mb-10">
+      <div className="flex items-center justify-between">
         {/* Logo */}
         <img
           className="w-[80px] sm:w-[180px] md:w-[240px]"
@@ -72,9 +72,9 @@ const Category = ({ filterProducts, setCart }) => {
               whileTap={{ scale: 0.9 }}
               className={`${
                 activeCategory === category
-                  ? "btn-kategorien-active"
-                  : "btn-kategorien"
-              }`}
+                  ? "bg-gradient-to-t from-gray-400 to-gray-200 text-black shadow-lg"
+                  : "bg-gradient-to-t from-white to-gray-100 text-black"
+              } w-full py-2 px-4 sm:py-3 sm:px-6 md:py-4 md:px-8 rounded-md mb-2 shadow-md font-semibold`}
               onClick={() => handleCategoryClick(category)}
             >
               {category}
@@ -86,7 +86,7 @@ const Category = ({ filterProducts, setCart }) => {
       {/* Bestellvorgang abbrechen */}
       <motion.button
         onClick={handleCancel}
-        className="bottom-btn2 w-full py-4 rounded-lg font-semibold active:bg-transparent"
+        className="w-full py-2 sm:py-3 md:py-4 rounded-lg font-semibold bg-gradient-to-t from-red-500 to-red-300 text-white shadow-md"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
       >
