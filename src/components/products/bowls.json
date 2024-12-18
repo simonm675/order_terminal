@@ -4,34 +4,34 @@
     "description": "Reis, Hirtenkäse",
     "category": "Bowls",
     "price": 12.5,
-    "image": "/img/falafelbowl.jpeg"
+    "image": "/img/product_img/falafelbowl.jpeg"
   },
   {
     "name": "Chicken Bowl",
     "description": "mit Bulgur",
     "category": "Bowls",
     "price": 10.5,
-    "image": "/img/chickenbowl.jpeg"
+    "image": "/img/product_img/chickenbowl.jpeg"
   },
   {
     "name": "Poke' Bowl",
     "description": "Reis, Gurke",
     "category": "Bowls",
     "price": 11,
-    "image": "/img/pokebowl.jpeg"
+    "image": "/img/product_img/pokebowl.jpeg"
   },
   {
     "name": "Rinder Bowl",
     "description": "Reis, Gurke",
     "category": "Bowls",
     "price": 11,
-    "image": "/img/rinderbowl.jpeg"
+    "image": "/img/product_img/rinderbowl.jpeg"
   },
   {
     "name": "Nacho Bowl",
     "description": "Reis, Gurke",
     "category": "Bowls",
     "price": 10.5,
-    "image": "/img/nachobowl.jpeg"
+    "image": "/img/product_img/nachobowl.jpeg"
   }
 ]

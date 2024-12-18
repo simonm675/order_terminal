@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import CategoryPopup from "./popups/PopupCategory";
 import { motion } from "framer-motion";
@@ -7,29 +7,52 @@ const Category = ({ filterProducts, setCart }) => {
   const [activeCategory, setActiveCategory] = useState("Menu");
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [clickedCategory, setClickedCategory] = useState(null); // Zustand für Animation
   const navigate = useNavigate();
 
-  useEffect(() => {
-    filterProducts(activeCategory);
-  }, [activeCategory, filterProducts]);
+  // Verwende useCallback für filterProducts, um unnötige Renderzyklen zu vermeiden
+  const memoizedFilterProducts = useCallback(
+    (category) => {
+      filterProducts(category);
+    },
+    [filterProducts]
+  );
 
+  // useEffect für das Handling der Category-Änderung
+  useEffect(() => {
+    memoizedFilterProducts(activeCategory);
+  }, [activeCategory, memoizedFilterProducts]);
+
+  // Handling der Kategorie-Klicks mit Animation
   const handleCategoryClick = (category) => {
-    setActiveCategory(category);
+    if (category !== activeCategory) { // Verhindert endlose State-Updates
+      setClickedCategory(category); // Startet die Animation
+      setActiveCategory(category);
+    }
   };
 
+  // Handling der Bestellabbruch-Bestätigung
   const handleCancel = () => {
     setShowConfirmation(true);
   };
 
   const handleConfirmCancel = () => {
     setShowConfirmation(false);
-    setCart([]);
-    navigate("/");
+    setCart([]); // Warenkorb leeren
+    navigate("/"); // Zurück zur Startseite
   };
 
   const handleCancelAbort = () => {
-    setShowConfirmation(false);
+    setShowConfirmation(false); // Bestätigung abbrechen
   };
+
+  // useEffect für das Zurücksetzen des 'clickedCategory' nach der Animation
+  useEffect(() => {
+    if (clickedCategory) {
+      const timer = setTimeout(() => setClickedCategory(null), 100);
+      return () => clearTimeout(timer); // Aufräumen des Timers bei Komponentendestruktion
+    }
+  }, [clickedCategory]);
 
   return (
     <div className="relative flex flex-col justify-between bg-white shadow-md rounded-lg px-4 py-4 mb-3 mt-3 ml-3 lg:w-1/4 lg:mr-3 overflow-hidden w-full max-w-md mx-auto">
@@ -37,9 +60,9 @@ const Category = ({ filterProducts, setCart }) => {
       <div className="flex items-center justify-between">
         {/* Logo */}
         <img
-          className="w-[80px] sm:w-[180px] md:w-[240px]"
-          src="/img/logo-no-background-2.png"
-          alt="SM Burger"
+          className="w-[80px] sm:w-[180px] md:w-[240px] drop-shadow-2xl"
+          src="/img/logo/logo_new-min.png"
+          alt="Burger&Burger"
         />
 
         {/* Button für Kategorien */}
@@ -55,7 +78,7 @@ const Category = ({ filterProducts, setCart }) => {
       <ul
         className={`space-y-3 text-lg font-semibold ${
           isMenuVisible ? "block" : "hidden"
-        } lg:block`} // Auf Mobilgeräten ein-/ausblendbar, auf großen Bildschirmen immer sichtbar
+        } lg:block`}
       >
         {[
           "Menu",
@@ -68,8 +91,11 @@ const Category = ({ filterProducts, setCart }) => {
         ].map((category) => (
           <li key={category}>
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.9 }}
+              initial={{ scale: 1 }}
+              animate={{
+                scale: clickedCategory === category ? 0.85 : 1, // Animation, wenn gedrückt
+              }}
+              transition={{ duration: 0.2 }}
               className={`${
                 activeCategory === category
                   ? "bg-gradient-to-t from-gray-400 to-gray-200 text-black shadow-lg"

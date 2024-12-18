@@ -4,90 +4,90 @@
     "description": "180g Beef Patty, Salat, Tomate, Gurke, Zwiebeln, hausgemachte Burger-Sauce",
     "category": "Burger",
     "price": 8.0,
-    "image": "/img/hamburger.jpeg"
+    "image": "/img/product_img/hamburger.jpeg"
   },
   {
     "name": "Cheeseburger",
     "description": "180g Beef Patty, American Cheese, Salat, Tomate, Gurke, Zwiebeln, hausgemachte Burger-Sauce",
     "category": "Burger",
     "price": 8.5,
-    "image": "/img/cheeseburger.jpeg"
+    "image": "/img/product_img/cheeseburger.jpeg"
   },
   {
     "name": "Double Cheeseburger",
     "description": "2x 180g Beef Patty, 2x American Cheese, Salat, Tomate, Gurke, Zwiebeln, hausgemachte Burger-Sauce",
     "category": "Burger",
     "price": 10.0,
-    "image": "/img/double_cheeseburger.jpeg"
+    "image": "/img/product_img/double_cheeseburger.jpeg"
   },
   {
     "name": "Chili Cheeseburger",
     "description": "180g Beef Patty, American Cheese, Salat, Tomate, Gurke, Zwiebeln, Jalapeños, hausgemachte Burger-Sauce",
     "category": "Burger",
     "price": 10.0,
-    "image": "/img/chili_cheeseburger.jpeg"
+    "image": "/img/product_img/chili_cheeseburger.jpeg"
   },
   {
     "name": "Boss Burger",
     "description": "2x 180g Beef Patty, 2x American Cheese, 2x Bacon, Salat, Tomate, Gurke, Zwiebeln, hausgemachte Burger-Sauce",
     "category": "Burger",
     "price": 12.0,
-    "image": "/img/boss_burger.jpeg"
+    "image": "/img/product_img/boss_burger.jpeg"
   },
   {
     "name": "Plant Based Burger",
     "description": "Plant Based Patty, Salat, Tomate, Gurke, Zwiebeln, hausgemachte Veggie Burger-Sauce",
     "category": "Burger",
     "price": 8.5,
-    "image": "/img/plant_burger.jpeg"
+    "image": "/img/product_img/plant_burger.jpeg"
   },
   {
     "name": "Chicken Burger",
     "description": "Crispy Chicken Patty, Salat, Tomate, Gurke, Zwiebeln, hausgemachte Burger-Sauce",
     "category": "Burger",
     "price": 8.0,
-    "image": "/img/chickenburger.jpeg"
+    "image": "/img/product_img/chickenburger.jpeg"
   },
   {
     "name": "BBQ Burger",
     "description": "180g Beef Patty, BBQ-Sauce, Bacon, Cheddar, Röstzwiebeln, Salat, Tomate",
     "category": "Burger",
     "price": 9.5,
-    "image": "/img/bbq_burger.jpeg"
+    "image": "/img/product_img/bbq_burger.jpeg"
   },
   {
     "name": "Hawaii Burger",
     "description": "180g Beef Patty, gegrillte Ananas, Schinken, Cheddar, Salat, hausgemachte Sauce",
     "category": "Burger",
     "price": 9.0,
-    "image": "/img/hawaii_burger.jpeg"
+    "image": "/img/product_img/hawaii_burger.jpeg"
   },
   {
     "name": "Blue Cheese Burger",
     "description": "180g Beef Patty, Blauschimmelkäse, Bacon, Rucola, Zwiebeln, Tomatenmarmelade",
     "category": "Burger",
     "price": 10.5,
-    "image": "/img/blue_cheese_burger.jpeg"
+    "image": "/img/product_img/blue_cheese_burger.jpeg"
   },
   {
     "name": "Avocado Burger",
     "description": "180g Beef Patty, frische Avocado, Salat, Tomate, Zwiebeln, hausgemachte Sauce",
     "category": "Burger",
     "price": 9.5,
-    "image": "/img/avocado_burger.jpeg"
+    "image": "/img/product_img/avocado_burger.jpeg"
   },
   {
     "name": "Mexican Burger",
     "description": "180g Beef Patty, Jalapeños, Guacamole, Salsa, Cheddar, Salat",
     "category": "Burger",
     "price": 10.0,
-    "image": "/img/mexican_burger.jpeg"
+    "image": "/img/product_img/mexican_burger.jpeg"
   },
   {
     "name": "Truffle Burger",
     "description": "180g Beef Patty, Trüffel-Mayonnaise, Rucola, Cheddar, karamellisierte Zwiebeln",
     "category": "Burger",
     "price": 12.5,
-    "image": "/img/truffle_burger.jpeg"
+    "image": "/img/product_img/truffle_burger.jpeg"
   }
 ]

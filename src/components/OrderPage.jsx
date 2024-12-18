@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Products from "./products/Products";
 import Popup from "./popups/PopupShoppingCart";
 import Category from "./Category";
@@ -10,6 +10,19 @@ function OrderPage({ addToCart, cart, setCart }) {
   const [currentProduct, setCurrentProduct] = useState(null); // Produkt für das Popup
   const [filteredProducts, setFilteredProducts] = useState(Products); // Für die Filterung von Produkten
   const [imagePopup, setImagePopup] = useState(null); // Zustand für das Bild-Popup
+  const [category, setCategory] = useState("All"); // Zustand für die Kategorie
+
+  // useEffect, um Produkte basierend auf der Kategorie zu filtern
+  useEffect(() => {
+    if (category === "All") {
+      setFilteredProducts(Products); // Zeige alle Produkte
+    } else {
+      const filtered = Products.filter(
+        (product) => product.category === category
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [category]); // Wird nur ausgelöst, wenn sich die Kategorie ändert
 
   const handleRemoveClick = (product) => {
     setCurrentProduct(product); // Produkt speichern
@@ -33,17 +46,6 @@ function OrderPage({ addToCart, cart, setCart }) {
     setButtonPopup(false); // Popup schließen
   };
 
-  const filterProducts = (category) => {
-    if (category === "All") {
-      setFilteredProducts(Products); // Zeige alle Produkte
-    } else {
-      const filtered = Products.filter(
-        (product) => product.category === category
-      );
-      setFilteredProducts(filtered);
-    }
-  };
-
   const openImagePopup = (image) => {
     setImagePopup(image); // Bild für die Vorschau setzen
   };
@@ -55,7 +57,7 @@ function OrderPage({ addToCart, cart, setCart }) {
   return (
     <div className="bg-gray-100 flex flex-col lg:flex-row w-screen h-screen select-none">
       {/* Kategorie-Sektion */}
-      <Category filterProducts={filterProducts} setCart={setCart} />
+      <Category filterProducts={setCategory} setCart={setCart} />
 
       {/* Produkt-Sektion mit Animation */}
       <motion.div
@@ -150,7 +152,6 @@ function OrderPage({ addToCart, cart, setCart }) {
               alt="Popup Image"
               className="max-h-[80vh] max-w-full rounded-xl object-contain"
             />
-            
           </motion.div>
         </motion.div>
       )}

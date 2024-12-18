@@ -53,16 +53,6 @@ const App = () => {
               }
             />
             <Route
-              path="/order"
-              element={
-                <OrderPage
-                  addToCart={addToCart}
-                  cart={cart}
-                  setCart={setCart}
-                />
-              }
-            />
-            <Route
               path="/order/summary"
               element={<OrderSummary cart={cart} />} // Übergibt den Warenkorb an OrderSummary
             />

@@ -23,12 +23,12 @@ const LandingPage = () => {
         {/* Hauptinhalt: Logo, Text, Buttons */}
         <div className="flex flex-col items-center justify-center flex-grow">
           <img
-            src="/img/logo/logo-no-background.png"
-            alt="SM Burger Logo"
-            className="w-80 mb-4"
+            src="/img/logo/logo_new-min.png"
+            alt="Burger&Burger"
+            className="w-96 drop-shadow-[0_0_40px_rgba(255,255,255,1)] mb-6 rounded-lg"
           />
           <h1 className="text-5xl font-extrabold text-gray-100 mb-2 text-center">
-            Willkommen bei SM Burger
+            Willkommen bei Burger&Burger
           </h1>
           <p className="text-lg text-gray-100 mb-6 text-center">
             Genießen Sie die besten Burger der Stadt, frisch und lecker, genau
