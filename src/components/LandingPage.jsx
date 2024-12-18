@@ -27,19 +27,12 @@ const LandingPage = () => {
             alt="Burger&Burger"
             className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/4 mb-6 drop-shadow-[0_0_40px_rgba(255,255,255,1)] "
           />
-          <h1 className="text-5xl font-extrabold text-gray-100 mb-2 text-center">
-            Willkommen bei Burger&Burger
-          </h1>
-          <p className="text-lg text-gray-100 mb-8 text-center">
-            Genießen Sie die besten Burger der Stadt, frisch und lecker, genau
-            nach Ihrem Geschmack!
-          </p>
 
           {/* Button "Jetzt starten" mit pulsierender Animation */}
           {!showOptions ? (
             <motion.button
               onClick={() => setShowOptions(true)}
-              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-5 px-10 rounded-lg shadow-md"
+              className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold mt-6 py-5 px-10 rounded-lg shadow-md"
               initial={{ scale: 1 }}
               animate={{
                 scale: [1, 1.1, 1], // Pulsierende Skalierung
@@ -91,7 +84,7 @@ const LandingPage = () => {
 
         {/* Footer */}
         <footer className="w-full text-center text-md text-gray-400 py-2">
-          &copy; 2024 SM Burger. Alle Rechte vorbehalten.
+          &copy; 2024 Burger&Burger GmbH. Alle Rechte vorbehalten.
         </footer>
       </div>
     </div>

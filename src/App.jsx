@@ -57,7 +57,10 @@ const App = () => {
               element={<OrderSummary cart={cart} />} // Übergibt den Warenkorb an OrderSummary
             />
             <Route path="/payment-methods" element={<PaymentMethods />} />
-            <Route path="/order-confirmation" element={<OrderConfirmation />} />
+            <Route
+              path="/order-confirmation"
+              element={<OrderConfirmation setCart={setCart} />}
+            />
           </Routes>
         </div>
       </CSSTransition>

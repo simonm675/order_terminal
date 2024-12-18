@@ -2,15 +2,20 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-const OrderConfirmation = () => {
+const OrderConfirmation = ({ setCart }) => {
   const navigate = useNavigate();
   const [orderNumber, setOrderNumber] = useState(null);
 
-  // Generiere eine zufällige Bestellnummer beim Laden der Komponente
+  // Generate a random order number when the component loads
   useEffect(() => {
     const generateOrderNumber = () => Math.floor(Math.random() * (600 - 150 + 1)) + 150;
     setOrderNumber(generateOrderNumber());
   }, []);
+
+  const handleButtonClick = () => {
+    setCart([]); // Clear the cart
+    navigate("/"); // Navigate to the LandingPage
+  };
 
   return (
     <motion.div
@@ -29,33 +34,21 @@ const OrderConfirmation = () => {
 
       <div className="flex justify-center mb-8">
         <img
-          className="w-48 h-48"
-          src="https://via.placeholder.com/300" // Hier könntest du ein passendes Bild verwenden
+          className="h-56"
+          src="/img/daumen_hoch.gif" 
           alt="Bestellung bestätigt"
         />
       </div>
 
       <div className="text-center">
         <p className="text-lg text-gray-800 mb-4">
-          Ihre Bestellnummer lautet: <span className="font-bold">#{orderNumber}</span>
+          Ihre Bestellnummer lautet: {orderNumber}
         </p>
-        <p className="text-gray-600">
-          Eine Bestätigungs-E-Mail wurde an Ihre angegebene Adresse gesendet.
-        </p>
-      </div>
-
-      <div className="flex justify-between mt-8">
         <button
-          className="btn-popup rounded-lg shadow-md w-1/2 font-semibold transition duration-300 py-4 mr-4"
-          onClick={() => navigate("/")}
+          className="cssbuttons-io-button p-4 rounded-lg font-bold"
+          onClick={handleButtonClick}
         >
           Zurück zur Startseite
-        </button>
-        <button
-          className="cssbuttons-io-button rounded-lg shadow-md w-1/2 font-semibold transition duration-300 py-4"
-          onClick={() => navigate("/order")}
-        >
-          Weitere Bestellung
         </button>
       </div>
     </motion.div>

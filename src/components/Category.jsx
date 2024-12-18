@@ -4,7 +4,7 @@ import CategoryPopup from "./popups/PopupCategory";
 import { motion } from "framer-motion";
 
 const Category = ({ filterProducts, setCart }) => {
-  const [activeCategory, setActiveCategory] = useState("Menu");
+  const [activeCategory, setActiveCategory] = useState("Menüs");
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [clickedCategory, setClickedCategory] = useState(null); // Zustand für Animation
@@ -25,7 +25,8 @@ const Category = ({ filterProducts, setCart }) => {
 
   // Handling der Kategorie-Klicks mit Animation
   const handleCategoryClick = (category) => {
-    if (category !== activeCategory) { // Verhindert endlose State-Updates
+    if (category !== activeCategory) {
+      // Verhindert endlose State-Updates
       setClickedCategory(category); // Startet die Animation
       setActiveCategory(category);
     }
@@ -36,11 +37,15 @@ const Category = ({ filterProducts, setCart }) => {
     setShowConfirmation(true);
   };
 
-  const handleConfirmCancel = () => {
-    setShowConfirmation(false);
-    setCart([]); // Warenkorb leeren
-    navigate("/"); // Zurück zur Startseite
-  };
+  const handleConfirmCancel = useCallback(() => {
+    try {
+      setShowConfirmation(false);
+      setCart([]); // Clear the cart
+      navigate("/"); // Navigate back to the homepage
+    } catch (error) {
+      console.error("Error during cancel confirmation:", error);
+    }
+  }, [setShowConfirmation, setCart, navigate]);
 
   const handleCancelAbort = () => {
     setShowConfirmation(false); // Bestätigung abbrechen
@@ -81,7 +86,7 @@ const Category = ({ filterProducts, setCart }) => {
         } lg:block`}
       >
         {[
-          "Menu",
+          "Menüs",
           "Burger",
           "Beilagen",
           "Subs",
@@ -98,16 +103,13 @@ const Category = ({ filterProducts, setCart }) => {
               transition={{ duration: 0.2 }}
               className={`${
                 activeCategory === category
-                  ? "bg-gradient-to-t from-gray-400 to-gray-200 text-black shadow-lg"
-                  : "bg-gradient-to-t from-white to-gray-100 text-black"
-              } w-full py-2 px-4 sm:py-3 sm:px-6 md:py-4 md:px-8 rounded-md mb-2 shadow-md font-semibold`}
+                  ? "text-black bg-gradient-to-r from-gray-300 via-gray-100 to-gray-300 focus:outline-none shadow-lg shadow-gray-700/50 rounded-lg  text-center"
+                  : "bg-gradient-to-t from-white to-gray-100 text-black "
+              } w-full py-2 px-4 sm:py-3 sm:px-2 md:py-4 md:px-8 rounded-md mb-2 shadow-md font-semibold`}
               onClick={() => handleCategoryClick(category)}
             >
               {category}
             </motion.button>
-
-
-            
           </li>
         ))}
       </ul>
@@ -115,7 +117,7 @@ const Category = ({ filterProducts, setCart }) => {
       {/* Bestellvorgang abbrechen */}
       <motion.button
         onClick={handleCancel}
-        className="w-full py-2 sm:py-3 md:py-4 rounded-lg font-semibold bg-gradient-to-t from-red-500 to-red-300 text-white shadow-md"
+        className="w-full py-2 sm:py-3 md:py-4 rounded-lg font-semibold bg-gradient-to-t from-red-600 to-red-400 text-white shadow-md"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
       >

@@ -2,35 +2,35 @@
     {
       "name": "Burger Menü",
       "description": "Hamburger oder Cheeseburger, Pommes, inkl. Softgetränk 0,33L",
-      "category": "Menu",
+      "category": "Menüs",
       "price": 13.2,
       "image": "/img/product_img/burger_menu.jpeg"
     },
     {
       "name": "Sub Menü",
       "description": "Sub nach Wahl, inkl. Softgetränk 0,33L",
-      "category": "Menu",
+      "category": "Menüs",
       "price": 12.0,
       "image": "/img/product_img/sub_menu.jpeg"
     },
     {
       "name": "Bowl Menü",
       "description": "Bowl nach Wahl, inkl. Softgetränk 0,33L",
-      "category": "Menu",
+      "category": "Menüs",
       "price": 12.0,
       "image": "/img/product_img/bowl_menu.jpeg"
     },
     {
         "name": "Sub Menü",
         "description": "Sub nach Wahl, inkl. Softgetränk 0,33L",
-        "category": "Menu",
+        "category": "Menüs",
         "price": 12.0,
         "image": "/img/product_img/sub_menu.jpeg"
       },
       {
         "name": "Sub Menü",
         "description": "Sub nach Wahl, inkl. Softgetränk 0,33L",
-        "category": "Menu",
+        "category": "Menüs",
         "price": 12.0,
         "image": "/img/product_img/sub_menu.jpeg"
       }
