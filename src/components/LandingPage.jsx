@@ -30,7 +30,7 @@ const LandingPage = () => {
           <h1 className="text-5xl font-extrabold text-gray-100 mb-2 text-center">
             Willkommen bei Burger&Burger
           </h1>
-          <p className="text-lg text-gray-100 mb-6 text-center">
+          <p className="text-lg text-gray-100 mb-8 text-center">
             Genießen Sie die besten Burger der Stadt, frisch und lecker, genau
             nach Ihrem Geschmack!
           </p>

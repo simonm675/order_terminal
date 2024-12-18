@@ -60,7 +60,7 @@ const Category = ({ filterProducts, setCart }) => {
       <div className="flex items-center justify-between">
         {/* Logo */}
         <img
-          className="w-full max-w-xs mx-auto h-auto sm:mb-5 sm:max-w-xxs drop-shadow-2xl"
+          className="w-full max-w-xs mx-auto h-auto drop-shadow-2xl"
           src="/img/logo/logo_new-min.png"
           alt="Burger&Burger"
         />
