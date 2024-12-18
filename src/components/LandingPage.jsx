@@ -25,7 +25,7 @@ const LandingPage = () => {
           <img
             src="/img/logo/logo_new-min.png"
             alt="Burger&Burger"
-            className="w-1/4 sm:w-1/2 md:w-1/3 lg:w-1/4 mb-6 drop-shadow-[0_0_40px_rgba(255,255,255,1)] "
+            className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/4 mb-6 drop-shadow-[0_0_40px_rgba(255,255,255,1)] "
           />
           <h1 className="text-5xl font-extrabold text-gray-100 mb-2 text-center">
             Willkommen bei Burger&Burger
