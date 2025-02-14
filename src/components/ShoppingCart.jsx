@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 const ShoppingCart = ({ cart, handleRemoveClick }) => {
   const navigate = useNavigate(); // React Router Hook für Navigation
+
+  const totalAmount = useMemo(() => {
+    return cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0).toFixed(2);
+  }, [cart]);
 
   return (
     <motion.div className="relative flex flex-col justify-between bg-white shadow-md rounded-lg px-4 py-4 mb-3 mt-3 ml-3 lg:w-1/4 lg:mr-3 overflow-hidden">
@@ -50,6 +54,7 @@ const ShoppingCart = ({ cart, handleRemoveClick }) => {
                 <button
                   onClick={() => handleRemoveClick(item)}
                   className="text-gray-500 hover:text-gray-700"
+                  aria-label={`Remove ${item.name} from cart`}
                 >
                   <svg
                     className="w-7 h-7"
@@ -80,10 +85,7 @@ const ShoppingCart = ({ cart, handleRemoveClick }) => {
               animate={{ scale: 1 }}
               transition={{ duration: 0.2 }}
             >
-              {cart
-                .reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
-                .toFixed(2)}{" "}
-              €
+              {totalAmount} €
             </motion.p>
           </div>
         </div>
@@ -93,8 +95,9 @@ const ShoppingCart = ({ cart, handleRemoveClick }) => {
         <motion.button
           className="cssbuttons-io-button-kasse py-4"
           onClick={() => navigate("/order/summary")} // Navigiert zur Bestellübersicht
-          whileHover={{ scale: 1.05 }}
+
           whileTap={{ scale: 0.95 }}
+          aria-label="Proceed to checkout"
         >
           <span>Zur Kasse gehen</span>
         </motion.button>

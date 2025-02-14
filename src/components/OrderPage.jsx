@@ -1,36 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Products from "./products/Products";
 import Popup from "./popups/PopupShoppingCart";
 import Category from "./Category";
 import ShoppingCart from "./ShoppingCart";
-import OrderItems from "./OrderItems"; // Importiere die neue Komponente
+import OrderItems from "./OrderItems"; // Import the new component
 import { motion } from "framer-motion";
 
 function OrderPage({ addToCart, cart, setCart }) {
   const [buttonPopup, setButtonPopup] = useState(false);
-  const [currentProduct, setCurrentProduct] = useState(null); // Produkt für das Popup
-  const [filteredProducts, setFilteredProducts] = useState(Products); // Für die Filterung von Produkten
-  const [imagePopup, setImagePopup] = useState(null); // Zustand für das Bild-Popup
-  const [category, setCategory] = useState("All"); // Zustand für die Kategorie
+  const [currentProduct, setCurrentProduct] = useState(null); // Product for the popup
+  const [filteredProducts, setFilteredProducts] = useState(Products); // For filtering products
+  const [imagePopup, setImagePopup] = useState(null); // State for the image popup
+  const [category, setCategory] = useState("All"); // State for the category
 
-  // useEffect, um Produkte basierend auf der Kategorie zu filtern
+  // useEffect to filter products based on the category
   useEffect(() => {
     if (category === "All") {
-      setFilteredProducts(Products); // Zeige alle Produkte
+      setFilteredProducts(Products); // Show all products
     } else {
       const filtered = Products.filter(
         (product) => product.category === category
       );
       setFilteredProducts(filtered);
     }
-  }, [category]); // Wird nur ausgelöst, wenn sich die Kategorie ändert
+  }, [category]); // Triggered only when the category changes
 
-  const handleRemoveClick = (product) => {
-    setCurrentProduct(product); // Produkt speichern
-    setButtonPopup(true); // Popup öffnen
-  };
+  const handleRemoveClick = useCallback((product) => {
+    setCurrentProduct(product); // Save the product
+    setButtonPopup(true); // Open the popup
+  }, []);
 
-  const removeFromCart = () => {
+  const removeFromCart = useCallback(() => {
     if (!currentProduct) return;
     const index = cart.findIndex((item) => item.id === currentProduct.id);
     if (index === -1) return;
@@ -43,31 +43,31 @@ function OrderPage({ addToCart, cart, setCart }) {
       const updatedCart = cart.filter((item) => item.id !== currentProduct.id);
       setCart(updatedCart);
     }
-    setCurrentProduct(null); // Produkt zurücksetzen
-    setButtonPopup(false); // Popup schließen
-  };
+    setCurrentProduct(null); // Reset the product
+    setButtonPopup(false); // Close the popup
+  }, [cart, currentProduct, setCart]);
 
-  const openImagePopup = (image) => {
-    setImagePopup(image); // Bild für die Vorschau setzen
-  };
+  const openImagePopup = useCallback((image) => {
+    setImagePopup(image); // Set the image for preview
+  }, []);
 
-  const closeImagePopup = () => {
-    setImagePopup(null); // Popup schließen
-  };
+  const closeImagePopup = useCallback(() => {
+    setImagePopup(null); // Close the popup
+  }, []);
 
   return (
     <div className="bg-gray-100 flex flex-col lg:flex-row w-screen h-screen select-none">
-      {/* Kategorie-Sektion */}
+      {/* Category section */}
       <Category filterProducts={setCategory} setCart={setCart} />
 
-      {/* Produkt-Sektion */}
+      {/* Product section */}
       <OrderItems
         products={filteredProducts}
         addToCart={addToCart}
         openImagePopup={openImagePopup}
       />
 
-      {/* Warenkorb-Sektion */}
+      {/* Shopping cart section */}
       <ShoppingCart
         cart={cart}
         handleRemoveClick={handleRemoveClick}
@@ -76,7 +76,7 @@ function OrderPage({ addToCart, cart, setCart }) {
         setButtonPopup={setButtonPopup}
       />
 
-      {/* Popup-Sektion */}
+      {/* Popup section */}
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <button
           onClick={removeFromCart}
@@ -85,25 +85,25 @@ function OrderPage({ addToCart, cart, setCart }) {
           Produkt entfernen
         </button>
         <button
-          onClick={() => setButtonPopup(false)} // Popup schließen
+          onClick={() => setButtonPopup(false)} // Close the popup
           className="btn-popup font-bold py-4 my-4 rounded-xl ml-8"
         >
-          Abbrechen
+          abbrechen
         </button>
       </Popup>
 
-      {/* Bild-Popup für Vorschau mit Animation und Unschärfe */}
+      {/* Image popup for preview with animation and blur */}
       {imagePopup && (
         <motion.div
           className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-md flex justify-center items-center z-50"
-          onClick={closeImagePopup} // Popup schließen, wenn außerhalb des Bildes geklickt wird
+          onClick={closeImagePopup} // Close the popup when clicking outside the image
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2 }}
         >
           <motion.div
             className="relative bg-white rounded-xl max-w-3xl"
-            onClick={(e) => e.stopPropagation()} // Verhindern, dass das Klicken im Bild das Popup schließt
+            onClick={(e) => e.stopPropagation()} // Prevent closing the popup when clicking inside the image
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.2 }}
@@ -115,7 +115,7 @@ function OrderPage({ addToCart, cart, setCart }) {
             />
           </motion.div>
         </motion.div>
-      )}
+      )} 
     </div>
   );
 }

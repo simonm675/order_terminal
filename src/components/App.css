@@ -1,15 +1,14 @@
-html,
-body {
+html,body {
   touch-action: none; /* Deaktiviert Pinch-to-Zoom */
   overflow: hidden; /* Verhindert unerwünschtes Scrollen */
   overscroll-behavior: none; /* Deaktiviert das Standardverhalten (z. B. Swipe für Zurück-Navigation) */
   -webkit-overflow-scrolling: touch; /* Aktiviert sanftes Scrollen auf mobilen Geräten */
   user-select: none; /* Verhindert Markieren von Text */
+  font-family: 'Figtree', serif; /* Schriftart Figtree einbinden */
+  font-weight: 800; /* Setzt die Gewichtung auf 800 */
 }
 
-#root {
-  font-family: "Poppins", sans-serif;
-}
+
 
 .cssbuttons-io-button {
   padding: 0.5em 0.5em 0.5em 0.8em;
@@ -148,3 +147,5 @@ body {
 .page-wrapper {
   position: relative;
 }
+
+

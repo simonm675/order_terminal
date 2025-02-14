@@ -37,7 +37,7 @@ const App = () => {
 
   return (
     <TransitionGroup component={null}>
-      <CSSTransition key={location.key} timeout={500} classNames="page">
+      <CSSTransition key={location.key} timeout={4000} classNames="page">
         <div className="page-wrapper">
           <Routes location={location}>
             {/* Übergibt addToCart an LandingPage und den Warenkorb an OrderPage */}

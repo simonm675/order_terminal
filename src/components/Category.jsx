@@ -81,38 +81,46 @@ const Category = ({ filterProducts, setCart }) => {
 
       {/* Kategorienliste */}
       <ul
-        className={`space-y-3 text-lg font-semibold ${
-          isMenuVisible ? "block" : "hidden"
-        } lg:block`}
+  className={`space-y-3 text-lg font-semibold ${
+    isMenuVisible ? "block" : "hidden"
+  } lg:block`}
+>
+  {[
+    { name: "Menüs", icon: "/img/product_img/burger_menu.jpeg" },
+    { name: "Burger", icon: "/img/product_img/cheeseburger.jpeg" },
+    { name: "Beilagen", icon: "/img/product_img/pommes.jpeg" },
+    { name: "Subs", icon: "/img/product_img/salami_sub.jpeg" },
+    { name: "Bowls", icon: "/img/product_img/chickenbowl.jpeg" },
+    { name: "Dips", icon: "/img/product_img/garlic-dip.jpeg" },
+    { name: "Getränke", icon: "/img/product_img/cola.jpeg" },
+  ].map(({ name, icon }) => (
+    <li key={name}>
+      <motion.button
+        initial={{ scale: 1 }}
+        animate={{
+          scale: clickedCategory === name ? 0.85 : 1,
+        }}
+        transition={{ duration: 0.2 }}
+        className={`relative flex items-center justify-center w-full py-2 px-4 sm:py-3 sm:px-2 md:py-4 md:px-8 rounded-md mb-2 shadow-md font-semibold ${
+          activeCategory === name
+            ? "text-black bg-gradient-to-r from-gray-300 via-gray-100 to-gray-300 focus:outline-none shadow-lg shadow-gray-700/50 rounded-lg"
+            : "bg-gradient-to-t from-white to-gray-100 text-black"
+        }`}
+        onClick={() => handleCategoryClick(name)}
+        style={{
+          backgroundImage: `url(${icon})`,
+          backgroundSize: "70px",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "left center",
+          paddingLeft: "3rem", // Platz für das Icon
+        }}
       >
-        {[
-          "Menüs",
-          "Burger",
-          "Beilagen",
-          "Subs",
-          "Bowls",
-          "Dips",
-          "Getränke",
-        ].map((category) => (
-          <li key={category}>
-            <motion.button
-              initial={{ scale: 1 }}
-              animate={{
-                scale: clickedCategory === category ? 0.85 : 1, // Animation, wenn gedrückt
-              }}
-              transition={{ duration: 0.2 }}
-              className={`${
-                activeCategory === category
-                  ? "text-black bg-gradient-to-r from-gray-300 via-gray-100 to-gray-300 focus:outline-none shadow-lg shadow-gray-700/50 rounded-lg  text-center"
-                  : "bg-gradient-to-t from-white to-gray-100 text-black "
-              } w-full py-2 px-4 sm:py-3 sm:px-2 md:py-4 md:px-8 rounded-md mb-2 shadow-md font-semibold`}
-              onClick={() => handleCategoryClick(category)}
-            >
-              {category}
-            </motion.button>
-          </li>
-        ))}
-      </ul>
+        {name}
+      </motion.button>
+    </li>
+  ))}
+</ul>
+
 
       {/* Bestellvorgang abbrechen */}
       <motion.button

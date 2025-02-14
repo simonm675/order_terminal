@@ -15,7 +15,7 @@ const CategoryPopup = ({ onConfirm, onCancel }) => {
         transition={{ duration: 0.3 }}
       >
         <p className="text-xl  my-4">
-          Möchten Sie den Bestellvorgang wirklich abbrechen?
+          Möchtest Du den Bestellvorgang wirklich abbrechen?
         </p>
         <div className="p-4">
           <button

@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
   const [showOptions, setShowOptions] = useState(false);
   const navigate = useNavigate();
+
+  const handleStartClick = useCallback(() => {
+    setShowOptions(true);
+  }, []);
+
+  const handleNavigate = useCallback((path) => {
+    navigate(path);
+  }, [navigate]);
 
   return (
     <div className="relative h-screen w-screen select-none">
@@ -31,7 +39,7 @@ const LandingPage = () => {
           {/* Button "Jetzt starten" mit pulsierender Animation */}
           {!showOptions ? (
             <motion.button
-              onClick={() => setShowOptions(true)}
+              onClick={handleStartClick}
               className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold mt-6 py-5 px-10 rounded-lg shadow-md"
               initial={{ scale: 1 }}
               animate={{
@@ -46,6 +54,7 @@ const LandingPage = () => {
                 scale: 1.1, // Vergrößerung beim Hover
               }}
               whileTap={{ scale: 0.95 }}
+              aria-label="Jetzt Bestellen"
             >
               Jetzt Bestellen
             </motion.button>
@@ -57,24 +66,26 @@ const LandingPage = () => {
               transition={{ duration: 0.5 }}
             >
               <motion.button
-                onClick={() => navigate("/order?type=here")}
+                onClick={() => handleNavigate("/order?type=here")}
                 className="bg-yellow-500 text-white py-5 px-10 rounded-lg text-xl hover:bg-yellow-600 transition-all duration-300 ease-in-out"
                 whileHover={{
                   scale: 1.2,
                   boxShadow: "0px 4px 15px rgba(255, 255, 255, 0.4)",
                 }}
                 whileTap={{ scale: 0.9 }}
+                aria-label="Zum hier essen"
               >
                 Zum hier essen
               </motion.button>
               <motion.button
-                onClick={() => navigate("/order?type=takeaway")}
+                onClick={() => handleNavigate("/order?type=takeaway")}
                 className="bg-transparent border-2 border-yellow-500 text-yellow-500 py-5 px-10 rounded-lg text-xl hover:bg-yellow-500 hover:text-white transition-all duration-300 ease-in-out"
                 whileHover={{
                   scale: 1.2,
                   boxShadow: "0px 4px 15px rgba(255, 255, 255, 0.4)",
                 }}
                 whileTap={{ scale: 0.9 }}
+                aria-label="Zum Mitnehmen"
               >
                 Zum Mitnehmen
               </motion.button>

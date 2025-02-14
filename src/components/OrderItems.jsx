@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useCallback } from "react";
+import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 
 const OrderItems = ({ products, addToCart, openImagePopup }) => {
+  const handleAddToCart = useCallback((product) => {
+    addToCart(product);
+  }, [addToCart]);
+
+  const handleImageClick = useCallback((image) => {
+    openImagePopup(image);
+  }, [openImagePopup]);
+
   return (
     <motion.div
       className="relative grid md:grid-cols-2 sm:grid-cols-1 w-full mt-3 mb-3 scrollbar-thin rounded-lg overflow-auto"
@@ -18,8 +27,9 @@ const OrderItems = ({ products, addToCart, openImagePopup }) => {
           <img
             src={product.image}
             alt={product.name}
-            className=" h-56 object-contain mx-auto rounded-lg drop-shadow-lg cursor-pointer"
-            onClick={() => openImagePopup(product.image)} // Öffnet das Bild im Popup
+            className="h-56 object-contain mx-auto rounded-lg drop-shadow-lg cursor-pointer"
+            onClick={() => handleImageClick(product.image)} // Opens the image in a popup
+            aria-label={`Open image of ${product.name}`}
           />
           <h3 className="text-lg font-semibold text-center mt-2">
             {product.name}
@@ -49,6 +59,20 @@ const OrderItems = ({ products, addToCart, openImagePopup }) => {
       ))}
     </motion.div>
   );
+};
+
+OrderItems.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  addToCart: PropTypes.func.isRequired,
+  openImagePopup: PropTypes.func.isRequired,
 };
 
 export default OrderItems;

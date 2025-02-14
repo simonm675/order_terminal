@@ -12,11 +12,21 @@ const OrderConfirmation = ({ setCart }) => {
     setOrderNumber(generateOrderNumber());
   }, []);
 
+  // Automatically navigate to the LandingPage after 15 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCart([]); // Clear the cart
+      navigate("/"); // Navigate to the LandingPage
+    }, 15000); // 15 seconds
+
+    return () => clearTimeout(timer); // Cleanup the timer on component unmount
+  }, [navigate, setCart]);
+
   const handleButtonClick = () => {
     setCart([]); // Clear the cart
     navigate("/"); // Navigate to the LandingPage
   };
-
+  
   return (
     <motion.div
       className="relative flex flex-col min-h-screen justify-center bg-white shadow-xl rounded-lg max-w-3xl mx-auto p-6 my-8"
@@ -48,7 +58,7 @@ const OrderConfirmation = ({ setCart }) => {
           className="cssbuttons-io-button p-4 rounded-lg font-bold"
           onClick={handleButtonClick}
         >
-          Zurück zur Startseite
+          Neue Bestellung
         </button>
       </div>
     </motion.div>
