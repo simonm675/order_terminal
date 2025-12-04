@@ -7,6 +7,7 @@ import OrderPage from "./components/OrderPage";
 import OrderSummary from "./components/OrderSummary";
 import PaymentMethods from "./components/PaymentMethods";
 import OrderConfirmation from "./components/OrderConfirmation";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const App = () => {
   const location = useLocation();
@@ -15,13 +16,17 @@ const App = () => {
   const [cart, setCart] = useState([]);
 
   const addToCart = (product) => {
-    const index = cart.findIndex((item) => item.id === product.id);
-    if (index === -1) {
-      setCart([...cart, { ...product, quantity: 1 }]);
-    } else {
-      const updatedCart = [...cart];
-      updatedCart[index].quantity++;
-      setCart(updatedCart);
+    try {
+      const index = cart.findIndex((item) => item.id === product.id);
+      if (index === -1) {
+        setCart([...cart, { ...product, quantity: 1 }]);
+      } else {
+        const updatedCart = [...cart];
+        updatedCart[index].quantity++;
+        setCart(updatedCart);
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error);
     }
   };
 
@@ -36,35 +41,37 @@ const App = () => {
   }, []);
 
   return (
-    <TransitionGroup component={null}>
-      <CSSTransition key={location.key} timeout={4000} classNames="page">
-        <div className="page-wrapper">
-          <Routes location={location}>
-            {/* Übergibt addToCart an LandingPage und den Warenkorb an OrderPage */}
-            <Route path="/" element={<LandingPage addToCart={addToCart} />} />
-            <Route
-              path="/order"
-              element={
-                <OrderPage
-                  addToCart={addToCart}
-                  cart={cart}
-                  setCart={setCart}
-                />
-              }
-            />
-            <Route
-              path="/order/summary"
-              element={<OrderSummary cart={cart} />} // Übergibt den Warenkorb an OrderSummary
-            />
-            <Route path="/payment-methods" element={<PaymentMethods />} />
-            <Route
-              path="/order-confirmation"
-              element={<OrderConfirmation setCart={setCart} />}
-            />
-          </Routes>
-        </div>
-      </CSSTransition>
-    </TransitionGroup>
+    <ErrorBoundary>
+      <TransitionGroup component={null}>
+        <CSSTransition key={location.key} timeout={4000} classNames="page">
+          <div className="page-wrapper">
+            <Routes location={location}>
+              {/* Übergibt addToCart an LandingPage und den Warenkorb an OrderPage */}
+              <Route path="/" element={<LandingPage addToCart={addToCart} />} />
+              <Route
+                path="/order"
+                element={
+                  <OrderPage
+                    addToCart={addToCart}
+                    cart={cart}
+                    setCart={setCart}
+                  />
+                }
+              />
+              <Route
+                path="/order/summary"
+                element={<OrderSummary cart={cart} />} // Übergibt den Warenkorb an OrderSummary
+              />
+              <Route path="/payment-methods" element={<PaymentMethods />} />
+              <Route
+                path="/order-confirmation"
+                element={<OrderConfirmation setCart={setCart} />}
+              />
+            </Routes>
+          </div>
+        </CSSTransition>
+      </TransitionGroup>
+    </ErrorBoundary>
   );
 };
 

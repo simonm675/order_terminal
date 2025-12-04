@@ -60,76 +60,91 @@ const Category = ({ filterProducts, setCart }) => {
   }, [clickedCategory]);
 
   return (
-    <div className="relative flex flex-col justify-between bg-white shadow-md rounded-lg px-4 py-4 mb-3 mt-3 ml-3 lg:w-1/4 lg:mr-3 overflow-hidden w-full max-w-md mx-auto">
+    <div className="relative flex flex-col justify-between bg-white shadow-lg rounded-xl px-3 py-3 mb-3 mt-3 ml-0 lg:ml-3 mr-0 lg:mr-3 w-full lg:w-auto lg:min-w-[280px] lg:max-w-[320px] overflow-hidden">
       {/* Oberer Bereich mit Bild und Button nebeneinander */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between mb-2">
         {/* Logo */}
-        <img
-          className="w-full max-w-xs mx-auto h-auto drop-shadow-2xl"
+        <motion.img
+          className="w-full max-w-[200px] lg:max-w-xs mx-auto h-auto drop-shadow-2xl"
           src="/img/logo/logo_new-min.png"
           alt="Burger&Burger"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         />
 
-        {/* Button für Kategorien */}
-        <button
+        {/* Button für Kategorien (nur auf mobilen Geräten) */}
+        <motion.button
           onClick={() => setIsMenuVisible(!isMenuVisible)}
-          className="lg:hidden block bg-gray-100 text-gray-800 py-2 px-4 rounded-md font-semibold"
+          className="lg:hidden block bg-gradient-to-r from-gray-200 to-gray-100 text-gray-800 py-2 px-3 rounded-lg font-semibold shadow-md text-sm"
+          whileTap={{ scale: 0.95 }}
         >
-          {isMenuVisible ? "Kategorien ausblenden" : "Kategorien anzeigen"}
-        </button>
+          {isMenuVisible ? "✕" : "☰"}
+        </motion.button>
       </div>
 
       {/* Kategorienliste */}
-      <ul
-  className={`space-y-3 text-lg font-semibold ${
-    isMenuVisible ? "block" : "hidden"
-  } lg:block`}
->
-  {[
-    { name: "Menüs", icon: "/img/product_img/burger_menu.jpeg" },
-    { name: "Burger", icon: "/img/product_img/cheeseburger.jpeg" },
-    { name: "Beilagen", icon: "/img/product_img/pommes.jpeg" },
-    { name: "Subs", icon: "/img/product_img/salami_sub.jpeg" },
-    { name: "Bowls", icon: "/img/product_img/chickenbowl.jpeg" },
-    { name: "Dips", icon: "/img/product_img/garlic-dip.jpeg" },
-    { name: "Getränke", icon: "/img/product_img/cola.jpeg" },
-  ].map(({ name, icon }) => (
-    <li key={name}>
-      <motion.button
-        initial={{ scale: 1 }}
-        animate={{
-          scale: clickedCategory === name ? 0.85 : 1,
-        }}
-        transition={{ duration: 0.2 }}
-        className={`relative flex items-center justify-center w-full py-2 px-4 sm:py-3 sm:px-2 md:py-4 md:px-8 rounded-md mb-2 shadow-md font-semibold ${
-          activeCategory === name
-            ? "text-black bg-gradient-to-r from-gray-300 via-gray-100 to-gray-300 focus:outline-none shadow-lg shadow-gray-700/50 rounded-lg"
-            : "bg-gradient-to-t from-white to-gray-100 text-black"
-        }`}
-        onClick={() => handleCategoryClick(name)}
-        style={{
-          backgroundImage: `url(${icon})`,
-          backgroundSize: "70px",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "left center",
-          paddingLeft: "3rem", // Platz für das Icon
-        }}
+      <motion.ul
+        className={`space-y-2 text-base lg:text-lg font-semibold overflow-y-auto scrollbar-thin ${
+          isMenuVisible ? "block" : "hidden"
+        } lg:block`}
+        style={{ maxHeight: "calc(100vh - 300px)" }}
+        initial={false}
+        animate={{ opacity: isMenuVisible || window.innerWidth >= 1024 ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
       >
-        {name}
-      </motion.button>
-    </li>
-  ))}
-</ul>
+        {[
+          { name: "Menüs", icon: "/img/product_img/burger_menu.jpeg" },
+          { name: "Burger", icon: "/img/product_img/cheeseburger.jpeg" },
+          { name: "Beilagen", icon: "/img/product_img/pommes.jpeg" },
+          { name: "Subs", icon: "/img/product_img/salami_sub.jpeg" },
+          { name: "Bowls", icon: "/img/product_img/chickenbowl.jpeg" },
+          { name: "Dips", icon: "/img/product_img/garlic-dip.jpeg" },
+          { name: "Getränke", icon: "/img/product_img/cola.jpeg" },
+        ].map(({ name, icon }) => (
+          <li key={name}>
+            <motion.button
+              initial={{ scale: 1 }}
+              animate={{
+                scale: clickedCategory === name ? 0.92 : 1,
+              }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+              className={`relative flex items-center justify-center w-full py-3 px-3 lg:py-4 lg:px-4 rounded-xl shadow-md font-semibold transition-all duration-300 ${
+                activeCategory === name
+                  ? "text-black bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 shadow-xl shadow-yellow-500/30"
+                  : "bg-gradient-to-br from-white to-gray-50 text-gray-800 hover:shadow-lg"
+              }`}
+              onClick={() => handleCategoryClick(name)}
+              style={{
+                backgroundImage: `url(${icon})`,
+                backgroundSize: "60px",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "10px center",
+                paddingLeft: "80px",
+                opacity: activeCategory === name ? 1 : 0.7,
+                filter: activeCategory === name ? "none" : "grayscale(30%)",
+              }}
+            >
+              <span className="text-sm lg:text-base">{name}</span>
+            </motion.button>
+          </li>
+        ))}
+      </motion.ul>
 
 
       {/* Bestellvorgang abbrechen */}
       <motion.button
         onClick={handleCancel}
-        className="w-full py-2 sm:py-3 md:py-4 rounded-lg font-semibold bg-gradient-to-t from-red-600 to-red-400 text-white shadow-md"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.9 }}
+        className="w-full py-3 lg:py-4 mt-3 rounded-xl font-semibold bg-gradient-to-r from-red-600 to-red-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-sm lg:text-base"
+        whileHover={{ scale: 1.02, boxShadow: "0 10px 25px rgba(220, 38, 38, 0.3)" }}
+        whileTap={{ scale: 0.97 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
       >
-        Bestellvorgang abbrechen
+        🚫 Bestellvorgang abbrechen
       </motion.button>
 
       {/* Popup für Bestätigung */}

@@ -29,38 +29,64 @@ const OrderConfirmation = ({ setCart }) => {
   
   return (
     <motion.div
-      className="relative flex flex-col min-h-screen justify-center bg-white shadow-xl rounded-lg max-w-3xl mx-auto p-6 my-8"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="relative flex flex-col min-h-screen justify-center bg-gradient-to-br from-green-50 to-blue-50 shadow-2xl rounded-2xl max-w-4xl mx-auto p-6 lg:p-8 my-4 lg:my-8"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <h2 className="text-4xl font-semibold text-center text-gray-800 mb-6">
-        Bestellung bestätigt 🎉
-      </h2>
+      <motion.h2 
+        className="text-3xl lg:text-5xl font-bold text-center text-gray-800 mb-4 lg:mb-6"
+        initial={{ y: -30 }}
+        animate={{ y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        🎉 Bestellung bestätigt!
+      </motion.h2>
 
-      <p className="text-center text-gray-600 text-lg mb-8">
+      <motion.p 
+        className="text-center text-gray-700 text-base lg:text-lg mb-6 lg:mb-8 px-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+      >
         Vielen Dank für Ihre Bestellung! Wir haben Ihre Bestellung erhalten und arbeiten bereits daran.
-      </p>
+      </motion.p>
 
-      <div className="flex justify-center mb-8">
+      <motion.div 
+        className="flex justify-center mb-6 lg:mb-8"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
+      >
         <img
-          className="h-56"
+          className="h-40 lg:h-56 rounded-2xl shadow-xl"
           src="/img/daumen_hoch.gif" 
           alt="Bestellung bestätigt"
         />
-      </div>
+      </motion.div>
 
-      <div className="text-center">
-        <p className="text-lg text-gray-800 mb-4">
-          Ihre Bestellnummer lautet: {orderNumber}
-        </p>
-        <button
-          className="cssbuttons-io-button p-4 rounded-lg font-bold"
+      <motion.div 
+        className="text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+      >
+        <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-xl mb-6">
+          <p className="text-gray-600 text-sm lg:text-base mb-2">Ihre Bestellnummer:</p>
+          <p className="text-4xl lg:text-6xl font-bold text-blue-600">#{orderNumber}</p>
+        </div>
+        <motion.button
+          className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 lg:px-12 py-3 lg:py-4 rounded-xl shadow-lg font-bold text-base lg:text-lg"
           onClick={handleButtonClick}
+          whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(37, 99, 235, 0.4)" }}
+          whileTap={{ scale: 0.95 }}
         >
-          Neue Bestellung
-        </button>
-      </div>
+          🏠 Neue Bestellung
+        </motion.button>
+        <p className="text-xs lg:text-sm text-gray-500 mt-4">
+          Sie werden in 15 Sekunden automatisch zur Startseite weitergeleitet...
+        </p>
+      </motion.div>
     </motion.div>
   );
 };

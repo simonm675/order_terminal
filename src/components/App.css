@@ -1,11 +1,41 @@
-html,body {
-  touch-action: none; /* Deaktiviert Pinch-to-Zoom */
-  overflow: hidden; /* Verhindert unerwünschtes Scrollen */
+html,
+body {
+  touch-action: pan-y; /* Erlaubt vertikales Scrollen, deaktiviert Pinch-to-Zoom */
+  overflow: hidden; /* Verhindert unerwünschtes Scrollen auf body */
   overscroll-behavior: none; /* Deaktiviert das Standardverhalten (z. B. Swipe für Zurück-Navigation) */
   -webkit-overflow-scrolling: touch; /* Aktiviert sanftes Scrollen auf mobilen Geräten */
   user-select: none; /* Verhindert Markieren von Text */
-  font-family: 'Figtree', serif; /* Schriftart Figtree einbinden */
+  font-family: 'Figtree', sans-serif; /* Schriftart Figtree einbinden */
   font-weight: 800; /* Setzt die Gewichtung auf 800 */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-tap-highlight-color: transparent; /* Entfernt den Tap-Highlight auf iOS */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Optimierte Scrollbar für Webkit-Browser */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 

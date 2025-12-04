@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import Products from "./products/Products";
 import Popup from "./popups/PopupShoppingCart";
 import Category from "./Category";
@@ -12,6 +13,34 @@ function OrderPage({ addToCart, cart, setCart }) {
   const [filteredProducts, setFilteredProducts] = useState(Products); // For filtering products
   const [imagePopup, setImagePopup] = useState(null); // State for the image popup
   const [category, setCategory] = useState("All"); // State for the category
+  const navigate = useNavigate();
+
+  // Inaktivitäts-Timer: Nach 3 Minuten zurück zur Startseite
+  useEffect(() => {
+    let inactivityTimer;
+    
+    const resetTimer = () => {
+      if (inactivityTimer) clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(() => {
+        setCart([]);
+        navigate("/");
+      }, 180000); // 3 Minuten
+    };
+
+    const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
+    events.forEach(event => {
+      document.addEventListener(event, resetTimer);
+    });
+
+    resetTimer();
+
+    return () => {
+      if (inactivityTimer) clearTimeout(inactivityTimer);
+      events.forEach(event => {
+        document.removeEventListener(event, resetTimer);
+      });
+    };
+  }, [navigate, setCart]);
 
   // useEffect to filter products based on the category
   useEffect(() => {
@@ -56,16 +85,18 @@ function OrderPage({ addToCart, cart, setCart }) {
   }, []);
 
   return (
-    <div className="bg-gray-100 flex flex-col lg:flex-row w-screen h-screen select-none">
+    <div className="bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col lg:flex-row w-screen h-screen select-none overflow-hidden">
       {/* Category section */}
       <Category filterProducts={setCategory} setCart={setCart} />
 
       {/* Product section */}
-      <OrderItems
-        products={filteredProducts}
-        addToCart={addToCart}
-        openImagePopup={openImagePopup}
-      />
+      <div className="flex-1 overflow-y-auto px-2 lg:px-3">
+        <OrderItems
+          products={filteredProducts}
+          addToCart={addToCart}
+          openImagePopup={openImagePopup}
+        />
+      </div>
 
       {/* Shopping cart section */}
       <ShoppingCart

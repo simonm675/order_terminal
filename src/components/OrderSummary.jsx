@@ -11,9 +11,14 @@ const OrderSummary = ({ cart }) => {
   };
 
   return (
-    <motion.div className="relative flex flex-col min-h-screen bg-white justify-between rounded-lg max-w-3xl mx-auto p-6 shadow-xl m-2">
-      <h2 className="text-4xl font-semibold text-center text-gray-800 mb-6">
-        Bestellübersicht
+    <motion.div 
+      className="relative flex flex-col min-h-screen bg-white justify-between rounded-xl max-w-4xl mx-auto p-4 lg:p-6 shadow-2xl m-2 lg:m-4"
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <h2 className="text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-4 lg:mb-6">
+        📋 Bestellübersicht
       </h2>
 
       {cart.length === 0 ? (
@@ -63,33 +68,37 @@ const OrderSummary = ({ cart }) => {
       )}
 
       {/* Gesamtsumme und Buttons */}
-      <div className="flex flex-col mt-auto space-y-4">
-        <hr />
-        <div className="flex justify-between items-center text-lg font-semibold text-gray-800">
+      <div className="flex flex-col mt-auto space-y-4 pt-4">
+        <hr className="border-gray-300" />
+        <div className="flex justify-between items-center text-lg lg:text-xl font-bold text-gray-800">
           <p>Gesamtsumme:</p>
-          <p className="text-green-500">{calculateTotal().toFixed(2)} €</p>
+          <p className="text-green-600 text-2xl lg:text-3xl">{calculateTotal().toFixed(2)} €</p>
         </div>
 
-        <div className="flex justify-between space-x-4 pb-12">
+        <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4 pb-4 lg:pb-6">
           {/* Linker Button */}
-          <button
-            className="btn-popup rounded-lg shadow-md w-1/2 font-semibold transition duration-300 py-4"
-            onClick={() => navigate("/order")} // Navigiert zurück zur OrderPage
+          <motion.button
+            className="flex-1 bg-gradient-to-r from-gray-200 to-gray-300 hover:from-gray-300 hover:to-gray-400 text-gray-800 rounded-xl shadow-lg font-bold transition duration-300 py-3 lg:py-4 text-sm lg:text-base"
+            onClick={() => navigate("/order")}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            Warenkorb bearbeiten
-          </button>
+            ← Warenkorb bearbeiten
+          </motion.button>
 
           {/* Rechter Button */}
-          <button
-            className="cssbuttons-io-button-kasse rounded-lg shadow-md w-1/2 transition duration-300"
+          <motion.button
+            className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl shadow-lg font-bold transition duration-300 py-3 lg:py-4 text-sm lg:text-base"
             onClick={() =>
               navigate("/payment-methods", {
                 state: { totalAmount: calculateTotal() },
               })
             }
+            whileHover={{ scale: 1.02, boxShadow: "0 10px 30px rgba(22, 163, 74, 0.3)" }}
+            whileTap={{ scale: 0.98 }}
           >
-            Jetzt bezahlen
-          </button>
+            💳 Jetzt bezahlen
+          </motion.button>
         </div>
       </div>
     </motion.div>

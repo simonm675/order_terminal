@@ -29,65 +29,69 @@ const LandingPage = () => {
       {/* Overlay */}
       <div className="absolute inset-0 flex flex-col items-center justify-between bg-black bg-opacity-50 text-white">
         {/* Hauptinhalt: Logo, Text, Buttons */}
-        <div className="flex flex-col items-center justify-center flex-grow">
-          <img
+        <div className="flex flex-col items-center justify-center flex-grow px-4">
+          <motion.img
             src="/img/logo/logo_new-min.png"
             alt="Burger&Burger"
-            className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/4 mb-6 drop-shadow-[0_0_40px_rgba(255,255,255,1)] "
+            className="w-2/3 sm:w-1/2 md:w-2/5 lg:w-1/3 xl:w-1/4 mb-8 drop-shadow-[0_0_40px_rgba(255,255,255,1)]"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           />
 
           {/* Button "Jetzt starten" mit pulsierender Animation */}
           {!showOptions ? (
             <motion.button
               onClick={handleStartClick}
-              className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold mt-6 py-5 px-10 rounded-lg shadow-md"
+              className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-bold mt-6 py-4 px-12 lg:py-6 lg:px-16 rounded-2xl shadow-2xl text-lg lg:text-2xl"
               initial={{ scale: 1 }}
               animate={{
-                scale: [1, 1.1, 1], // Pulsierende Skalierung
+                scale: [1, 1.05, 1],
               }}
               transition={{
-                duration: 1.5, // Dauer der Animation
-                repeat: Infinity, // Unendlich wiederholen
-                repeatType: "loop", // Loop-Animation
+                duration: 1.5,
+                repeat: Infinity,
+                repeatType: "loop",
               }}
               whileHover={{
-                scale: 1.1, // Vergrößerung beim Hover
+                scale: 1.1,
+                boxShadow: "0px 10px 30px rgba(255, 255, 255, 0.5)",
               }}
               whileTap={{ scale: 0.95 }}
               aria-label="Jetzt Bestellen"
             >
-              Jetzt Bestellen
+              🍔 Jetzt Bestellen
             </motion.button>
           ) : (
             <motion.div
-              className="flex space-x-6"
+              className="flex flex-col sm:flex-row gap-4 lg:gap-6 w-full max-w-2xl px-4"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
               <motion.button
                 onClick={() => handleNavigate("/order?type=here")}
-                className="bg-yellow-500 text-white py-5 px-10 rounded-lg text-xl hover:bg-yellow-600 transition-all duration-300 ease-in-out"
+                className="flex-1 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-4 px-6 lg:py-6 lg:px-10 rounded-2xl text-base lg:text-xl font-bold shadow-xl"
                 whileHover={{
-                  scale: 1.2,
-                  boxShadow: "0px 4px 15px rgba(255, 255, 255, 0.4)",
+                  scale: 1.05,
+                  boxShadow: "0px 8px 25px rgba(255, 255, 255, 0.5)",
                 }}
-                whileTap={{ scale: 0.9 }}
+                whileTap={{ scale: 0.95 }}
                 aria-label="Zum hier essen"
               >
-                Zum hier essen
+                🍽️ Zum hier essen
               </motion.button>
               <motion.button
                 onClick={() => handleNavigate("/order?type=takeaway")}
-                className="bg-transparent border-2 border-yellow-500 text-yellow-500 py-5 px-10 rounded-lg text-xl hover:bg-yellow-500 hover:text-white transition-all duration-300 ease-in-out"
+                className="flex-1 bg-transparent border-4 border-yellow-500 text-yellow-500 py-4 px-6 lg:py-6 lg:px-10 rounded-2xl text-base lg:text-xl font-bold hover:bg-yellow-500 hover:text-white transition-all duration-300 shadow-xl"
                 whileHover={{
-                  scale: 1.2,
-                  boxShadow: "0px 4px 15px rgba(255, 255, 255, 0.4)",
+                  scale: 1.05,
+                  boxShadow: "0px 8px 25px rgba(255, 255, 255, 0.5)",
                 }}
-                whileTap={{ scale: 0.9 }}
+                whileTap={{ scale: 0.95 }}
                 aria-label="Zum Mitnehmen"
               >
-                Zum Mitnehmen
+                🛍️ Zum Mitnehmen
               </motion.button>
             </motion.div>
           )}

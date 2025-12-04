@@ -10,64 +10,84 @@ const ShoppingCart = ({ cart, handleRemoveClick }) => {
   }, [cart]);
 
   return (
-    <motion.div className="relative flex flex-col justify-between bg-white shadow-md rounded-lg px-4 py-4 mb-3 mt-3 ml-3 lg:w-1/4 lg:mr-3 overflow-hidden">
+    <motion.div 
+      className="relative flex flex-col justify-between bg-white shadow-xl rounded-xl px-3 py-3 mb-3 mt-3 ml-0 lg:ml-3 mr-0 lg:mr-3 w-full lg:w-auto lg:min-w-[280px] lg:max-w-[320px] overflow-hidden"
+      initial={{ x: 100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <ul
         className="space-y-2 overflow-y-auto scrollbar-thin" // Fügt Scrollen für die Liste hinzu
-        style={{ maxHeight: "900px" }} // Setzt eine maximale Höhe für die Liste
+        style={{ maxHeight: "calc(100vh - 250px)" }} // Setzt eine maximale Höhe für die Liste
       >
-        <h2 className="text-3xl font-semibold mb-4">Warenkorb</h2>
+        <h2 className="text-2xl lg:text-3xl font-bold mb-4 text-gray-800 flex items-center gap-2">
+          🛒 Warenkorb
+        </h2>
         {cart.length === 0 ? (
-          <p className="text-gray-600 flex flex-col">
-            Der Warenkorb ist leer.
+          <motion.div 
+            className="text-gray-500 flex flex-col items-center justify-center py-12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            <p className="text-base lg:text-lg text-center mb-4">Der Warenkorb ist leer.</p>
             <img
-              className="drop-shadow-md pt-80"
+              className="w-32 h-32 lg:w-40 lg:h-40 drop-shadow-lg opacity-50"
               src="./img/shopping_cart.png"
               alt="Warenkorb"
             />
-          </p>
+          </motion.div>
         ) : (
           <AnimatePresence>
             {cart.map((item) => (
               <motion.div
                 key={item.id}
-                className="flex justify-between items-center border-b last:border-b-0"
-                initial={{ opacity: 0, scale: 0.9 }} // Animation beim Hinzufügen
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8, x: -50 }} // Animation beim Entfernen
-                transition={{ duration: 0.2 }}
+                className="flex justify-between items-center border-b border-gray-200 pb-3 last:border-b-0"
+                initial={{ opacity: 0, scale: 0.9, x: -20 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                exit={{ opacity: 0, scale: 0.8, x: -100 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                layout
               >
-                <div className="flex items-center mb-2">
-                  <div className="w-10 h-10 rounded-lg overflow-hidden mr-2 ">
+                <div className="flex items-center mb-2 flex-1">
+                  <motion.div 
+                    className="w-12 h-12 lg:w-14 lg:h-14 rounded-lg overflow-hidden mr-3 shadow-md"
+                    whileHover={{ scale: 1.1 }}
+                  >
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="shadow-lg w-full h-full object-cover"
+                      className="w-full h-full object-cover"
                     />
-                  </div>
-                  <div>
-                    <p className="font-semibold">{item.name}</p>
-                    <p className="text-gray-600">
+                  </motion.div>
+                  <div className="flex-1">
+                    <p className="font-bold text-sm lg:text-base text-gray-800">{item.name}</p>
+                    <p className="text-xs lg:text-sm text-gray-600">
                       {item.quantity} x {item.price.toFixed(2)} €
                     </p>
                   </div>
                 </div>
-                <button
+                <motion.button
                   onClick={() => handleRemoveClick(item)}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-red-500 hover:text-red-700 p-2 rounded-lg hover:bg-red-50 transition-colors"
                   aria-label={`Remove ${item.name} from cart`}
+                  whileHover={{ scale: 1.2, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
                 >
                   <svg
-                    className="w-7 h-7"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
+                    className="w-5 h-5 lg:w-6 lg:h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
                     <path
-                      fillRule="evenodd"
-                      d="M10 12.586L5.710 15 4.293 15.586 8.586 11.293 4.293 7 5.707 5.586 10 10.899 14.293 5.586 15.707 7 11.414 11.293 15.707 15.586 14.293 17 10 12.707 5.707 17 4.293 15.586z"
-                      clipRule="evenodd"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
                     />
                   </svg>
-                </button>
+                </motion.button>
               </motion.div>
             ))}
           </AnimatePresence>
@@ -75,15 +95,16 @@ const ShoppingCart = ({ cart, handleRemoveClick }) => {
       </ul>
 
       {cart.length > 0 && (
-        <div className="flex flex-col justify-between mt-auto mb-4">
-          <hr className="my-4" />
-          <div className="flex justify-between text-lg">
-            <p className="font-semibold">Summe:</p>
+        <div className="flex flex-col justify-between mt-auto pt-3">
+          <hr className="my-3 border-gray-200" />
+          <div className="flex justify-between text-base lg:text-lg">
+            <p className="font-bold text-gray-700">Summe:</p>
             <motion.p
-              className="text-green-400 font-semibold"
-              initial={{ scale: 0.95 }}
+              className="text-green-600 font-bold text-lg lg:text-xl"
+              key={totalAmount}
+              initial={{ scale: 1.2 }}
               animate={{ scale: 1 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.3 }}
             >
               {totalAmount} €
             </motion.p>
@@ -93,13 +114,15 @@ const ShoppingCart = ({ cart, handleRemoveClick }) => {
 
       {cart.length > 0 && (
         <motion.button
-          className="cssbuttons-io-button-kasse py-4"
-          onClick={() => navigate("/order/summary")} // Navigiert zur Bestellübersicht
-
-          whileTap={{ scale: 0.95 }}
+          className="w-full mt-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 lg:py-4 rounded-xl shadow-lg transition-all duration-300 text-sm lg:text-base"
+          onClick={() => navigate("/order/summary")}
+          whileHover={{ scale: 1.03, boxShadow: "0 10px 30px rgba(37, 99, 235, 0.3)" }}
+          whileTap={{ scale: 0.97 }}
           aria-label="Proceed to checkout"
         >
-          <span>Zur Kasse gehen</span>
+          <span className="flex items-center justify-center gap-2">
+            💳 Zur Kasse gehen
+          </span>
         </motion.button>
       )}
     </motion.div>
