@@ -85,7 +85,8 @@ function OrderPage({ addToCart, cart, setCart }) {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col lg:flex-row w-screen h-screen select-none overflow-hidden">
+    <div className="relative flex flex-col lg:flex-row w-screen h-screen select-none overflow-hidden bg-white">
+      
       {/* Category section */}
       <Category filterProducts={setCategory} setCart={setCart} />
 
@@ -102,6 +103,7 @@ function OrderPage({ addToCart, cart, setCart }) {
       <ShoppingCart
         cart={cart}
         handleRemoveClick={handleRemoveClick}
+        setCart={setCart}
         removeFromCart={removeFromCart}
         buttonPopup={buttonPopup}
         setButtonPopup={setButtonPopup}
@@ -110,35 +112,43 @@ function OrderPage({ addToCart, cart, setCart }) {
       {/* Popup section */}
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
         <button
-          onClick={removeFromCart}
-          className="bottom-btn2 font-bold py-4 rounded-xl mt-4"
+          onClick={() => setButtonPopup(false)}
+          className="flex-1 bg-gray-200 text-gray-800 py-3 px-4 rounded-xl font-semibold"
         >
-          Produkt entfernen
+          Abbrechen
         </button>
         <button
-          onClick={() => setButtonPopup(false)} // Close the popup
-          className="btn-popup font-bold py-4 my-4 rounded-xl ml-8"
+          onClick={removeFromCart}
+          className="flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white py-3 px-4 rounded-xl font-semibold"
         >
-          abbrechen
+          Entfernen
         </button>
       </Popup>
 
       {/* Image popup for preview with animation and blur */}
       {imagePopup && (
         <motion.div
-          className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-md flex justify-center items-center z-50"
-          onClick={closeImagePopup} // Close the popup when clicking outside the image
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50 p-4"
+          onClick={closeImagePopup}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2 }}
         >
           <motion.div
-            className="relative bg-white rounded-xl max-w-3xl"
-            onClick={(e) => e.stopPropagation()} // Prevent closing the popup when clicking inside the image
+            className="relative bg-white rounded-2xl shadow-2xl p-4 max-w-4xl"
+            onClick={(e) => e.stopPropagation()}
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.2 }}
           >
+            <button
+              onClick={closeImagePopup}
+              className="absolute top-2 right-2 bg-white text-gray-700 p-2 rounded-full shadow-lg z-10"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
             <img
               src={imagePopup}
               alt="Popup Image"
@@ -146,7 +156,7 @@ function OrderPage({ addToCart, cart, setCart }) {
             />
           </motion.div>
         </motion.div>
-      )} 
+      )}
     </div>
   );
 }

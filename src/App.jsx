@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import "./components/App.css";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { AnimatePresence } from "framer-motion";
 import LandingPage from "./components/LandingPage";
 import OrderPage from "./components/OrderPage";
 import OrderSummary from "./components/OrderSummary";
@@ -19,7 +19,13 @@ const App = () => {
     try {
       const index = cart.findIndex((item) => item.id === product.id);
       if (index === -1) {
-        setCart([...cart, { ...product, quantity: 1 }]);
+        // Behalte finalPrice bei angepassten Produkten
+        setCart([...cart, { 
+          ...product, 
+          quantity: 1,
+          price: product.finalPrice || product.price,
+          finalPrice: product.finalPrice || product.price
+        }]);
       } else {
         const updatedCart = [...cart];
         updatedCart[index].quantity++;
@@ -42,35 +48,31 @@ const App = () => {
 
   return (
     <ErrorBoundary>
-      <TransitionGroup component={null}>
-        <CSSTransition key={location.key} timeout={4000} classNames="page">
-          <div className="page-wrapper">
-            <Routes location={location}>
-              {/* Übergibt addToCart an LandingPage und den Warenkorb an OrderPage */}
-              <Route path="/" element={<LandingPage addToCart={addToCart} />} />
-              <Route
-                path="/order"
-                element={
-                  <OrderPage
-                    addToCart={addToCart}
-                    cart={cart}
-                    setCart={setCart}
-                  />
-                }
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          {/* Übergibt addToCart an LandingPage und den Warenkorb an OrderPage */}
+          <Route path="/" element={<LandingPage addToCart={addToCart} />} />
+          <Route
+            path="/order"
+            element={
+              <OrderPage
+                addToCart={addToCart}
+                cart={cart}
+                setCart={setCart}
               />
-              <Route
-                path="/order/summary"
-                element={<OrderSummary cart={cart} />} // Übergibt den Warenkorb an OrderSummary
-              />
-              <Route path="/payment-methods" element={<PaymentMethods />} />
-              <Route
-                path="/order-confirmation"
-                element={<OrderConfirmation setCart={setCart} />}
-              />
-            </Routes>
-          </div>
-        </CSSTransition>
-      </TransitionGroup>
+            }
+          />
+          <Route
+            path="/order/summary"
+            element={<OrderSummary cart={cart} />} // Übergibt den Warenkorb an OrderSummary
+          />
+          <Route path="/payment-methods" element={<PaymentMethods />} />
+          <Route
+            path="/order-confirmation"
+            element={<OrderConfirmation setCart={setCart} />}
+          />
+        </Routes>
+      </AnimatePresence>
     </ErrorBoundary>
   );
 };

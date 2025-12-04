@@ -7,59 +7,69 @@ const OrderSummary = ({ cart }) => {
 
   // Berechnung der Gesamtsumme der Bestellung
   const calculateTotal = () => {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    return cart.reduce((total, item) => {
+      const price = item.finalPrice || item.price;
+      return total + price * item.quantity;
+    }, 0);
   };
 
   return (
-    <motion.div 
-      className="relative flex flex-col min-h-screen bg-white justify-between rounded-xl max-w-4xl mx-auto p-4 lg:p-6 shadow-2xl m-2 lg:m-4"
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <h2 className="text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-4 lg:mb-6">
+    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50 p-2 lg:p-4">
+      <motion.div 
+        className="relative flex flex-col bg-white shadow-2xl rounded-2xl justify-between w-full max-w-4xl p-4 lg:p-6 border-2 border-gray-100"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        style={{ maxHeight: '95vh' }}
+      >
+      <h2 className="text-3xl lg:text-4xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 lg:mb-6">
         📋 Bestellübersicht
       </h2>
 
       {cart.length === 0 ? (
-        <div className="text-center text-gray-600">
-          <p className="text-xl">Ihr Warenkorb ist leer.</p>
-          <img
-            className="w-32 h-32 mx-auto mt-6"
-            src="https://via.placeholder.com/150"
-            alt="Warenkorb leer"
-          />
+        <div className="text-center text-gray-600 flex-grow flex items-center justify-center">
+          <div>
+            <p className="text-xl mb-4">Ihr Warenkorb ist leer.</p>
+            <img
+              className="w-32 h-32 mx-auto mt-6 opacity-50 rounded-xl"
+              src="https://via.placeholder.com/150"
+              alt="Warenkorb leer"
+            />
+          </div>
         </div>
       ) : (
-        <div className="flex-grow mb-6">
+        <div className="flex-grow mb-6 overflow-hidden">
           <ul
-            className="space-y-2 overflow-y-auto scrollbar-thin"
-            style={{ maxHeight: "710px" }}
+            className="space-y-2"
+            style={{ maxHeight: "calc(95vh - 350px)", overflowY: "auto" }}
           >
             {cart.map((item, index) => (
               <li
                 key={index}
-                className="flex items-center justify-between border-b pb-4 last:border-b-0"
+                className="bg-gray-50 border-2 border-gray-200 rounded-xl flex items-center justify-between mb-3 p-3"
               >
                 <div className="flex items-center">
-                  <div className="w-20 h-20 rounded-lg overflow-hidden mr-4">
+                  <div className="w-20 h-20 rounded-xl overflow-hidden mr-4 border-2 border-gray-200">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="shadow-lg w-full h-full object-cover"
+                      className="w-full h-full object-cover rounded-lg"
                     />
                   </div>
                   <div>
-                    <p className="font-semibold text-lg text-gray-700">
+                    <p className="font-semibold text-lg text-gray-900">
                       {item.name}
                     </p>
-                    <p className="text-gray-500">
-                      {item.quantity} x {item.price.toFixed(2)} €
+                    <p className="text-gray-600 text-sm">
+                      {item.quantity} x {(item.finalPrice || item.price).toFixed(2)} €
                     </p>
+                    {item.customization && (
+                      <p className="text-xs text-blue-600 mt-1 font-semibold">✨ Angepasst</p>
+                    )}
                   </div>
                 </div>
-                <div className="text-lg text-gray-800 font-semibold mr-4">
-                  {(item.price * item.quantity).toFixed(2)} €
+                <div className="text-lg text-green-600 font-bold mr-4">
+                  {((item.finalPrice || item.price) * item.quantity).toFixed(2)} €
                 </div>
               </li>
             ))}
@@ -68,7 +78,7 @@ const OrderSummary = ({ cart }) => {
       )}
 
       {/* Gesamtsumme und Buttons */}
-      <div className="flex flex-col mt-auto space-y-4 pt-4">
+      <div className="flex flex-col mt-auto space-y-4 pt-4 w-full">
         <hr className="border-gray-300" />
         <div className="flex justify-between items-center text-lg lg:text-xl font-bold text-gray-800">
           <p>Gesamtsumme:</p>
@@ -78,9 +88,8 @@ const OrderSummary = ({ cart }) => {
         <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4 pb-4 lg:pb-6">
           {/* Linker Button */}
           <motion.button
-            className="flex-1 bg-gradient-to-r from-gray-200 to-gray-300 hover:from-gray-300 hover:to-gray-400 text-gray-800 rounded-xl shadow-lg font-bold transition duration-300 py-3 lg:py-4 text-sm lg:text-base"
+            className="flex-1 bg-gray-200 text-gray-800 rounded-xl shadow-lg font-bold py-3 lg:py-4 text-sm lg:text-base"
             onClick={() => navigate("/order")}
-            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
             ← Warenkorb bearbeiten
@@ -88,20 +97,20 @@ const OrderSummary = ({ cart }) => {
 
           {/* Rechter Button */}
           <motion.button
-            className="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl shadow-lg font-bold transition duration-300 py-3 lg:py-4 text-sm lg:text-base"
+            className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl shadow-lg font-bold py-3 lg:py-4 text-sm lg:text-base"
             onClick={() =>
               navigate("/payment-methods", {
                 state: { totalAmount: calculateTotal() },
               })
             }
-            whileHover={{ scale: 1.02, boxShadow: "0 10px 30px rgba(22, 163, 74, 0.3)" }}
             whileTap={{ scale: 0.98 }}
           >
             💳 Jetzt bezahlen
           </motion.button>
         </div>
       </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 };
 

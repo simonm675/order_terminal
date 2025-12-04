@@ -2,130 +2,322 @@ import React, { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-const ShoppingCart = ({ cart, handleRemoveClick }) => {
-  const navigate = useNavigate(); // React Router Hook für Navigation
+const ShoppingCart = ({ cart, handleRemoveClick, setCart }) => {
+  const navigate = useNavigate();
 
   const totalAmount = useMemo(() => {
-    return cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0).toFixed(2);
+    return cart.reduce((acc, curr) => {
+      const price = curr.finalPrice || curr.price;
+      return acc + price * curr.quantity;
+    }, 0).toFixed(2);
   }, [cart]);
 
+  const updateQuantity = (item, change) => {
+    const updatedCart = cart.map(cartItem => {
+      if (cartItem.id === item.id) {
+        const newQuantity = Math.max(1, cartItem.quantity + change);
+        return { ...cartItem, quantity: newQuantity };
+      }
+      return cartItem;
+    });
+    setCart(updatedCart);
+  };
+
   return (
-    <motion.div 
-      className="relative flex flex-col justify-between bg-white shadow-xl rounded-xl px-3 py-3 mb-3 mt-3 ml-0 lg:ml-3 mr-0 lg:mr-3 w-full lg:w-auto lg:min-w-[280px] lg:max-w-[320px] overflow-hidden"
-      initial={{ x: 100, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <ul
-        className="space-y-2 overflow-y-auto scrollbar-thin" // Fügt Scrollen für die Liste hinzu
-        style={{ maxHeight: "calc(100vh - 250px)" }} // Setzt eine maximale Höhe für die Liste
+    <>
+      {/* Desktop & Tablet (lg und größer) */}
+      <motion.div 
+        className="hidden lg:flex flex-col justify-between bg-white shadow-xl px-3 py-4 ml-3 mr-3 w-auto min-w-[280px] max-w-[320px] overflow-hidden rounded-2xl border-2 border-gray-100 h-[calc(100vh-24px)]"
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
       >
-        <h2 className="text-2xl lg:text-3xl font-bold mb-4 text-gray-800 flex items-center gap-2">
-          🛒 Warenkorb
-        </h2>
-        {cart.length === 0 ? (
-          <motion.div 
-            className="text-gray-500 flex flex-col items-center justify-center py-12"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            <p className="text-base lg:text-lg text-center mb-4">Der Warenkorb ist leer.</p>
-            <img
-              className="w-32 h-32 lg:w-40 lg:h-40 drop-shadow-lg opacity-50"
-              src="./img/shopping_cart.png"
-              alt="Warenkorb"
-            />
-          </motion.div>
-        ) : (
-          <AnimatePresence>
-            {cart.map((item) => (
-              <motion.div
-                key={item.id}
-                className="flex justify-between items-center border-b border-gray-200 pb-3 last:border-b-0"
-                initial={{ opacity: 0, scale: 0.9, x: -20 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                exit={{ opacity: 0, scale: 0.8, x: -100 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                layout
-              >
-                <div className="flex items-center mb-2 flex-1">
-                  <motion.div 
-                    className="w-12 h-12 lg:w-14 lg:h-14 rounded-lg overflow-hidden mr-3 shadow-md"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </motion.div>
-                  <div className="flex-1">
-                    <p className="font-bold text-sm lg:text-base text-gray-800">{item.name}</p>
-                    <p className="text-xs lg:text-sm text-gray-600">
-                      {item.quantity} x {item.price.toFixed(2)} €
-                    </p>
-                  </div>
-                </div>
-                <motion.button
-                  onClick={() => handleRemoveClick(item)}
-                  className="text-red-500 hover:text-red-700 p-2 rounded-lg hover:bg-red-50 transition-colors"
-                  aria-label={`Remove ${item.name} from cart`}
-                  whileHover={{ scale: 1.2, rotate: 90 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <svg
-                    className="w-5 h-5 lg:w-6 lg:h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </motion.button>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        )}
-      </ul>
-
-      {cart.length > 0 && (
-        <div className="flex flex-col justify-between mt-auto pt-3">
-          <hr className="my-3 border-gray-200" />
-          <div className="flex justify-between text-base lg:text-lg">
-            <p className="font-bold text-gray-700">Summe:</p>
-            <motion.p
-              className="text-green-600 font-bold text-lg lg:text-xl"
-              key={totalAmount}
-              initial={{ scale: 1.2 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              {totalAmount} €
-            </motion.p>
-          </div>
-        </div>
-      )}
-
-      {cart.length > 0 && (
-        <motion.button
-          className="w-full mt-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 lg:py-4 rounded-xl shadow-lg transition-all duration-300 text-sm lg:text-base"
-          onClick={() => navigate("/order/summary")}
-          whileHover={{ scale: 1.03, boxShadow: "0 10px 30px rgba(37, 99, 235, 0.3)" }}
-          whileTap={{ scale: 0.97 }}
-          aria-label="Proceed to checkout"
+        <ul
+          className="space-y-2 flex-1"
+          style={{ overflowY: "auto", overflowX: "hidden" }}
         >
-          <span className="flex items-center justify-center gap-2">
-            💳 Zur Kasse gehen
-          </span>
-        </motion.button>
-      )}
-    </motion.div>
+          <h2 className="text-lg font-bold mb-3 text-gray-900 flex items-center gap-2 sticky top-0 bg-white pb-2 border-b-2 border-gray-100">
+            🛒 Warenkorb
+            {cart.length > 0 && (
+              <span className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-2.5 py-0.5 rounded-full text-xs font-bold">{cart.length}</span>
+            )}
+          </h2>
+          {cart.length === 0 ? (
+            <motion.div 
+              className="text-gray-500 flex flex-col items-center justify-center py-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              <p className="text-sm text-center mb-3">Der Warenkorb ist leer.</p>
+              <img
+                className="w-24 h-24 drop-shadow-lg opacity-50 rounded-xl"
+                src="./img/shopping_cart.png"
+                alt="Warenkorb"
+              />
+            </motion.div>
+          ) : (
+            <AnimatePresence>
+              {cart.map((item) => {
+                const itemPrice = item.finalPrice || item.price;
+                return (
+                  <motion.div
+                    key={item.id}
+                    className="bg-gray-50 border-2 border-gray-200 rounded-lg p-2"
+                    initial={{ opacity: 0, scale: 0.9, x: -20 }}
+                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                    exit={{ opacity: 0, scale: 0.8, x: -100 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    layout
+                  >
+                    <div className="flex items-start gap-2 mb-1">
+                      <motion.div 
+                        className="w-12 h-12 rounded-lg overflow-hidden shadow-md flex-shrink-0"
+                      >
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-full h-full object-cover rounded-lg"
+                        />
+                      </motion.div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-bold text-xs text-gray-900 truncate">{item.name}</p>
+                        <p className="text-xs text-gray-600">
+                          {itemPrice.toFixed(2)} €
+                        </p>
+                        {item.customization && (
+                          <div className="text-xs text-blue-600">
+                            ⚙️ Angepasst
+                          </div>
+                        )}
+                      </div>
+                      <motion.button
+                        onClick={() => handleRemoveClick(item)}
+                        className="bg-red-500 text-white p-1 rounded flex-shrink-0"
+                        aria-label={`Remove ${item.name} from cart`}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <svg
+                          className="w-3 h-3"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </motion.button>
+                    </div>
+                    
+                    {/* Quantity Controls */}
+                    <div className="flex items-center justify-between gap-1 mt-1">
+                      <div className="flex items-center gap-1">
+                        <motion.button
+                          onClick={() => updateQuantity(item, -1)}
+                          className="bg-gray-200 text-gray-700 w-6 h-6 rounded flex items-center justify-center text-xs font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+                          whileTap={{ scale: 0.9 }}
+                          disabled={item.quantity <= 1}
+                        >
+                          −
+                        </motion.button>
+                        <span className="text-sm font-bold min-w-[1.5rem] text-center text-gray-900">
+                          {item.quantity}
+                        </span>
+                        <motion.button
+                          onClick={() => updateQuantity(item, 1)}
+                          className="bg-blue-500 text-white w-6 h-6 rounded flex items-center justify-center text-xs font-bold"
+                          whileTap={{ scale: 0.9 }}
+                        >
+                          +
+                        </motion.button>
+                      </div>
+                      <span className="font-bold text-green-600 text-xs">
+                        {(itemPrice * item.quantity).toFixed(2)} €
+                      </span>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          )}
+        </ul>
+
+        {cart.length > 0 && (
+          <div className="flex flex-col justify-between mt-4 bg-white border-t-2 border-gray-100 pt-3">
+            <div className="flex justify-between text-sm mb-3">
+              <p className="font-bold text-gray-700">Summe:</p>
+              <motion.p
+                className="text-green-600 font-bold text-lg"
+                key={totalAmount}
+                initial={{ scale: 1.2 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                {totalAmount} €
+              </motion.p>
+            </div>
+            <motion.button
+              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white w-full py-2 text-sm font-bold rounded-lg shadow-lg"
+              onClick={() => navigate("/order/summary")}
+              whileTap={{ scale: 0.98 }}
+              aria-label="Proceed to checkout"
+            >
+              <span className="flex items-center justify-center gap-1">
+                💳 Kasse ({cart.length})
+              </span>
+            </motion.button>
+          </div>
+        )}
+      </motion.div>
+
+      {/* Mobile (unter lg) */}
+      <motion.div 
+        className="lg:hidden fixed bottom-0 left-0 right-0 bg-white shadow-2xl border-t-2 border-gray-100 rounded-t-2xl z-40 box-border"
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="max-w-full px-3 py-3 max-h-[40vh] flex flex-col">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+              🛒 Warenkorb
+              {cart.length > 0 && (
+                <span className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-2 py-0.5 rounded-full text-xs font-bold">{cart.length}</span>
+              )}
+            </h2>
+          </div>
+
+          {cart.length === 0 ? (
+            <div className="text-gray-500 flex flex-col items-center justify-center py-8 text-center flex-1">
+              <p className="text-sm mb-2">Der Warenkorb ist leer.</p>
+            </div>
+          ) : (
+            <div className="flex-1 overflow-y-auto min-h-0 mb-3">
+              <AnimatePresence>
+                {cart.map((item) => {
+                  const itemPrice = item.finalPrice || item.price;
+                  return (
+                    <motion.div
+                      key={item.id}
+                      className="bg-gray-50 border-2 border-gray-200 rounded-lg p-2 mb-2 flex-shrink-0"
+                      initial={{ opacity: 0, scale: 0.9, x: -20 }}
+                      animate={{ opacity: 1, scale: 1, x: 0 }}
+                      exit={{ opacity: 0, scale: 0.8, x: -100 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      layout
+                    >
+                      <div className="flex items-start gap-2">
+                        <motion.div 
+                          className="w-14 h-14 rounded-lg overflow-hidden shadow-md flex-shrink-0"
+                        >
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="w-full h-full object-cover rounded-lg"
+                          />
+                        </motion.div>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-bold text-sm text-gray-900 truncate">{item.name}</p>
+                          <p className="text-xs text-gray-600 mb-1">
+                            {itemPrice.toFixed(2)} € x{item.quantity}
+                          </p>
+                          {item.customization && (
+                            <div className="text-xs text-blue-600">
+                              ⚙️ Angepasst
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex items-center gap-2 flex-shrink-0">
+                          <motion.button
+                            onClick={() => handleRemoveClick(item)}
+                            className="bg-red-500 text-white p-1.5 rounded"
+                            aria-label={`Remove ${item.name} from cart`}
+                            whileTap={{ scale: 0.9 }}
+                          >
+                            <svg
+                              className="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M6 18L18 6M6 6l12 12"
+                              />
+                            </svg>
+                          </motion.button>
+                        </div>
+                      </div>
+
+                      {/* Quantity Controls Mobile */}
+                      <div className="flex items-center gap-2 mt-2 ml-16">
+                        <motion.button
+                          onClick={() => updateQuantity(item, -1)}
+                          className="bg-gray-200 text-gray-700 w-7 h-7 rounded flex items-center justify-center text-sm font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+                          whileTap={{ scale: 0.9 }}
+                          disabled={item.quantity <= 1}
+                        >
+                          −
+                        </motion.button>
+                        <span className="text-sm font-bold min-w-[1.5rem] text-center text-gray-900">
+                          {item.quantity}
+                        </span>
+                        <motion.button
+                          onClick={() => updateQuantity(item, 1)}
+                          className="bg-blue-500 text-white w-7 h-7 rounded flex items-center justify-center text-sm font-bold"
+                          whileTap={{ scale: 0.9 }}
+                        >
+                          +
+                        </motion.button>
+                        <span className="ml-auto font-bold text-green-600">
+                          {(itemPrice * item.quantity).toFixed(2)} €
+                        </span>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+            </div>
+          )}
+
+          {cart.length > 0 && (
+            <div className="border-t-2 border-gray-100 pt-3">
+              <div className="flex justify-between text-sm mb-3">
+                <p className="font-bold text-gray-700">Summe:</p>
+                <motion.p
+                  className="text-green-600 font-bold text-lg"
+                  key={totalAmount}
+                  initial={{ scale: 1.2 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {totalAmount} €
+                </motion.p>
+              </div>
+              <motion.button
+                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white w-full py-3 text-base font-bold rounded-lg shadow-lg"
+                onClick={() => navigate("/order/summary")}
+                whileTap={{ scale: 0.98 }}
+                aria-label="Proceed to checkout"
+              >
+                <span className="flex items-center justify-center gap-2">
+                  💳 Zur Kasse ({cart.length})
+                </span>
+              </motion.button>
+            </div>
+          )}
+        </div>
+      </motion.div>
+
+      {/* Spacing für mobile Bottom Sheet */}
+      <div className="lg:hidden h-[40vh]" />
+    </>
   );
 };
 
