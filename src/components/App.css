@@ -24,6 +24,14 @@ body {
   overflow-y: visible;
 }
 
+.order-products-scroll {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
 * {
   box-sizing: border-box;
 }

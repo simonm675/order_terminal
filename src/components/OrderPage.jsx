@@ -85,13 +85,15 @@ function OrderPage({ addToCart, cart, setCart }) {
   }, []);
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col select-none bg-slate-50 lg:h-screen lg:flex-row lg:overflow-hidden">
+    <div className="relative flex h-[100dvh] min-h-0 w-full flex-col select-none overflow-hidden bg-slate-50 lg:h-screen lg:flex-row">
       
       {/* Category section */}
-      <Category filterProducts={setCategory} setCart={setCart} />
+      <div className="shrink-0">
+        <Category filterProducts={setCategory} setCart={setCart} />
+      </div>
 
       {/* Product section */}
-      <div className="min-w-0 flex-1 px-3 pb-28 sm:px-4 lg:overflow-y-auto lg:px-3 lg:pb-4">
+      <div className="order-products-scroll min-h-0 min-w-0 flex-1 px-3 pb-28 sm:px-4 lg:overflow-y-auto lg:px-3 lg:pb-4">
         <OrderItems
           products={filteredProducts}
           addToCart={addToCart}

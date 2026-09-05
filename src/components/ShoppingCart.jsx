@@ -322,8 +322,6 @@ const ShoppingCart = ({ cart, handleRemoveClick, setCart }) => {
         </div>
       </motion.div>
 
-      {/* Spacing für mobile Bottom Sheet */}
-      <div className="lg:hidden h-[104px]" />
     </>
   );
 };
