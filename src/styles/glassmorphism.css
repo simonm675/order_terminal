@@ -1,27 +1,27 @@
-/* iOS 26 Liquid Glass Design System */
+/* Shared surface styles for the ordering terminal. */
 
 :root {
   /* Glass Colors */
-  --glass-white: rgba(255, 255, 255, 0.7);
-  --glass-white-strong: rgba(255, 255, 255, 0.85);
-  --glass-black: rgba(0, 0, 0, 0.3);
-  --glass-accent: rgba(59, 130, 246, 0.5);
+  --glass-white: #fffdf8;
+  --glass-white-strong: #fffdf8;
+  --glass-black: rgba(32, 35, 31, 0.45);
+  --glass-accent: #d94f35;
   
   /* Frosted Blur */
-  --blur-light: blur(20px);
-  --blur-medium: blur(40px);
-  --blur-strong: blur(60px);
+  --blur-light: none;
+  --blur-medium: none;
+  --blur-strong: none;
   
   /* Shadows */
-  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.1);
-  --shadow-medium: 0 12px 48px rgba(0, 0, 0, 0.15);
-  --shadow-strong: 0 20px 64px rgba(0, 0, 0, 0.2);
+  --shadow-soft: 0 8px 24px rgba(32, 35, 31, 0.09);
+  --shadow-medium: 0 12px 30px rgba(32, 35, 31, 0.12);
+  --shadow-strong: 0 16px 40px rgba(32, 35, 31, 0.16);
   
   /* Border Radius */
-  --radius-sm: 16px;
-  --radius-md: 24px;
-  --radius-lg: 32px;
-  --radius-xl: 40px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
   
   /* Spacing */
   --space-xs: 8px;
@@ -31,20 +31,20 @@
   --space-xl: 32px;
   
   /* Colors */
-  --primary: #3B82F6;
-  --primary-dark: #2563EB;
-  --success: #10B981;
-  --warning: #F59E0B;
-  --danger: #EF4444;
-  --text-primary: #1F2937;
-  --text-secondary: #6B7280;
+  --primary: #20231f;
+  --primary-dark: #10120f;
+  --success: #3d7152;
+  --warning: #f2bd4b;
+  --danger: #d94f35;
+  --text-primary: #20231f;
+  --text-secondary: #6f746d;
 }
 
 /* Glass Card */
 .glass-card {
   background: var(--glass-white);
-  backdrop-filter: var(--blur-medium);
-  -webkit-backdrop-filter: var(--blur-medium);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: var(--shadow-soft);
@@ -54,7 +54,6 @@
 .glass-card:hover {
   background: var(--glass-white-strong);
   box-shadow: var(--shadow-medium);
-  transform: translateY(-2px);
 }
 
 /* Glass Button */
@@ -120,9 +119,9 @@
 
 /* Frosted Background Overlay */
 .frosted-overlay {
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: var(--blur-medium);
-  -webkit-backdrop-filter: var(--blur-medium);
+  background: rgba(20, 24, 20, 0.5);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 /* Liquid Animation */
@@ -131,12 +130,12 @@
     transform: translateY(0) rotate(0deg);
   }
   50% {
-    transform: translateY(-20px) rotate(5deg);
+    transform: translateY(-8px) rotate(0.5deg);
   }
 }
 
 .liquid-float {
-  animation: liquid-float 3s ease-in-out infinite;
+  animation: liquid-float 8s ease-in-out infinite;
 }
 
 /* Glass Input */

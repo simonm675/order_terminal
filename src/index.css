@@ -4,4 +4,135 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--app-paper: #f5f2eb;
+	--app-surface: #fffdf8;
+	--app-ink: #20231f;
+	--app-muted: #6f746d;
+	--app-line: #dedbd2;
+	--app-accent: #d94f35;
+	--app-accent-dark: #b63d2a;
+	--app-green: #3d7152;
+	--app-yellow: #f2bd4b;
+}
+
+html,
+body,
+#root {
+	background: var(--app-paper);
+	color: var(--app-ink);
+}
+
+body {
+	font-family: "Figtree", "Avenir Next", "Segoe UI", sans-serif;
+	font-weight: 600;
+}
+
+/* A quiet, tactile terminal language shared by every route. */
+[class~="bg-white"] {
+	background-color: var(--app-surface) !important;
+}
+
+[class~="bg-gray-50"],
+[class~="bg-gray-100"],
+[class~="bg-slate-50"] {
+	background-color: #efede6 !important;
+}
+
+[class~="bg-blue-500"],
+[class~="bg-blue-600"],
+[class~="bg-blue-700"] {
+	background-color: var(--app-ink) !important;
+}
+
+[class~="bg-green-500"],
+[class~="bg-green-600"],
+[class~="bg-green-700"] {
+	background-color: var(--app-green) !important;
+}
+
+[class~="bg-red-500"],
+[class~="bg-red-600"] {
+	background-color: var(--app-accent) !important;
+}
+
+[class~="text-gray-900"],
+[class~="text-gray-800"] {
+	color: var(--app-ink) !important;
+}
+
+[class~="text-gray-700"],
+[class~="text-gray-600"],
+[class~="text-gray-500"] {
+	color: var(--app-muted) !important;
+}
+
+[class~="border-gray-100"],
+[class~="border-gray-200"],
+[class~="border-gray-300"] {
+	border-color: var(--app-line) !important;
+}
+
+[class*="bg-gradient-"] {
+	background-image: none !important;
+	background-color: var(--app-accent) !important;
+}
+
+[class~="from-blue-500"],
+[class~="from-blue-600"],
+[class~="from-blue-700"] {
+	background-color: var(--app-ink) !important;
+}
+
+[class~="from-green-500"],
+[class~="from-green-600"],
+[class~="from-green-700"] {
+	background-color: var(--app-green) !important;
+}
+
+[class~="from-red-500"],
+[class~="from-red-600"] {
+	background-color: var(--app-accent) !important;
+}
+
+[class~="from-blue-50"],
+[class~="from-purple-50"],
+[class~="from-green-50"],
+[class~="from-red-50"] {
+	background-color: #f0ede5 !important;
+}
+
+[class~="bg-clip-text"] {
+	background-image: none !important;
+	color: var(--app-ink) !important;
+	-webkit-text-fill-color: var(--app-ink) !important;
+}
+
+[class~="text-green-600"] {
+	color: var(--app-green) !important;
+}
+
+[class~="text-blue-600"] {
+	color: var(--app-ink) !important;
+}
+
+[class~="rounded-3xl"],
+[class~="rounded-2xl"] {
+	border-radius: 14px !important;
+}
+
+[class~="rounded-xl"] {
+	border-radius: 10px !important;
+}
+
+[class~="shadow-2xl"],
+[class~="shadow-xl"],
+[class~="shadow-lg"] {
+	box-shadow: 0 8px 24px rgba(32, 35, 31, 0.09) !important;
+}
+
+button {
+	letter-spacing: 0.01em;
+}
+
 
