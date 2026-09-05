@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 const Category = ({ filterProducts, setCart }) => {
   const [activeCategory, setActiveCategory] = useState("Menüs");
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [clickedCategory, setClickedCategory] = useState(null); // Zustand für Animation
   const navigate = useNavigate();
 
@@ -73,21 +72,11 @@ const Category = ({ filterProducts, setCart }) => {
           transition={{ duration: 0.5 }}
         />
 
-        {/* Button für Kategorien (nur auf mobilen Geräten) */}
-        <motion.button
-          onClick={() => setIsMenuVisible(!isMenuVisible)}
-          className="min-h-[48px] min-w-[48px] rounded-lg bg-gray-100 p-2 text-gray-800 lg:hidden"
-          whileTap={{ scale: 0.95 }}
-        >
-          <span className="text-2xl">{isMenuVisible ? "✕" : "☰"}</span>
-        </motion.button>
       </div>
 
       {/* Kategorienliste */}
       <motion.ul
-        className={`space-y-3 text-base lg:text-lg font-semibold overflow-y-auto scrollbar-thin ${
-          isMenuVisible ? "block" : "hidden"
-        } lg:block`}
+        className="flex max-w-full gap-2 overflow-x-auto pb-1 scrollbar-thin text-base font-semibold lg:block lg:space-y-3 lg:overflow-y-auto lg:overflow-x-hidden lg:text-lg"
         style={{ maxHeight: "calc(100vh - 300px)" }}
         initial={false}
         animate={{ opacity: 1 }}
@@ -102,7 +91,7 @@ const Category = ({ filterProducts, setCart }) => {
           { name: "Dips", icon: "/img/product_img/garlic-dip.jpeg", emoji: "🥫" },
           { name: "Getränke", icon: "/img/product_img/cola.jpeg", emoji: "🥤" },
         ].map(({ name, icon, emoji }) => (
-          <li key={name}>
+          <li key={name} className="min-w-[116px] shrink-0 lg:min-w-0">
             <motion.button
               initial={{ scale: 1 }}
               animate={{
@@ -132,13 +121,13 @@ const Category = ({ filterProducts, setCart }) => {
       {/* Bestellvorgang abbrechen */}
       <motion.button
         onClick={handleCancel}
-        className="mt-4 min-h-[44px] w-full rounded-xl border border-gray-200 bg-gray-50 py-2.5 text-sm font-semibold text-gray-500 shadow-none transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600 lg:text-sm"
+        className="mt-2 min-h-[36px] w-auto self-end rounded-lg border border-gray-200 bg-transparent px-3 py-1.5 text-xs font-medium text-gray-400 shadow-none transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600 lg:mt-4 lg:w-full lg:text-sm"
         whileTap={{ scale: 0.97 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
       >
-        🚫 Abbrechen
+        Abbrechen
       </motion.button>
 
       {/* Popup für Bestätigung */}
