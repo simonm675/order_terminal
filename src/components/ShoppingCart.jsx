@@ -1,9 +1,10 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 const ShoppingCart = ({ cart, handleRemoveClick, setCart }) => {
   const navigate = useNavigate();
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const totalAmount = useMemo(() => {
     return cart.reduce((acc, curr) => {
@@ -176,26 +177,32 @@ const ShoppingCart = ({ cart, handleRemoveClick, setCart }) => {
 
       {/* Mobile (unter lg) */}
       <motion.div 
-        className="lg:hidden fixed bottom-0 left-0 right-0 bg-white shadow-2xl border-t-2 border-gray-100 rounded-t-2xl z-40 box-border"
+        className={`lg:hidden fixed bottom-0 left-0 right-0 overflow-hidden bg-white shadow-2xl border-t-2 border-gray-100 rounded-t-2xl z-40 box-border transition-[max-height] duration-300 ${isExpanded ? "max-h-[78vh]" : "max-h-[104px]"}`}
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
         <div className="max-w-full px-3 py-3 max-h-[40vh] flex flex-col">
-          <div className="flex items-center justify-between mb-3">
+          <button
+            type="button"
+            onClick={() => setIsExpanded((expanded) => !expanded)}
+            className="flex min-h-[48px] w-full items-center justify-between mb-2 text-left"
+            aria-expanded={isExpanded}
+          >
             <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
               🛒 Warenkorb
               {cart.length > 0 && (
                 <span className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-2 py-0.5 rounded-full text-xs font-bold">{cart.length}</span>
               )}
             </h2>
-          </div>
+            <span className="text-sm font-bold text-blue-600">{isExpanded ? "Schließen" : cart.length ? `${totalAmount} €` : "Öffnen"}</span>
+          </button>
 
-          {cart.length === 0 ? (
+          {isExpanded && cart.length === 0 ? (
             <div className="text-gray-500 flex flex-col items-center justify-center py-8 text-center flex-1">
               <p className="text-sm mb-2">Der Warenkorb ist leer.</p>
             </div>
-          ) : (
+          ) : isExpanded ? (
             <div className="flex-1 overflow-y-auto min-h-0 mb-3">
               <AnimatePresence>
                 {cart.map((item) => {
@@ -284,9 +291,9 @@ const ShoppingCart = ({ cart, handleRemoveClick, setCart }) => {
                 })}
               </AnimatePresence>
             </div>
-          )}
+          ) : null}
 
-          {cart.length > 0 && (
+          {isExpanded && cart.length > 0 && (
             <div className="border-t-2 border-gray-100 pt-3">
               <div className="flex justify-between text-sm mb-3">
                 <p className="font-bold text-gray-700">Summe:</p>
@@ -316,7 +323,7 @@ const ShoppingCart = ({ cart, handleRemoveClick, setCart }) => {
       </motion.div>
 
       {/* Spacing für mobile Bottom Sheet */}
-      <div className="lg:hidden h-[40vh]" />
+      <div className="lg:hidden h-[104px]" />
     </>
   );
 };

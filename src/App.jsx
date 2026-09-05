@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import "./components/App.css";
 import { AnimatePresence } from "framer-motion";
@@ -16,35 +16,29 @@ const App = () => {
   const [cart, setCart] = useState([]);
 
   const addToCart = (product) => {
-    try {
-      const index = cart.findIndex((item) => item.id === product.id);
+    setCart((currentCart) => {
+      const itemPrice = Number(product.finalPrice ?? product.price);
+      const productId = String(product.id);
+      const index = currentCart.findIndex((item) => item.id === product.id);
+
       if (index === -1) {
-        // Behalte finalPrice bei angepassten Produkten
-        setCart([...cart, { 
-          ...product, 
-          quantity: 1,
-          price: product.finalPrice || product.price,
-          finalPrice: product.finalPrice || product.price
-        }]);
-      } else {
-        const updatedCart = [...cart];
-        updatedCart[index].quantity++;
-        setCart(updatedCart);
+        return [
+          ...currentCart,
+          {
+            ...product,
+            id: productId,
+            quantity: 1,
+            price: itemPrice,
+            finalPrice: itemPrice,
+          },
+        ];
       }
-    } catch (error) {
-      console.error("Error adding to cart:", error);
-    }
+
+      return currentCart.map((item, itemIndex) =>
+        itemIndex === index ? { ...item, quantity: item.quantity + 1 } : item
+      );
+    });
   };
-
-  // useEffect, um den Rechtsklick zu deaktivieren
-  useEffect(() => {
-    const disableRightClick = (e) => e.preventDefault();
-    document.addEventListener("contextmenu", disableRightClick);
-
-    return () => {
-      document.removeEventListener("contextmenu", disableRightClick);
-    };
-  }, []);
 
   return (
     <ErrorBoundary>

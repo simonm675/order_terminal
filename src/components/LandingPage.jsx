@@ -42,23 +42,14 @@ const LandingPage = () => {
             transition={{ duration: 0.8 }}
           />
 
-          {/* Button "Jetzt starten" mit pulsierender Animation */}
+          {/* Button "Jetzt starten" */}
           {!showOptions ? (
             <motion.button
               onClick={handleStartClick}
-              className="glass-button-success px-12 py-6 lg:px-16 lg:py-8 text-xl lg:text-3xl font-bold"
-              initial={{ scale: 1 }}
-              animate={{
-                scale: [1, 1.05, 1],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
-              whileHover={{
-                scale: 1.1,
-              }}
+              className="bg-gradient-to-r from-green-500 to-green-600 text-white px-12 py-6 lg:px-16 lg:py-8 text-xl lg:text-3xl font-bold rounded-2xl shadow-2xl border-2 border-white/30"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               whileTap={{ scale: 0.95 }}
               aria-label="Jetzt Bestellen"
             >
@@ -67,16 +58,16 @@ const LandingPage = () => {
           ) : (
             <motion.div
               className="flex flex-col sm:flex-row gap-4 lg:gap-6 w-full max-w-3xl px-4"
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
               <motion.button
                 onClick={() => handleNavigate("/order?type=here")}
-                className="flex-1 glass-button-primary py-5 px-6 lg:py-7 lg:px-10 text-lg lg:text-2xl font-bold"
-                whileHover={{
-                  scale: 1.05,
-                }}
+                className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white py-5 px-6 lg:py-7 lg:px-10 text-lg lg:text-2xl font-bold rounded-2xl shadow-2xl border-2 border-white/30"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label="Zum hier essen"
               >
@@ -84,10 +75,10 @@ const LandingPage = () => {
               </motion.button>
               <motion.button
                 onClick={() => handleNavigate("/order?type=takeaway")}
-                className="flex-1 glass-button py-5 px-6 lg:py-7 lg:px-10 text-lg lg:text-2xl font-bold border-2 border-white/50"
-                whileHover={{
-                  scale: 1.05,
-                }}
+                className="flex-1 bg-white/10 backdrop-blur-md text-white py-5 px-6 lg:py-7 lg:px-10 text-lg lg:text-2xl font-bold rounded-2xl shadow-2xl border-2 border-white/50"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.2 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label="Zum Mitnehmen"
               >

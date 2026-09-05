@@ -60,7 +60,7 @@ const Category = ({ filterProducts, setCart }) => {
   }, [clickedCategory]);
 
   return (
-    <div className="relative flex flex-col justify-between bg-white shadow-xl px-3 py-3 mb-3 mt-3 ml-0 lg:ml-3 mr-0 lg:mr-3 w-full lg:w-auto lg:min-w-[280px] lg:max-w-[300px] overflow-hidden rounded-2xl border-2 border-gray-100">
+    <div className="relative z-20 flex w-full flex-col justify-between border-b border-gray-200 bg-white px-3 py-3 shadow-sm lg:my-3 lg:ml-3 lg:mr-3 lg:w-auto lg:min-w-[280px] lg:max-w-[300px] lg:overflow-hidden lg:rounded-2xl lg:border-2 lg:border-gray-100 lg:shadow-xl">
       {/* Oberer Bereich mit Bild und Button nebeneinander */}
       <div className="flex items-center justify-between mb-3">
         {/* Logo */}
@@ -76,7 +76,7 @@ const Category = ({ filterProducts, setCart }) => {
         {/* Button für Kategorien (nur auf mobilen Geräten) */}
         <motion.button
           onClick={() => setIsMenuVisible(!isMenuVisible)}
-          className="lg:hidden bg-gray-100 p-2 rounded-lg text-gray-800"
+          className="min-h-[48px] min-w-[48px] rounded-lg bg-gray-100 p-2 text-gray-800 lg:hidden"
           whileTap={{ scale: 0.95 }}
         >
           <span className="text-2xl">{isMenuVisible ? "✕" : "☰"}</span>
@@ -90,7 +90,7 @@ const Category = ({ filterProducts, setCart }) => {
         } lg:block`}
         style={{ maxHeight: "calc(100vh - 300px)" }}
         initial={false}
-        animate={{ opacity: isMenuVisible || window.innerWidth >= 1024 ? 1 : 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
       >
         {[
@@ -132,7 +132,7 @@ const Category = ({ filterProducts, setCart }) => {
       {/* Bestellvorgang abbrechen */}
       <motion.button
         onClick={handleCancel}
-        className="bg-gradient-to-r from-red-500 to-red-600 text-white w-full py-3 mt-3 font-bold text-sm lg:text-base rounded-xl shadow-lg"
+        className="mt-4 min-h-[44px] w-full rounded-xl border border-gray-200 bg-gray-50 py-2.5 text-sm font-semibold text-gray-500 shadow-none transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600 lg:text-sm"
         whileTap={{ scale: 0.97 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

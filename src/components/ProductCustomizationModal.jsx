@@ -172,7 +172,7 @@ const ProductCustomizationModal = ({ product, onClose, onAddToCart }) => {
       onClick={onClose}
     >
       <motion.div
-        className={`bg-white rounded-3xl shadow-2xl w-full ${isSimpleProduct ? 'max-w-md' : 'max-w-4xl max-h-[90vh] overflow-y-auto'}`}
+        className={`max-h-[calc(100dvh-2rem)] w-full overflow-y-auto rounded-3xl bg-white shadow-2xl ${isSimpleProduct ? 'max-w-md' : 'max-w-4xl'}`}
         initial={{ scale: 0.9, y: 50 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.9, y: 50 }}
@@ -180,7 +180,7 @@ const ProductCustomizationModal = ({ product, onClose, onAddToCart }) => {
       >
         {isSimpleProduct ? (
           // Einfaches Bestätigungs-Modal
-          <div className="p-6">
+          <div className="p-5 sm:p-6">
             <div className="text-center mb-6">
               <div className="w-32 h-32 mx-auto mb-4 rounded-xl overflow-hidden border-2 border-gray-200">
                 <img src={product.image} alt={product.name} className="w-full h-full object-cover rounded-2xl" />
@@ -232,10 +232,10 @@ const ProductCustomizationModal = ({ product, onClose, onAddToCart }) => {
           </div>
         </div>
 
-        <div className="px-6 pb-6 space-y-6">
+        <div className="space-y-4 px-4 pb-4 sm:space-y-6 sm:px-6 sm:pb-6">
           {/* Größe auswählen */}
           {product.category === 'Burger' && (
-            <div className="bg-gray-50 rounded-2xl p-6">
+            <div className="rounded-2xl bg-gray-50 p-4 sm:p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                 <span>📏</span> Größe wählen
               </h3>
@@ -271,7 +271,7 @@ const ProductCustomizationModal = ({ product, onClose, onAddToCart }) => {
 
           {/* Garstufe */}
           {product.category === 'Burger' && (
-            <div className="bg-gray-50 rounded-2xl p-6">
+            <div className="rounded-2xl bg-gray-50 p-4 sm:p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                 <span>🔥</span> Garstufe
               </h3>
@@ -301,7 +301,7 @@ const ProductCustomizationModal = ({ product, onClose, onAddToCart }) => {
 
           {/* Zutaten entfernen */}
           {standardIngredients.length > 0 && (
-            <div className="bg-gray-50 rounded-2xl p-6">
+            <div className="rounded-2xl bg-gray-50 p-4 sm:p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                 <span>🔧</span> Zutaten anpassen
               </h3>
@@ -336,7 +336,7 @@ const ProductCustomizationModal = ({ product, onClose, onAddToCart }) => {
 
           {/* Extras hinzufügen */}
           {availableExtras.length > 0 && (
-            <div className="bg-gray-50 rounded-2xl p-6">
+            <div className="rounded-2xl bg-gray-50 p-4 sm:p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                 <span>➕</span> Extras hinzufügen
               </h3>
@@ -389,7 +389,7 @@ const ProductCustomizationModal = ({ product, onClose, onAddToCart }) => {
           )}
 
           {/* Spezielle Anweisungen */}
-          <div className="bg-gray-50 rounded-2xl p-6">
+          <div className="rounded-2xl bg-gray-50 p-4 sm:p-6">
             <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <span>📝</span> Spezielle Anweisungen
             </h3>
@@ -406,11 +406,11 @@ const ProductCustomizationModal = ({ product, onClose, onAddToCart }) => {
         </div>
 
         {/* Footer */}
-        <div className="sticky bottom-0 bg-white border-t-2 border-gray-100 p-6 mt-4">
+        <div className="sticky bottom-0 mt-4 border-t-2 border-gray-100 bg-white p-4 sm:p-6">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xl font-semibold text-gray-700">Gesamtpreis:</span>
+            <span className="text-base font-semibold text-gray-700 sm:text-xl">Gesamtpreis:</span>
             <motion.span
-              className="text-4xl font-bold text-green-600"
+              className="text-2xl font-bold text-green-600 sm:text-4xl"
               key={calculateTotalPrice()}
               initial={{ scale: 1.2 }}
               animate={{ scale: 1 }}

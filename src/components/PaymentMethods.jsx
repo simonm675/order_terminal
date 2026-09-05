@@ -60,7 +60,7 @@ const PaymentMethods = () => {
         {paymentMethods.map((method) => (
           <motion.div
             key={method.id}
-            className={`bg-gray-50 border-2 rounded-2xl px-4 lg:px-6 py-12 lg:py-20 cursor-pointer transition-all duration-300 ${
+            className={`cursor-pointer rounded-2xl border-2 bg-gray-50 px-4 py-5 transition-all duration-300 sm:py-7 lg:px-6 lg:py-10 ${
               selectedPaymentMethod === method.id
                 ? "border-blue-500 bg-gradient-to-r from-blue-50 to-purple-50 shadow-2xl"
                 : "border-gray-200"
@@ -68,10 +68,10 @@ const PaymentMethods = () => {
             onClick={() => setSelectedPaymentMethod(method.id)}
             whileTap={{ scale: 0.98 }}
           >
-            <div className="flex items-center space-x-4 lg:space-x-6">
-              <div className="text-5xl lg:text-7xl">{method.icon}</div>
+              <div className="flex items-center space-x-4 lg:space-x-6">
+              <div className="text-4xl lg:text-6xl">{method.icon}</div>
               <div className="flex-1">
-                <h3 className="text-2xl lg:text-4xl font-bold mb-1 lg:mb-2 text-gray-900">{method.name}</h3>
+                <h3 className="mb-1 text-xl font-bold text-gray-900 lg:mb-2 lg:text-3xl">{method.name}</h3>
                 <p className="text-sm lg:text-base text-gray-600">{method.description}</p>
               </div>
               {selectedPaymentMethod === method.id && (
