@@ -177,16 +177,16 @@ const ShoppingCart = ({ cart, handleRemoveClick, setCart }) => {
 
       {/* Mobile (unter lg) */}
       <motion.div 
-        className={`lg:hidden fixed bottom-0 left-0 right-0 overflow-hidden bg-white shadow-2xl border-t-2 border-gray-100 rounded-t-2xl z-40 box-border transition-[max-height] duration-300 ${isExpanded ? "max-h-[78vh]" : "max-h-[104px]"}`}
+        className={`lg:hidden fixed bottom-0 left-0 right-0 overflow-hidden bg-white shadow-2xl border-t-2 border-gray-100 rounded-t-2xl z-40 box-border transition-[max-height] duration-300 ${isExpanded ? "max-h-[82dvh]" : "max-h-[96px]"}`}
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="max-w-full px-3 py-3 max-h-[40vh] flex flex-col">
+        <div className="max-w-full px-3 py-2.5 max-h-[82dvh] flex flex-col sm:py-3">
           <button
             type="button"
             onClick={() => setIsExpanded((expanded) => !expanded)}
-            className="flex min-h-[48px] w-full items-center justify-between mb-2 text-left"
+            className="mb-1 flex min-h-[44px] w-full items-center justify-between text-left sm:mb-2 sm:min-h-[48px]"
             aria-expanded={isExpanded}
           >
             <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">

@@ -14,15 +14,15 @@ const OrderSummary = ({ cart }) => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50 p-2 lg:p-4">
+    <div className="min-h-[100dvh] w-full flex items-center justify-center bg-gray-50 p-2 sm:p-3 lg:p-4">
       <motion.div 
-        className="relative flex flex-col bg-white shadow-2xl rounded-2xl justify-between w-full max-w-4xl p-4 lg:p-6 border-2 border-gray-100"
+        className="relative flex max-h-[100dvh] w-full max-w-4xl flex-col justify-between overflow-hidden rounded-2xl border-2 border-gray-100 bg-white p-3 shadow-2xl sm:p-4 lg:p-6"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        style={{ maxHeight: '95vh' }}
+        style={{ maxHeight: '95dvh' }}
       >
-      <h2 className="text-3xl lg:text-4xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 lg:mb-6">
+      <h2 className="mb-3 text-2xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent sm:mb-4 sm:text-3xl lg:mb-6 lg:text-4xl">
         📋 Bestellübersicht
       </h2>
 
@@ -41,15 +41,15 @@ const OrderSummary = ({ cart }) => {
         <div className="flex-grow mb-6 overflow-hidden">
           <ul
             className="space-y-2"
-            style={{ maxHeight: "calc(95vh - 350px)", overflowY: "auto" }}
+            style={{ maxHeight: "calc(95dvh - 330px)", overflowY: "auto" }}
           >
             {cart.map((item, index) => (
               <li
                 key={index}
-                className="bg-gray-50 border-2 border-gray-200 rounded-xl flex items-center justify-between mb-3 p-3"
+                className="mb-2 flex items-center justify-between rounded-xl border-2 border-gray-200 bg-gray-50 p-2 sm:mb-3 sm:p-3"
               >
                 <div className="flex items-center">
-                  <div className="w-20 h-20 rounded-xl overflow-hidden mr-4 border-2 border-gray-200">
+                  <div className="mr-2 h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl border-2 border-gray-200 sm:mr-4 sm:h-20 sm:w-20">
                     <img
                       src={item.image}
                       alt={item.name}
@@ -57,7 +57,7 @@ const OrderSummary = ({ cart }) => {
                     />
                   </div>
                   <div>
-                    <p className="font-semibold text-lg text-gray-900">
+                    <p className="max-w-[10rem] truncate font-semibold text-sm text-gray-900 sm:max-w-none sm:text-lg">
                       {item.name}
                     </p>
                     <p className="text-gray-600 text-sm">
@@ -68,7 +68,7 @@ const OrderSummary = ({ cart }) => {
                     )}
                   </div>
                 </div>
-                <div className="text-lg text-green-600 font-bold mr-4">
+                <div className="ml-2 text-sm font-bold text-green-600 sm:mr-4 sm:text-lg">
                   {((item.finalPrice || item.price) * item.quantity).toFixed(2)} €
                 </div>
               </li>
@@ -80,9 +80,9 @@ const OrderSummary = ({ cart }) => {
       {/* Gesamtsumme und Buttons */}
       <div className="flex flex-col mt-auto space-y-4 pt-4 w-full">
         <hr className="border-gray-300" />
-        <div className="flex justify-between items-center text-lg lg:text-xl font-bold text-gray-800">
+        <div className="flex items-center justify-between text-base font-bold text-gray-800 sm:text-lg lg:text-xl">
           <p>Gesamtsumme:</p>
-          <p className="text-green-600 text-2xl lg:text-3xl">{calculateTotal().toFixed(2)} €</p>
+          <p className="text-xl text-green-600 sm:text-2xl lg:text-3xl">{calculateTotal().toFixed(2)} €</p>
         </div>
 
         <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4 pb-4 lg:pb-6">

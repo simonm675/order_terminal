@@ -43,24 +43,24 @@ const PaymentMethods = () => {
   const formattedTotal = !isNaN(totalAmount) ? totalAmount.toFixed(2) : "0.00";
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50 p-2 lg:p-4">
+    <div className="min-h-[100dvh] w-full flex items-center justify-center bg-gray-50 p-2 sm:p-3 lg:p-4">
       <motion.div
-        className="relative flex flex-col bg-white shadow-2xl rounded-2xl justify-between w-full max-w-4xl p-4 lg:p-6 border-2 border-gray-100"
+        className="relative flex max-h-[100dvh] w-full max-w-4xl flex-col justify-between overflow-hidden rounded-2xl border-2 border-gray-100 bg-white p-3 shadow-2xl sm:p-4 lg:p-6"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        style={{ maxHeight: '95vh' }}
+        style={{ maxHeight: '95dvh' }}
       >
-      <h2 className="text-3xl lg:text-4xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 lg:mb-6">
+      <h2 className="mb-3 text-2xl font-bold text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent sm:mb-4 sm:text-3xl lg:mb-6 lg:text-4xl">
         💳 Zahlungsmethoden
       </h2>
 
       {/* Zahlungsmethoden-Auswahl */}
-      <div className="flex-grow my-4 lg:my-6 space-y-4 lg:space-y-6 w-full">
+      <div className="my-3 flex-grow w-full space-y-3 sm:my-4 sm:space-y-4 lg:my-6 lg:space-y-6">
         {paymentMethods.map((method) => (
           <motion.div
             key={method.id}
-            className={`cursor-pointer rounded-2xl border-2 bg-gray-50 px-4 py-5 transition-all duration-300 sm:py-7 lg:px-6 lg:py-10 ${
+            className={`cursor-pointer rounded-2xl border-2 bg-gray-50 px-3 py-4 transition-all duration-300 sm:px-4 sm:py-7 lg:px-6 lg:py-10 ${
               selectedPaymentMethod === method.id
                 ? "border-blue-500 bg-gradient-to-r from-blue-50 to-purple-50 shadow-2xl"
                 : "border-gray-200"
@@ -68,10 +68,10 @@ const PaymentMethods = () => {
             onClick={() => setSelectedPaymentMethod(method.id)}
             whileTap={{ scale: 0.98 }}
           >
-              <div className="flex items-center space-x-4 lg:space-x-6">
-              <div className="text-4xl lg:text-6xl">{method.icon}</div>
+              <div className="flex items-center space-x-3 sm:space-x-4 lg:space-x-6">
+              <div className="text-3xl sm:text-4xl lg:text-6xl">{method.icon}</div>
               <div className="flex-1">
-                <h3 className="mb-1 text-xl font-bold text-gray-900 lg:mb-2 lg:text-3xl">{method.name}</h3>
+                <h3 className="mb-1 text-lg font-bold text-gray-900 sm:text-xl lg:mb-2 lg:text-3xl">{method.name}</h3>
                 <p className="text-sm lg:text-base text-gray-600">{method.description}</p>
               </div>
               {selectedPaymentMethod === method.id && (
