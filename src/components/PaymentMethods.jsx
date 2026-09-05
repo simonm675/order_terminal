@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
+import PageHeader from "./PageHeader";
 
 const PaymentMethods = () => {
   const location = useLocation();
@@ -43,9 +44,10 @@ const PaymentMethods = () => {
   const formattedTotal = !isNaN(totalAmount) ? totalAmount.toFixed(2) : "0.00";
 
   return (
-    <div className="min-h-[100dvh] w-full flex items-center justify-center bg-gray-50 p-2 sm:p-3 lg:p-4">
+    <div className="min-h-[100dvh] w-full flex flex-col bg-gray-50">
+      <PageHeader />
       <motion.div
-        className="relative flex max-h-[100dvh] w-full max-w-4xl flex-col justify-between overflow-hidden rounded-2xl border-2 border-gray-100 bg-white p-3 shadow-2xl sm:p-4 lg:p-6"
+        className="relative mx-auto flex max-h-[calc(100dvh-5rem)] w-full max-w-4xl flex-col justify-between overflow-hidden rounded-2xl border-2 border-gray-100 bg-white p-3 shadow-2xl sm:max-h-[calc(100dvh-6rem)] sm:p-4 lg:p-6"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}

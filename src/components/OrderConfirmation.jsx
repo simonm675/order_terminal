@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import PageHeader from "./PageHeader";
 
 const OrderConfirmation = ({ setCart }) => {
   const navigate = useNavigate();
@@ -29,15 +30,13 @@ const OrderConfirmation = ({ setCart }) => {
   
   return (
     <motion.div
-      className="relative mx-auto flex min-h-[100dvh] max-w-4xl flex-col justify-center overflow-hidden border-2 border-gray-100 bg-white p-4 shadow-2xl sm:min-h-0 sm:rounded-2xl sm:p-6 sm:my-4 lg:my-8 lg:p-8"
+      className="relative flex min-h-[100dvh] flex-col bg-gray-50"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 -z-10"></div>
-      
-      <div className="relative z-10">
+      <PageHeader />
+      <div className="relative z-10 mx-auto my-auto flex w-full max-w-4xl flex-col justify-center overflow-hidden border-2 border-gray-100 bg-white p-4 shadow-2xl sm:my-4 sm:rounded-2xl sm:p-6 lg:my-8 lg:p-8">
         <motion.h2 
           className="mb-3 text-2xl font-bold text-center bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent sm:mb-4 sm:text-3xl lg:mb-6 lg:text-5xl"
           initial={{ y: -30 }}

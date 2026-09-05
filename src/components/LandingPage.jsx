@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import PageHeader from "./PageHeader";
 
 const LandingPage = () => {
   const [showOptions, setShowOptions] = useState(false);
@@ -31,17 +32,9 @@ const LandingPage = () => {
 
       {/* Overlay */}
       <div className="absolute inset-0 flex flex-col items-center justify-between text-white">
+        <PageHeader dark />
         {/* Hauptinhalt: Logo, Text, Buttons */}
         <div className="flex flex-col items-center justify-center flex-grow px-4 z-10">
-          <motion.img
-            src="/img/logo/logo_new-min.png"
-            alt="Burger&Burger"
-            className="mb-6 w-3/4 max-w-xs drop-shadow-[0_0_60px_rgba(255,255,255,0.9)] liquid-float sm:mb-8 sm:w-1/2 md:w-2/5 lg:w-1/3 xl:w-1/4"
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          />
-
           {/* Button "Jetzt starten" */}
           {!showOptions ? (
             <motion.button
