@@ -72,6 +72,17 @@ const Category = ({ filterProducts, setCart }) => {
           transition={{ duration: 0.5 }}
         />
 
+        <motion.button
+          onClick={handleCancel}
+          className="min-h-[36px] rounded-lg border border-gray-200 bg-transparent px-3 py-1.5 text-xs font-medium text-gray-400 transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600 lg:hidden"
+          whileTap={{ scale: 0.97 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+        >
+          Abbrechen
+        </motion.button>
+
       </div>
 
       {/* Kategorienliste */}
@@ -121,7 +132,7 @@ const Category = ({ filterProducts, setCart }) => {
       {/* Bestellvorgang abbrechen */}
       <motion.button
         onClick={handleCancel}
-        className="mt-2 min-h-[36px] w-auto self-end rounded-lg border border-gray-200 bg-transparent px-3 py-1.5 text-xs font-medium text-gray-400 shadow-none transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600 lg:mt-4 lg:w-full lg:text-sm"
+        className="mt-2 hidden min-h-[36px] w-auto self-end rounded-lg border border-gray-200 bg-transparent px-3 py-1.5 text-xs font-medium text-gray-400 shadow-none transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-600 lg:mt-4 lg:flex lg:w-full lg:text-sm"
         whileTap={{ scale: 0.97 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
